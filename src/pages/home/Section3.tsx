@@ -48,7 +48,7 @@ export default function HowItWorksSection() {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 to-transparent pointer-events-none" />
       
       {/* Animated Dots Background */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
+      {/* <div className="absolute inset-0 opacity-30 pointer-events-none">
         {[...Array(50)].map((_, i) => (
           <div
             key={i}
@@ -61,9 +61,9 @@ export default function HowItWorksSection() {
             }}
           />
         ))}
-      </div>
+      </div> */}
           {/* Floating Particles Effect */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
@@ -76,7 +76,7 @@ export default function HowItWorksSection() {
               }}
             />
           ))}
-        </div>
+        </div> */}
       
       {/* Background image */}
       <img

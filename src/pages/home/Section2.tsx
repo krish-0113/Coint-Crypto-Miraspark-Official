@@ -74,7 +74,7 @@ const FeatureSection = () => {
   }}
 >
       {/* Floating Particles Effect */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(50)].map((_, i) => (
             <div
               key={i}
@@ -87,7 +87,7 @@ const FeatureSection = () => {
               }}
             />
           ))}
-        </div>
+        </div> */}
   {/* Background overlay with more black tint */}
   <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent pointer-events-none" />
 

@@ -10,9 +10,9 @@ const Home = () => {
   return (
     <div className="relative overflow-hidden">
       {/* Particles in the background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* <div className="fixed inset-0 z-0 pointer-events-none">
         <Particles />
-      </div>
+      </div> */}
 
       {/* Main content above the particles */}
       <div className="relative z-10">

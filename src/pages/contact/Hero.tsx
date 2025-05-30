@@ -9,14 +9,15 @@ import {
 } from "react-icons/md";
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 40, scale: 0.9 },
   visible: (i) => ({
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
-      delay: i * 0.2,
-      duration: 0.6,
-      ease: "easeOut",
+      delay: i * 0.15,
+      duration: 0.7,
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   }),
 };
@@ -64,7 +65,7 @@ const ContactUs = () => {
         "CryptoDigest",
         "Shop 21 Carlton Street",
         "Sydney NSW 2000",
-        "Australia",
+        
       ],
     },
     {
@@ -78,13 +79,14 @@ const ContactUs = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen px-4 md:px-10 lg:px-24 py-20 text-white relative">
-          <img
-        src="/img/green.svg"
-        alt="Green Light"
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 pointer-events-none opacity-70 z-0"
-      />
-      <div className="max-w-6xl mx-auto">
+    <div className="w-full min-h-screen px-4 md:px-10 lg:px-24 py-20 text-white relative bg-black">
+      {/* Subtle dark blue gradients */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-slate-900 opacity-80 pointer-events-none z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-blue-950 opacity-30 pointer-events-none z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-indigo-950 opacity-20 pointer-events-none z-0"></div>
+      
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Heading */}
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
@@ -100,7 +102,7 @@ const ContactUs = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-gray-200 mb-8 md:mb-12 text-left max-w-2xl"
         >
-          At CryptoDigest, we’re always here to help. Whether you have a
+          At CryptoDigest, we're always here to help. Whether you have a
           question, feedback, or business inquiry, our team is ready to assist
           you.
         </motion.p>
@@ -110,32 +112,60 @@ const ContactUs = () => {
           {cardData.map((item, i) => (
             <motion.div
               key={i}
-              className="bg-[#0b1b22] p-6 rounded-lg border border-[#00cfff]/20 shadow-[0_0_10px_#00cfff22] hover:shadow-[0_0_20px_#00cfff55] transition-all duration-300 cursor-pointer"
+              className="relative group"
               custom={i}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={cardVariants}
-              whileHover={{ scale: 1.03 }}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
             >
-              <div className="flex items-center mb-2 space-x-3">
-                <span className="bg-cyan-950 w-10 h-10 flex items-center justify-center rounded-full border border-cyan-400/30 shadow-md">
-                  {item.icon}
-                </span>
-                <h2 className="text-lg font-semibold text-white">
-                  {item.title}
-                </h2>
+              {/* Gradient Border Wrapper */}
+              <div 
+                className="p-[1px] rounded-lg transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(0,240,255,0.3),0_0_60px_rgba(139,0,255,0.2)]"
+                style={{
+                  background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8, #00f0ff)',
+                }}
+              >
+                {/* Inner Card */}
+                <div className="bg-gradient-to-br from-[#080812] to-[#0a0a15] rounded-lg p-6 cursor-pointer transition-all duration-500 group-hover:from-[#0c0c18] group-hover:to-[#0e0e1b] group-hover:shadow-inner h-full">
+                  <div className="flex items-center mb-4 space-x-3">
+                    <div className="relative">
+                      {/* Icon Gradient Background */}
+                      <div 
+                        className="w-10 h-10 rounded-full p-[1px] transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(0,240,255,0.4)]"
+                        style={{
+                          background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8, #00f0ff)',
+                        }}
+                      >
+                        <span className="bg-gradient-to-br from-gray-900 to-black w-full h-full flex items-center justify-center rounded-full">
+                          {item.icon}
+                        </span>
+                      </div>
+                    </div>
+                    <h2 className="text-lg font-semibold text-white leading-tight group-hover:text-cyan-100 transition-colors duration-300">
+                      {item.title}
+                    </h2>
+                  </div>
+                  <div className="space-y-2">
+                    {item.content.map((text, idx) => (
+                      <p
+                        key={idx}
+                        className={`text-sm leading-relaxed transition-colors duration-300 ${
+                          text.includes("@") 
+                            ? "text-cyan-400 font-medium group-hover:text-cyan-300" 
+                            : "text-gray-300 group-hover:text-gray-200"
+                        }`}
+                      >
+                        {text.includes("@") ? `Email: ${text}` : text}
+                      </p>
+                    ))}
+                  </div>
+                </div>
               </div>
-              {item.content.map((text, idx) => (
-                <p
-                  key={idx}
-                  className={`text-sm ${
-                    text.includes("@") ? "text-cyan-400" : "text-gray-200"
-                  } ${idx !== 0 ? "mt-1" : "mb-2"}`}
-                >
-                  {text.includes("@") ? `Email: ${text}` : text}
-                </p>
-              ))}
             </motion.div>
           ))}
         </div>

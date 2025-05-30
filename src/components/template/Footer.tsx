@@ -39,7 +39,7 @@ export const Footer = () => {
         }
         
         .gradient-bg {
-          background: linear-gradient(135deg, #000000, #0d0d0d, #000428, #000000); /* black to dark gray to dark blue to black */
+          background: linear-gradient(135deg, #000000, #0d0d0d, #000428, #000000);
           position: relative;
         }
         
@@ -50,11 +50,30 @@ export const Footer = () => {
           left: 0;
           right: 0;
           bottom: 0;
-          background: linear-gradient(135deg, #000000, #000000, #001f3f, #000000); /* more black on both sides with dark blue in the center */
+          background: linear-gradient(135deg, #000000, #000000, #001f3f, #000000);
           background-size: 400% 400%;
           animation: gradient-shift 8s ease infinite;
-          opacity: 0.1; /* slightly increased opacity for smoother overlay */
+          opacity: 0.1;
           z-index: 0;
+        }
+        
+        /* Dark black gradient overlay on right side */
+        .gradient-bg::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 60%;
+          height: 100%;
+          background: linear-gradient(90deg, 
+            transparent 0%,
+            rgba(0,0,0,0.3) 20%,
+            rgba(0,0,0,0.6) 50%,
+            rgba(0,0,0,0.8) 70%,
+            rgba(0,0,0,0.95) 100%
+          );
+          z-index: 0;
+          pointer-events: none;
         }
         
         /* Add a smoother gradient animation */
@@ -69,7 +88,6 @@ export const Footer = () => {
             background-position: 0% 50%;
           }
         }
-        
         
         .content-wrapper {
           position: relative;
@@ -189,6 +207,29 @@ export const Footer = () => {
             transform: translateY(0);
           }
         }
+
+        /* Additional dark gradient effect for right side columns */
+        .right-side-dark {
+          position: relative;
+        }
+        
+        .right-side-dark::before {
+          content: '';
+          position: absolute;
+          top: -20px;
+          left: -20px;
+          right: -20px;
+          bottom: -20px;
+          background: linear-gradient(135deg, 
+            transparent 0%,
+            rgba(0,0,0,0.2) 30%,
+            rgba(0,0,0,0.4) 60%,
+            rgba(0,0,0,0.6) 100%
+          );
+          border-radius: 12px;
+          z-index: -1;
+          pointer-events: none;
+        }
       `}</style>
 
       <footer className="gradient-bg text-white py-14 px-6 sm:px-8 md:px-10 lg:px-20 relative overflow-hidden">
@@ -243,35 +284,35 @@ export const Footer = () => {
               </ul>
             </div>
 
-            {/* 3. Learn More */}
             <div className="space-y-3">
-              <h3 className="gradient-text text-base mb-1">Learn More</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>
-                  <Link to={'/pricing'} className="hover-glow hover:underline transition-all duration-300">
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
-                    License
-                  </Link>
-                </li>
-                <li>
-                  <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
-                    Style Guide
-                  </Link>
-                </li>
-                <li>
-                  <Link to={'/news'} className="hover-glow hover:underline transition-all duration-300">
-                    News
-                  </Link>
-                </li>
-              </ul>
-            </div>
+  <h3 className="gradient-text text-base mb-1">Learn More</h3>
+  <ul className="space-y-2 text-sm text-gray-300">
+    <li>
+      <Link to="/pricing" className="hover-glow hover:underline transition-all duration-300">
+        Pricing
+      </Link>
+    </li>
+    <li>
+      <Link to="/" className="hover-glow hover:underline transition-all duration-300">
+        License
+      </Link>
+    </li>
+    <li>
+      <Link to="/" className="hover-glow hover:underline transition-all duration-300">
+        Style Guide
+      </Link>
+    </li>
+    <li>
+      <Link to="/news" className="hover-glow hover:underline transition-all duration-300">
+        News
+      </Link>
+    </li>
+  </ul>
+</div>
 
-            {/* 4. Social Icons */}
-            <div className="space-y-3">
+
+            {/* 4. Social Icons - Enhanced with dark gradient */}
+            <div className="space-y-3 right-side-dark">
               <h3 className="gradient-text text-base mb-1">Follow US</h3>
               <div className="flex space-x-4">
                 <a href="#" aria-label="Instagram" className="social-icon">
@@ -321,7 +362,7 @@ export const Footer = () => {
         </button>
 
         {/* Floating Particles Effect */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(50)].map((_, i) => (
             <div
               key={i}
@@ -334,7 +375,7 @@ export const Footer = () => {
               }}
             />
           ))}
-        </div>
+        </div> */}
       </footer>
     </>
   );

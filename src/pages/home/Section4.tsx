@@ -18,7 +18,7 @@ export default function FAQSection() {
       />
       {/* Falling Dots */}
 {/* Floating Particles Effect */}
-<div className="absolute inset-0 pointer-events-none overflow-hidden">
+{/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(50)].map((_, i) => (
             <div
               key={i}
@@ -31,7 +31,7 @@ export default function FAQSection() {
               }}
             />
           ))}
-        </div>
+        </div> */}
 
       
       {/* Dark cyan overlay */}

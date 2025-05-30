@@ -128,7 +128,7 @@ const Section1 = () => {
         incididunt ut labore et dolore magna aliqua.
       </p>
       {/* Floating Particles Effect */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {[...Array(200)].map((_, i) => (
             <div
               key={i}
@@ -141,7 +141,7 @@ const Section1 = () => {
               }}
             />
           ))}
-        </div>
+        </div> */}
   
       <div className="w-full mt-10 relative">
         <Swiper

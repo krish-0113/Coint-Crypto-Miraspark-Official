@@ -53,7 +53,7 @@ const Hero = () => {
     }}
   >
     <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-gray-900/60 to-black/95 z-0"></div>
-  
+{/*   
     {[...Array(200)].map((_, i) => {
   const randomX = Math.random() * 100;
   const randomSize = 2 + Math.random() * 3; // Reduced from 4-10 to 2-5
@@ -91,7 +91,7 @@ const Hero = () => {
       }}
     />
   );
-})}
+})} */}
 
 <div
   className="absolute top-0 left-1/2 w-[400px] h-[400px] -translate-x-1/2 rounded-full blur-3xl opacity-60 z-0"

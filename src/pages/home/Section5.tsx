@@ -5,7 +5,7 @@ const testimonials = [
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
     name: "Adam Williams",
     title: "Market Researcher",
-    text: "I absolutely love how easy and intuitive this app is! It provides up-to-date, accurate crypto news and market analysis, making it a must-have for anyone serious about staying informed.",
+    text: "I absolutely love how easy and intuitive this app is! It provides up-to-date.",
     rating: 5
   },
   {

@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 
 const testimonials = [
   {
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
     name: "Adam Williams",
     title: "Market Researcher",
     text: "I absolutely love how easy and intuitive this app is! It provides up-to-date.",
     rating: 5
   },
   {
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b829?w=100&h=100&fit=crop&crop=face",
-    name: "Emma Gorgoe",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+    name: "Emma George",
     title: "Trader",
     text: "This site keeps me updated with real-time crypto news! It's a must-have for any crypto enthusiast.",
     rating: 4
@@ -28,7 +28,7 @@ const testimonials = [
     title: "Analyst",
     text: "An excellent resource for crypto market insights! Simple, sleek, and powerful.",
     rating: 4
-  },
+  }
 ];
 
 const TestimonialFeatureSection = () => {

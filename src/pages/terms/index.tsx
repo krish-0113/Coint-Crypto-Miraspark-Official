@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const TermsAndConditions = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+
   const sections = [
     {
       title: "1. Acceptance of Terms",
@@ -70,7 +79,7 @@ const TermsAndConditions = () => {
     {
       title: "10. Disclaimer of Warranties",
       content: [
-        "CryptoDigest is provided “as is” and “as available.” We do not guarantee uninterrupted service, accuracy of content, or financial outcomes.",
+        "CryptoDigest is provided 'as is' and 'as available'. We do not guarantee uninterrupted service, accuracy of content, or financial outcomes.",
       ],
     },
     {
@@ -105,34 +114,108 @@ const TermsAndConditions = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#010d12] text-white px-6 md:px-16 lg:px-40 py-16">
-      <div className="max-w-5xl mx-auto mt-10">
-        <h1 className="text-3xl md:text-4xl font-bold mb-6">Terms and Conditions</h1>
+    <div className="min-h-screen relative overflow-hidden bg-black">
+      {/* Background Gradients */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-gray-950"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-gray-950 via-black to-gray-950"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950/80 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/10 via-transparent to-blue-950/10"></div>
+      </div>
 
-        <p className="text-gray-400 mb-12">
-          Welcome to CryptoDigest — your AI-powered crypto news intelligence platform. By accessing or using CryptoDigest (the “Platform”), whether via web or mobile app, you agree to be bound by the following Terms and Conditions (“Terms”). If you do not agree with any part of these Terms, please do not use the Platform.
-        </p>
+      {/* Subtle Animated Elements */}
+      <div className="absolute top-20 left-10 w-48 h-48 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-56 h-56 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
-        {sections.map((section, idx) => (
-          <div key={idx} className="mb-10">
-            <h2 className="text-xl font-semibold text-white mb-2">{section.title}</h2>
-            <div className="text-gray-400 space-y-2">
-              {section.content.map((line, index) => {
-                // Check if line is a bullet point for list formatting
-                if (line.startsWith("- ")) {
-                  return (
-                    <li key={index} className="list-disc list-inside pl-4">
-                      {line.substring(2)}
-                    </li>
-                  );
-                }
-                // Otherwise, normal paragraph text
-                return <p key={index}>{line}</p>;
-              })}
+      {/* Main Content */}
+      <div className="relative z-10 px-4 md:px-8 lg:px-16 py-12 pt-24">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12 mt-8">
+            <div className="relative group">
+              {/* Gradient Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl opacity-75 blur-sm group-hover:opacity-100 group-hover:blur-none transition-all duration-500"></div>
+              
+              {/* Card Content */}
+              <div className="relative backdrop-blur-sm bg-gradient-to-br from-black via-gray-900 to-black border border-gray-800 rounded-2xl p-8 shadow-xl">
+                <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  Terms & Conditions
+                </h1>
+                <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+                  Welcome to <span className="text-transparent bg-clip-text font-semibold bg-[linear-gradient(135deg,#00f0ff,#8b00ff,#ff00c8,#00f0ff)]">
+  CryptoDigest
+</span>
+ — your AI-powered crypto news intelligence platform.
+                </p>
+              </div>
             </div>
           </div>
-        ))}
+
+          {/* Terms Sections */}
+          <div className="space-y-6">
+            {sections.map((section, idx) => (
+              <div 
+                key={idx} 
+                className="group relative"
+                style={{
+                  animation: `fadeInUp 0.5s ease-out ${idx * 0.1}s both`
+                }}
+              >
+                {/* Gradient Border */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-xl opacity-0 blur-sm group-hover:opacity-75 group-hover:blur-none transition-all duration-500"></div>
+                
+                {/* Card Content */}
+                <div className="relative backdrop-blur-sm bg-gradient-to-br from-black via-gray-900/80 to-black border border-gray-800 rounded-xl p-6 shadow-lg transition-all duration-300">
+                  {/* Section Header */}
+                  <div className="flex items-center mb-4">
+                    <div className="w-1 h-6 bg-gradient-to-b from-cyan-500 to-purple-500 rounded-full mr-3"></div>
+                    <h2 className="text-lg md:text-xl font-semibold text-white">
+                      {section.title}
+                    </h2>
+                  </div>
+
+                  {/* Section Content */}
+                  <div className="space-y-3 pl-4">
+                    {section.content.map((line, index) => {
+                      if (line.startsWith("- ")) {
+                        return (
+                          <div key={index} className="flex items-start">
+                            <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 mr-3"></div>
+                            <p className="text-sm text-gray-300">
+                              {line.substring(2)}
+                            </p>
+                          </div>
+                        );
+                      }
+                      
+                      return (
+                        <p key={index} className="text-sm text-gray-300">
+                          {line}
+                        </p>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+       
+        </div>
       </div>
+
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };

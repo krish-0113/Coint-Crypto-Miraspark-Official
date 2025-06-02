@@ -1,3 +1,4 @@
+// src/pages/Pages.tsx
 import { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import PageLoader from "@/components/template/PageLoader";
@@ -9,16 +10,16 @@ import publicRoutes from "../configs/routes/public-routes";
 const AllRoutes = () => {
   return (
     <Routes>
-      {/* Protected Routes */}
-      <Route path="/" element={<ProtectedRoute />}>
-        {protectedRoutes.map(({ key, path, component: Component }) => (
+      {/* Public Routes */}
+      <Route element={<PublicRoute />}>
+        {publicRoutes.map(({ key, path, component: Component }) => (
           <Route key={key} path={path} element={<Component />} />
         ))}
       </Route>
 
-      {/* Public Routes */}
-      <Route path="/" element={<PublicRoute />}>
-        {publicRoutes?.map(({ key, path, component: Component }) => (
+      {/* Protected Routes */}
+      <Route element={<ProtectedRoute />}>
+        {protectedRoutes.map(({ key, path, component: Component }) => (
           <Route key={key} path={path} element={<Component />} />
         ))}
       </Route>
@@ -28,11 +29,9 @@ const AllRoutes = () => {
 
 const Pages = () => {
   return (
-    <>
-      <Suspense fallback={<PageLoader />}>
-        <AllRoutes />
-      </Suspense>
-    </>
+    <Suspense fallback={<PageLoader />}>
+      <AllRoutes />
+    </Suspense>
   );
 };
 

@@ -12,7 +12,7 @@ import { z } from 'zod';
 
 import PageLoader from '@/components/template/PageLoader';
 import { Alert } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
+// import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
@@ -27,8 +27,9 @@ import { PasswordInput } from '@/components/ui/password-input';
 import { PATHS } from '@/constants/page-paths';
 import { getErrorMessage, getSuccessMessage } from '@/lib/helpers/get-message';
 import { useAuth } from '@/lib/hooks/useAuth';
+import { Button } from '@/components/ui/button';
 
-import SocialLogin from './SocialLogin';
+// import SocialLogin from './SocialLogin';
 
 const loginFormSchema = z.object({
   email: z
@@ -64,7 +65,9 @@ const SignIn = () => {
    console.log(data)
   };
 
-
+  useEffect(()=>{
+      console.log("Entering in login page....");
+  },[]);
 
   return (
     <>
@@ -133,10 +136,9 @@ const SignIn = () => {
             </div>
           </div>
           <Button type="submit" className="w-full text-white">
-            Sign In
-          </Button>
-
-          <SocialLogin />
+  Sign In
+</Button>
+          {/* <SocialLogin /> */}
           <p className="text-center">
             {' '}
             Don't have an account?{' '}

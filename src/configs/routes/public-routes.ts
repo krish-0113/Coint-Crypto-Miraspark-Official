@@ -1,13 +1,12 @@
+// src/configs/routes/public-routes.ts
 import { lazy } from "react";
-
-import { PATHS } from "../../constants/page-paths";
 
 export const publicRoutes = [
   {
     name: "Login",
     key: "login",
     path: "/login",
-    component: lazy(() => import("../../pages/auth/Login")),
+    component: lazy(() => import("@/pages/auth/Login/index")),
   },
   {
     name: "Signup",
@@ -15,11 +14,9 @@ export const publicRoutes = [
     path: "/signup",
     component: lazy(() => import("../../pages/auth/Signup")),
   },
-  
 ];
 
 export const publicRouteNames = publicRoutes.map((route) => route.name);
-
 export const publicRoutePaths = publicRoutes.map((route) => route.path);
 
 export default publicRoutes;

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 import {
   DropdownMenu,
@@ -26,6 +27,7 @@ interface ProfileMenuList {
 
 
 export function ProfileDropdown() {
+  const navigate = useNavigate();
   return (
     <div
     style={{
@@ -68,6 +70,11 @@ export function ProfileDropdown() {
     </style>
     <button
       className="glow-button"
+      onClick={() => {
+        console.log("Navigating to login...");
+        navigate("/login");
+      }}
+       
       style={{
         background: "linear-gradient(90deg, #000000, #000814)",
         color: "white",

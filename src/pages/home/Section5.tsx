@@ -126,8 +126,8 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
           
           {/* Testimonial Text */}
           <div className="relative z-10 flex-1 mb-6">
-            <p className={`text-sm font-light leading-relaxed transition-all duration-300 ${
-              clickedCards.has(index) || hoveredCard === index ? 'text-white/90 drop-shadow-md' : 'text-white/70'
+            <p className={`text-sm text-white opacity-150 font-light leading-relaxed transition-all duration-300 ${
+              clickedCards.has(index) || hoveredCard === index ? 'text-white/130 drop-shadow-md' : 'text-white/120'
             }`}>
               {testimonial.text}
             </p>

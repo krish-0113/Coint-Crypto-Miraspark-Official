@@ -44,7 +44,7 @@ const newsItems = [
 const AnimatedParticles = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {[...Array(120)].map((_, i) => {
+      {/* {[...Array(120)].map((_, i) => {
         const randomX = Math.random() * 100;
         const randomSize = 2 + Math.random() * 2; // small dots
         const randomDelay = Math.random() * 10;
@@ -81,7 +81,7 @@ const AnimatedParticles = () => {
             }}
           />
         );
-      })}
+      })} */}
     </div>
   );
 };
@@ -103,6 +103,7 @@ const Section1 = () => {
     return () => clearTimeout(resumeTimeout.current);
   }, []);
 
+  
   const handlePrev = () => {
     swiperRef.current?.slidePrev();
     swiperRef.current?.autoplay?.stop();
@@ -203,19 +204,20 @@ const Section1 = () => {
 
         </Swiper>
   
-        {/* Scroll Buttons */}
-        <button
-          onClick={handlePrev}
-          className="absolute text-white left-2 top-1/2 -translate-y-1/2 z-10 bg-primary hover:bg-black/80 p-2 rounded-full hidden md:block"
-        >
-          <ChevronLeft />
-        </button>
-        <button
-          onClick={handleNext}
-          className="text-white absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-primary hover:bg-black/80 p-2 rounded-full hidden md:block"
-        >
-          <ChevronRight />
-        </button>
+        {/* Navigation Buttons */}
+      <button
+        onClick={handlePrev}
+        className="absolute text-white left-2 top-1/2 -translate-y-1/2 z-10 bg-primary hover:bg-black/80 p-2 rounded-full hidden md:block"
+      >
+        <ChevronLeft />
+      </button>
+
+      <button
+        onClick={handleNext}
+        className="absolute text-white right-2 top-1/2 -translate-y-1/2 z-10 bg-primary hover:bg-black/80 p-2 rounded-full hidden md:block"
+      >
+        <ChevronRight />
+      </button>
       </div>
     </div>
   );

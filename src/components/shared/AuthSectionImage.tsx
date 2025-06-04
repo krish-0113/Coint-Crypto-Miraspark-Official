@@ -13,7 +13,7 @@ function AuthSectionImage() {
   } else if (path === "/login") {
     imageName = "login.jpg";
   } else if (path === "/forget-password") {
-    imageName = "login.jpg";
+    imageName = "forget-password.jpg";
   }
 
 

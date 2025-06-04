@@ -149,17 +149,17 @@ const PrivacyPolicy = () => {
               <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl opacity-75 blur-sm group-hover:opacity-100 group-hover:blur-none transition-all duration-500"></div>
               
               {/* Card Content */}
-              <div className="relative backdrop-blur-sm bg-gradient-to-br from-black via-gray-900 to-black border border-gray-800 rounded-3xl p-12 shadow-2xl">
-                <h1 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white via-cyan-200 to-emerald-200 bg-clip-text text-transparent tracking-tight">
+              <div className="relative backdrop-blur-sm bg-gradient-to-br from-black via-gray-900 to-black border border-gray-800 rounded-3xl p-8 shadow-2xl">
+                <h1 className="text-3xl md:text-5xl font-black mb-4 bg-gradient-to-r from-white via-cyan-200 to-emerald-200 bg-clip-text text-transparent tracking-tight">
                   Privacy Policy
                 </h1>
-                <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 mx-auto mb-6 rounded-full shadow-lg shadow-purple-500/30"></div>
-                <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+                <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 mx-auto mb-4 rounded-full shadow-lg shadow-purple-500/30"></div>
+                <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
                   At <span className="text-transparent bg-clip-text font-semibold bg-[linear-gradient(135deg,#00f0ff,#8b00ff,#ff00c8,#00f0ff)]">
   CryptoDigest
 </span>, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, store, and protect your data when you use our platform.
                 </p>
-                <p className="text-gray-400 mt-4 max-w-3xl mx-auto">
+                <p className="text-gray-400 mt-3 max-w-2xl mx-auto text-sm">
                   By accessing or using CryptoDigest, you agree to the practices described in this Privacy Policy.
                 </p>
               </div>
@@ -180,18 +180,18 @@ const PrivacyPolicy = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl opacity-0 blur-sm group-hover:opacity-75 group-hover:blur-none transition-all duration-500"></div>
                 
                 {/* Card Content */}
-                <div className="relative backdrop-blur-sm bg-gradient-to-br from-black via-gray-900/80 to-black border border-gray-800 rounded-2xl p-6 shadow-2xl transition-all duration-500 hover:scale-[1.01]">
+                <div className="relative backdrop-blur-sm bg-gradient-to-br from-black via-gray-900/80 to-black border border-gray-800 rounded-2xl p-5 shadow-2xl transition-all duration-500 hover:scale-[1.01]">
                   
                   {/* Section Header */}
-                  <div className="flex items-center mb-4">
-                    <div className="w-2 h-6 bg-gradient-to-b from-cyan-400 via-purple-500 to-pink-500 rounded-full mr-4 group-hover:h-8 transition-all duration-300 shadow-lg shadow-purple-500/30"></div>
-                    <h2 className="text-xl md:text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:via-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300">
+                  <div className="flex items-center mb-3">
+                    <div className="w-2 h-5 bg-gradient-to-b from-cyan-400 via-purple-500 to-pink-500 rounded-full mr-3 group-hover:h-6 transition-all duration-300 shadow-lg shadow-purple-500/30"></div>
+                    <h2 className="text-lg md:text-xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:via-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300">
                       {section.title}
                     </h2>
                   </div>
 
                   {/* Section Content */}
-                  <div className="space-y-3 pl-6">
+                  <div className="space-y-2 pl-5">
                     {section.content.map((line, index) => {
                       const isBold = line.startsWith("**") && line.endsWith("**") && !line.includes(":");
                       const isSubheading = line.startsWith("**") && line.includes(")");
@@ -229,9 +229,13 @@ const PrivacyPolicy = () => {
                           <p key={index} className="text-gray-300 leading-relaxed text-sm">
                             {cleanLine.split(" ").map((word, i) => 
                               word.includes("@") ? (
-                                <span key={i} className="text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text font-medium hover:from-pink-400 hover:to-cyan-400 transition-all duration-300 cursor-pointer">
+                                <a 
+                                  key={i} 
+                                  href={`mailto:${word}`}
+                                  className="text-transparent bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text font-medium hover:from-pink-400 hover:to-cyan-400 transition-all duration-300 cursor-pointer underline hover:no-underline"
+                                >
                                   {word}{" "}
-                                </span>
+                                </a>
                               ) : (
                                 word + " "
                               )
@@ -263,7 +267,7 @@ const PrivacyPolicy = () => {
               </div>
             ))}
           </div>
-o
+
         </div>
       </div>
 

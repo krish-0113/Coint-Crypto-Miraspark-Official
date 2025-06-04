@@ -7,6 +7,7 @@ import {
   MdLocationOn,
   MdFeedback,
 } from "react-icons/md";
+import { useEffect } from "react";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.9 },
@@ -23,6 +24,14 @@ const cardVariants = {
 };
 
 const ContactUs = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, []);
   const cardData = [
     {
       icon: <MdSupport className="text-cyan-400 text-xl " />,
@@ -110,28 +119,29 @@ const ContactUs = () => {
         {/* Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {cardData.map((item, i) => (
-            <motion.div
-              key={i}
-              className="relative group"
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={cardVariants}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { duration: 0.3, ease: "easeOut" }
-              }}
-            >
-              {/* Gradient Border Wrapper */}
-              <div 
-                className="p-[1px] rounded-lg transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(0,240,255,0.3),0_0_60px_rgba(139,0,255,0.2)]"
-                style={{
-                  background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8, #00f0ff)',
-                }}
-              >
-                {/* Inner Card */}
-                <div className="bg-gradient-to-br from-[#080812] to-[#0a0a15] rounded-lg p-6 cursor-pointer transition-all duration-500 group-hover:from-[#0c0c18] group-hover:to-[#0e0e1b] group-hover:shadow-inner h-full">
+           <motion.div
+           key={i}
+           className="relative group h-full"
+           custom={i}
+           initial="hidden"
+           whileInView="visible"
+           viewport={{ once: true, amount: 0.3 }}
+           variants={cardVariants}
+           whileHover={{ 
+             scale: 1.05,
+             transition: { duration: 0.3, ease: "easeOut" }
+           }}
+         >
+           {/* Gradient Border Wrapper */}
+           <div 
+             className="p-[1px] rounded-lg h-full transition-all duration-500 group-hover:shadow-[0_0_30px_rgba(0,240,255,0.3),0_0_60px_rgba(139,0,255,0.2)]"
+             style={{
+               background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8, #00f0ff)',
+             }}
+           >
+             {/* Inner Card */}
+             <div className="bg-gradient-to-br from-[#080812] to-[#0a0a15] rounded-lg p-6 cursor-pointer transition-all duration-500 group-hover:from-[#0c0c18] group-hover:to-[#0e0e1b] group-hover:shadow-inner h-full min-h-[170px]">
+         
                   <div className="flex items-center mb-4 space-x-3">
                     <div className="relative">
                       {/* Icon Gradient Background */}
@@ -152,16 +162,27 @@ const ContactUs = () => {
                   </div>
                   <div className="space-y-2">
                     {item.content.map((text, idx) => (
-                      <p
-                        key={idx}
-                        className={`text-sm leading-relaxed transition-colors duration-300 ${
-                          text.includes("@") 
-                            ? "text-cyan-400 font-medium group-hover:text-cyan-300" 
-                            : "text-gray-300 group-hover:text-gray-200"
-                        }`}
-                      >
-                        {text.includes("@") ? `Email: ${text}` : text}
-                      </p>
+                      //redirect toth email 
+                     <p
+                     key={idx}
+                     className={`text-sm leading-relaxed transition-colors duration-300 ${
+                       text.includes("@") 
+                         ? "text-cyan-400 font-medium group-hover:text-cyan-300" 
+                         : "text-gray-300 group-hover:text-gray-200"
+                     }`}
+                   >
+                     {text.includes("@") ? (
+                       <a
+                         href={`mailto:${text}`}
+                         className="underline hover:text-cyan-200 transition"
+                       >
+                         Email: {text}
+                       </a>
+                     ) : (
+                       text
+                     )}
+                   </p>
+                   
                     ))}
                   </div>
                 </div>

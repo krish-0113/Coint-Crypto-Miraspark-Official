@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const cardData = [
   {
@@ -24,6 +25,15 @@ const cardData = [
 ];
 
 const Hero = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, []);
+  const navigate =useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [animationTrigger, setAnimationTrigger] = useState(false);
@@ -201,6 +211,7 @@ const Hero = () => {
                   transition: "all 0.3s ease-in-out",
                   cursor: "pointer",
                 }}
+                onClick={() => navigate("/login")} // ✅ This navigates to login
                 onMouseDown={(e) => {
                   e.currentTarget.style.boxShadow = "0 0 3px #00f0ff";
                   e.currentTarget.style.transform = "scale(0.98)";
@@ -263,7 +274,9 @@ const Hero = () => {
               borderRadius: '12px',
             }}
           >
-            <div className="w-full h-full bg-[#060B14] rounded-xl overflow-hidden">
+            <div className="w-full h-full bg-[#060B14] rounded-xl overflow-hidden" 
+            onClick={()=> navigate("/login")} // navigaet to the login
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentCard.title}

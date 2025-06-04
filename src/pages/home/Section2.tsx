@@ -93,7 +93,7 @@ const FeatureCard = ({
       onMouseEnter={() => setHoveredCard(index)}
       onMouseLeave={() => setHoveredCard(null)}
     >
-      {/* Outer gradient border container */}
+      {/* FIXED: Outer gradient border container - removed size scaling on click */}
       <div
         className="relative p-0.5 rounded-xl transition-all duration-300"
         style={{
@@ -110,6 +110,7 @@ const FeatureCard = ({
                 : "none",
         }}
       >
+        {/* FIXED: Removed inner card scaling on click to prevent border size increase */}
         <div
           className={`relative bg-opacity-95 rounded-xl px-6 py-8 md:py-12 flex flex-col items-center text-center transition-all duration-300 overflow-hidden cursor-pointer bg-gradient-to-br from-[#000000] via-[#001f3f] to-[#0a0a0a]`}
         >
@@ -157,27 +158,38 @@ const FeatureCard = ({
             </div>
           </div>
 
-          {/* UPDATED: Title text - always bright with text shadow regardless of hover state */}
           <h3
-            className="text-lg text-white font-semibold font-inter mb-3 transition-all duration-300 drop-shadow-lg"
+            className={`relative z-10 text-lg font-semibold mb-3 transition-all duration-300 font-bold ${
+              clickedCards.has(index) || hoveredCard === index
+                ? "text-white drop-shadow-lg opacity-100"
+                : "text-white drop-shadow-sm opacity-100"
+            }`}
             style={{
-              textShadow: "0 2px 8px rgba(0, 240, 255, 0.3), 0 1px 3px rgba(0, 0, 0, 0.6)",
-              letterSpacing: "0.01em",
+              textShadow:
+                clickedCards.has(index) || hoveredCard === index
+                  ? "0 2px 4px rgba(0, 0, 0, 0.5)"
+                  : "0 1px 2px rgba(0, 0, 0, 0.2)",
             }}
           >
             {feature.title}
           </h3>
 
-          {/* UPDATED: Description text - always bright with text shadow regardless of hover state */}
           <p
-            className="text-sm text-white font-light font-inter leading-relaxed transition-all duration-300 drop-shadow-md"
+            className={`relative z-10 text-sm font-light leading-relaxed transition-all duration-300 ${
+              clickedCards.has(index) || hoveredCard === index
+                ? "text-white drop-shadow-md opacity-100"
+                : "text-white/80 drop-shadow-sm opacity-100"
+            }`}
             style={{
-              textShadow: "0 1px 6px rgba(0, 240, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5)",
-              letterSpacing: "0.01em",
+              textShadow:
+                clickedCards.has(index) || hoveredCard === index
+                  ? "0 1px 2px rgba(0, 0, 0, 0.5)"
+                  : "0 1px 2px rgba(0, 0, 0, 0.2)",
             }}
           >
             {feature.description}
           </p>
+
         </div>
       </div>
     </div>

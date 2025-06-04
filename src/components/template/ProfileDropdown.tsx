@@ -38,15 +38,15 @@ export function ProfileDropdown() {
       animation: "gradientFlow 4s ease-in-out infinite",
       display: "inline-block",
       transition: "all 0.3s ease-in-out",
-      boxShadow: "0 0 10px rgba(0, 240, 255, 0.9), 0 0 18px rgba(139, 0, 255, 0.9)", // ⬅️ updated
+      boxShadow: "0 0 10px rgba(0, 240, 255, 0.9), 0 0 18px rgba(139, 0, 255, 0.9)", // ⬅ updated
       filter: "brightness(1.0) saturate(1.2)",
     }}
     onMouseEnter={(e) => {
-      e.currentTarget.style.boxShadow = "0 0 18px rgba(0, 240, 255, 0.7), 0 0 30px rgba(139, 0, 255, 0.6)"; // ⬅️ updated
+      e.currentTarget.style.boxShadow = "0 0 18px rgba(0, 240, 255, 0.7), 0 0 30px rgba(139, 0, 255, 0.6)"; // ⬅ updated
       e.currentTarget.style.filter = "brightness(1.1) saturate(1.3)";
     }}
     onMouseLeave={(e) => {
-      e.currentTarget.style.boxShadow = "0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(139, 0, 255, 0.4)"; // ⬅️ updated
+      e.currentTarget.style.boxShadow = "0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(139, 0, 255, 0.4)"; // ⬅ updated
       e.currentTarget.style.filter = "brightness(1.0) saturate(1.2)";
     }}
   >
@@ -83,7 +83,7 @@ export function ProfileDropdown() {
         padding: "0.59rem 2rem",
         borderRadius: "0.5rem",
         border: "none",
-        boxShadow: "0 0 6px #00f0ff", // ⬅️ updated
+        boxShadow: "0 0 6px #00f0ff", // ⬅ updated
         position: "relative",
         overflow: "hidden",
         transition: "all 0.3s ease-in-out",
@@ -91,20 +91,20 @@ export function ProfileDropdown() {
         width: "100%",
       }}
       onMouseDown={(e) => {
-        e.currentTarget.style.boxShadow = "0 0 10px #00f0ff"; // ⬅️ updated
+        e.currentTarget.style.boxShadow = "0 0 10px #00f0ff"; // ⬅ updated
         e.currentTarget.style.transform = "scale(0.96)";
       }}
       onMouseUp={(e) => {
-        e.currentTarget.style.boxShadow = "0 0 12px #00f0ff"; // ⬅️ updated
+        e.currentTarget.style.boxShadow = "0 0 12px #00f0ff"; // ⬅ updated
         e.currentTarget.style.transform = "scale(1)";
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.background = "linear-gradient(90deg, #00f0ff, #8b00ff)";
-        e.currentTarget.style.boxShadow = "0 0 18px #8b00ff"; // ⬅️ updated
+        e.currentTarget.style.boxShadow = "0 0 18px #8b00ff"; // ⬅ updated
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background = "linear-gradient(90deg, #000000, #000814)";
-        e.currentTarget.style.boxShadow = "0 0 6px #00f0ff"; // ⬅️ updated
+        e.currentTarget.style.boxShadow = "0 0 6px #00f0ff"; // ⬅ updated
       }}
     >
       <div className="relative z-10">Login</div>

@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 import "swiper/css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const newsItems = [
   {
@@ -87,6 +87,8 @@ const AnimatedParticles = () => {
 };
 
 const Section1 = () => {
+  const navigate = useNavigate();
+
   const swiperRef = useRef<any>(null);
   const resumeTimeout = useRef<any>(null);
 
@@ -164,40 +166,41 @@ const Section1 = () => {
           }}
         >
           {[...newsItems, ...newsItems].map((item, index) => (
-            <SwiperSlide key={index}>
-              {/* Outer Gradient Border – remains visible on hover */}
-              <div
-                className="p-[2px] rounded-xl bg-gradient-to-br from-[#00f0ff] via-[#4c00ff] to-[#ff00c8]"
-                onMouseEnter={() => {
-                  swiperRef.current?.autoplay?.stop();
-                  clearTimeout(resumeTimeout.current);
-                }}
-                onMouseLeave={handleResume}
-              >
-                {/* Inner Card – zoom effect applied here only */}
-                <div className="bg-gradient-to-br from-[#000000] via-[#001f3f] to-[#0a0a0a] rounded-xl h-full flex flex-col shadow-md overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105">
-                  <div className="p-[1px] rounded-lg bg-gradient-to-br from-[#00f0ff] via-[#4c00ff] to-[#ff00c8] mx-4 mt-4">
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="w-full h-48 object-cover rounded-lg"
-                    />
-                  </div>
-                  <div className="p-4 flex flex-col justify-between flex-1">
-                    <p className="text-sm text-white font-light font-inter">
-                      {item.description}
-                    </p>
-                    <Link
-                      to="/news"
-                      className="mt-4 text-blue-500 hover:underline text-sm font-medium"
-                    >
-                      Read more →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
+  <SwiperSlide key={index}>
+    <div
+      onClick={() => {
+        swiperRef.current?.autoplay?.stop();
+        navigate("/login");
+      }}
+      onMouseEnter={() => {
+        swiperRef.current?.autoplay?.stop();
+        clearTimeout(resumeTimeout.current);
+      }}
+      onMouseLeave={handleResume}
+      className="cursor-pointer p-[2px] rounded-xl bg-gradient-to-br from-[#00f0ff] via-[#4c00ff] to-[#ff00c8]"
+    >
+      {/* Inner Card – zoom effect applied here only */}
+      <div className="bg-gradient-to-br from-[#000000] via-[#001f3f] to-[#0a0a0a] rounded-xl h-full flex flex-col shadow-md overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105">
+        <div className="p-[1px] rounded-lg bg-gradient-to-br from-[#00f0ff] via-[#4c00ff] to-[#ff00c8] mx-4 mt-4">
+          <img
+            src={item.img}
+            alt={item.title}
+            className="w-full h-48 object-cover rounded-lg"
+          />
+        </div>
+        <div className="p-4 flex flex-col justify-between flex-1">
+          <p className="text-sm text-white font-light font-inter">
+            {item.description}
+          </p>
+          <span className="mt-4 text-blue-500 hover:underline text-sm font-medium">
+            Read more →
+          </span>
+        </div>
+      </div>
+    </div>
+  </SwiperSlide>
+))}
+
         </Swiper>
   
         {/* Scroll Buttons */}

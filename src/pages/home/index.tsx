@@ -8,14 +8,8 @@ import Section5 from './Section5';
 
 const Home = () => {
   return (
-    <div className="relative overflow-hidden">
-      {/* Particles in the background */}
-      {/* <div className="fixed inset-0 z-0 pointer-events-none">
-        <Particles />
-      </div> */}
-
-      {/* Main content above the particles */}
-      <div className="relative z-10">
+    <div className="relative overflow-hidden flex flex-col min-h-screen">
+      <div className="relative z-10 flex-grow">
         <Hero />
         <Section1 />
         <Section2 />
@@ -28,3 +22,4 @@ const Home = () => {
 };
 
 export default Home;
+

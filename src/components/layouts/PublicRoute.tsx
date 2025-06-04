@@ -8,7 +8,7 @@ const { authenticatedEntryPath } = APP_CONFIG;
 
 export const PublicRoute = () => {
   // const { isAuthenticated } = useUserStore();
-  const isAuthenticated=true;
+  const isAuthenticated=false;
   const location = useLocation();
   const { isLoading } = useAppConfig();
   const path = location.state?.from?.pathname || authenticatedEntryPath;

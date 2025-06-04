@@ -62,13 +62,36 @@ export const protectedRoutes = [
     path: "/billing",
     component: lazy(() => import("../../pages/setting/Billing"))
   },
-   {
-    name: "Admin Dashboard",
-    key: "admin-dashboard",
-    path: "/admin-dashboard",
-    component: lazy(() => import("../../pages/AdminDashboard"))
-  },
- 
+  //  {
+  //   name: "Admin Dashboard",
+  //   key: "admin-dashboard",
+  //   path: "/admin-dashboard",
+  //   component: lazy(() => import("../../pages/admin/AdminDashboard"))
+  // },
+  //  {
+  //   name: "Admin Dashboard",
+  //   key: "admin-dashboard-users",
+  //   path: "/admin-dashboard-users",
+  //   component: lazy(() => import("../../pages/admin/users"))
+  // },
+  // {
+  //   name: "User Dashboard",
+  //   key: "user-dashboard",
+  //   path: "/watchlist",
+  //   component: lazy(() => import("../../pages/watchlist"))
+  // },
+  //  {
+  //   name: "User Dashboard Coins",
+  //   key: "user-dashboard-coins",
+  //   path: "/coins",
+  //   component: lazy(() => import("../../pages/coins"))
+  // },
+  //  {
+  //   name: "User Dashboard Manage",
+  //   key: "user-dashboard-manage",
+  //   path: "/manage",
+  //   component: lazy(() => import("../../pages/manage-watchlist"))
+  // },
 ];
 
 export const protectedRouteNames = protectedRoutes.map((route) => route.key);

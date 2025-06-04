@@ -83,6 +83,9 @@ const FeatureSection = () => {
                 {
                   title: "Pro Tools for Traders:",
                   description: "Volatility indicators, historical event reactions, and heatmaps to spot trends."
+                },{
+                  title: "Pro Tools for Traders:",
+                  description: "Volatility indicators, historical event reactions, and heatmaps to spot trends."
                 }
               ].map((feature, index) => (
                 <motion.div

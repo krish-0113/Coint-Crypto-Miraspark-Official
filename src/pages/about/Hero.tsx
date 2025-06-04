@@ -121,7 +121,7 @@ const Hero = () => {
        {/* Right Content (Card with Outer and Inner Gradient Borders) */}
 <div className="relative">
   {/* Outer Gradient Border */}
-  <div className="p-[4px] rounded-[28px]" style={{ 
+  <div className="p-[3px] rounded-[28px]" style={{ 
     background: "linear-gradient(135deg, #00f0ff, #ff00c8, #8b00ff)",
   }}>
     {/* Inner Enhanced Gradient Border Container */}

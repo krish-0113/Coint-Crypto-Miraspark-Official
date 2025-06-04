@@ -106,7 +106,7 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
         <div
           className={`relative bg-opacity-95 rounded-xl p-6 flex flex-col justify-between transition-all duration-300 overflow-hidden cursor-pointer h-80 bg-gradient-to-br from-[#000000] via-[#001f3f] to-[#0a0a0a]`}
           style={{
-            transform: clickedCards.has(index) ? 'scale(0.98)' : 'scale(1)',
+            transform: clickedCards.has(index) ? 'scale(1)' : 'scale(1)',
           }}
         >
           {/* Background gradient overlay */}

@@ -1,8 +1,22 @@
 "use client"
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams,useLocation } from "react-router-dom"
 import { Card, CardContent } from "../ui/card"
 
 function AuthSectionImage() {
+  const location = useLocation();
+  const path = location.pathname;
+
+  let imageName = "default.jpg"; // Optional default image
+
+  if (path === "/signup") {
+    imageName = "signup.jpg";
+  } else if (path === "/login") {
+    imageName = "login.jpg";
+  } else if (path === "/forget-password") {
+    imageName = "login.jpg";
+  }
+
+
   const [searchParams] = useSearchParams()
   const twin = searchParams.get("twin")
 
@@ -12,10 +26,13 @@ function AuthSectionImage() {
         <div className="w-full h-full relative">
           {/* Background Image */}
           <img
-            src="/img/login.jpg"
-            alt="Login"
-            className="w-full h-full  object-cover absolute inset-0 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110"
-          />
+  src={`/img/${imageName}`}
+  alt="Auth Background"
+  className="w-full h-full object-cover absolute inset-0 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110"
+/>
+
+
+
 
           {/* Enhanced Gradient Overlays */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10" />

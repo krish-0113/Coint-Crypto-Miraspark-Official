@@ -174,7 +174,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <button
+            {/* <button
               className="glow-button relative"
               style={{
                 background: "linear-gradient(90deg, #000000, #000814)",
@@ -210,9 +210,9 @@ const Hero = () => {
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              <div className="relative z-10">Join with us</div>
+              <div className="relative z-10">Join with us</div> */}
               {/* Button shine effect */}
-              <div 
+              {/* <div 
                 className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-300"
                 style={{
                   background: "linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%)",
@@ -220,7 +220,7 @@ const Hero = () => {
                   animation: "shine 2s infinite"
                 }}
               />
-            </button>
+            </button> */}
           </motion.div>
         </motion.div>
       </motion.div>

@@ -80,7 +80,7 @@ const Hero = () => {
               CryptoDigest
             </span> — to deliver real-time, relevant, and AI-enhanced insights that give our users an edge in the market.
           </p>
-          <button
+          {/* <button
             className="glow-button"
             style={{
               background: "linear-gradient(90deg, #000000, #000814)",
@@ -115,7 +115,7 @@ const Hero = () => {
             }}
           >
             <div className="relative z-10">Learn More</div>
-          </button>
+          </button> */}
         </div>
 
        {/* Right Content (Card with Outer and Inner Gradient Borders) */}

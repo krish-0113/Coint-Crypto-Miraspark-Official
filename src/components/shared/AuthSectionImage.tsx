@@ -15,6 +15,8 @@ function AuthSectionImage() {
     imageName = "login.jpg";
   } else if (path === "/forget-password") {
     imageName = "forget-password.jpg";
+  } else if(path === "/reset-password"){
+    imageName = "signup.jpg";
   }
 
   const [searchParams] = useSearchParams()

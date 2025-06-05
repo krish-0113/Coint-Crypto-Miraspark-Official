@@ -50,27 +50,28 @@ function AuthSectionImage() {
           </div>
 
           {/* Glowing Border Effect */}
-          <div className="absolute inset-0 z-20">
+          {/* <div className="absolute inset-0 z-20">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-400 to-transparent opacity-60"></div>
             <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-transparent via-purple-400 to-transparent opacity-60"></div>
             <div className="absolute right-0 top-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-400 to-transparent opacity-60"></div>
-          </div>
+          </div> */}
+        {/* Logo in Top-Left - Clickable */}
+        <div className="absolute top-6 left-4 sm:top-8 sm:left-4 md:top-6 md:left-4 z-40">
+          <div className="relative cursor-pointer" onClick={handleLogoClick}>
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse"></div>
+            <img
+              src="/img/Logo.png"
+              alt="Logo"
+             className="relative h-30 w-30 sm:h-28 sm:w-28 md:h-32 md:w-32 lg:h-3 6lg:w-36 xl:h-40 xl:w-40 drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer"
+    />
+  </div>
+</div>
 
-          {/* Logo in Bottom Center - Clickable */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 sm:bottom-8 md:bottom-10 z-40">
-            <div className="relative cursor-pointer" onClick={handleLogoClick}>
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse"></div>
-              <img
-                src="/img/Logo.png"
-                alt="Logo"
-                className="relative h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 xl:h-36 xl:w-36 drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer"
-              />
-            </div>
-          </div>
 
           {/* Content Container */}
-          <div className="absolute inset-0 z-30 flex flex-col justify-center items-center text-white px-4 sm:px-6 md:px-8">
+          <div className="absolute inset-0 z-30 flex flex-col justify-end items-center text-white px-4 sm:px-6 md:px-8 pb-12">
+
             {/* Title with Enhanced Styling */}
             <div className="text-center space-y-3 sm:space-y-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-pink-400 drop-shadow-lg leading-tight">

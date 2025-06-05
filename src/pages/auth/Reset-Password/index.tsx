@@ -143,33 +143,44 @@ export default function ResetPassword() {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-5">
               <div className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem className="animate-fadeInUp" style={{ animationDelay: "0.2s" }}>
-                      <FormLabel className="text-white font-medium">New Password</FormLabel>
-                      <FormControl>
-                        <PasswordInput field={field} placeholder="Enter new password" autoComplete="new-password" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              <FormField
+  control={form.control}
+  name="password"
+  render={({ field }) => (
+    <FormItem className="animate-fadeInUp" style={{ animationDelay: "0.2s" }}>
+      <FormLabel className="text-white font-medium">New Password</FormLabel>
+      <FormControl>
+        <PasswordInput
+          field={field}
+          placeholder="Enter new password"
+          autoComplete="new-password"
+          className="bg-black/40 border-gray-700 text-white placeholder:text-gray-400 focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+        />
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
 
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem className="animate-fadeInUp" style={{ animationDelay: "0.3s" }}>
-                      <FormLabel className="text-white font-medium">Confirm Password</FormLabel>
-                      <FormControl>
-                        <PasswordInput field={field} placeholder="Confirm new password" autoComplete="new-password" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+<FormField
+  control={form.control}
+  name="confirmPassword"
+  render={({ field }) => (
+    <FormItem className="animate-fadeInUp" style={{ animationDelay: "0.3s" }}>
+      <FormLabel className="text-white font-medium">Confirm Password</FormLabel>
+      <FormControl>
+        <PasswordInput
+          field={field}
+          placeholder="Confirm new password"
+          autoComplete="new-password"
+          className="bg-black/40 border-gray-700 text-white placeholder:text-gray-400 focus:border-purple-500 focus:ring-1 focus:ring-purple-500"
+        />
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
+
               </div>
 
               <Button

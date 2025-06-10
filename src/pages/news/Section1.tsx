@@ -26,7 +26,7 @@ export default function NewsCardSection() {
     {
       img: "/img/news3.png",
       title: "AI Is Reshaping Jobs",
-      description: "AI automation is expected to impact 40% of global jobs, according to a new report.",
+      description: "AI automation is expected to impact 40% of global jobs, according to the  a new report.",
     },
   ]
 

@@ -65,7 +65,7 @@ export const protectedRoutes = [
    {
     name: "Admin Dashboard",
     key: "admin-dashboard",
-    path: "/Monthly Revenue",
+    path: "/admin-dashboard",
     component: lazy(() => import("../../pages/admin/AdminDashboard"))
   },
    {

@@ -95,7 +95,7 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
           background: clickedCards.has(index) || hoveredCard === index
             ? 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8, #00f0ff)'
             : 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8, #00f0ff)',
-          opacity: clickedCards.has(index) ? 1 : hoveredCard === index ? 0.8 : 0.6,
+          opacity: 1,
           boxShadow: hoveredCard === index 
             ? '0 20px 50px rgba(0, 240, 255, 0.5), 0 10px 30px rgba(139, 0, 255, 0.3)'
             : clickedCards.has(index)
@@ -104,19 +104,34 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
         }}
       >
         <div
-          className={`relative bg-opacity-95 rounded-xl p-6 flex flex-col justify-between transition-all duration-300 overflow-hidden cursor-pointer h-80 bg-gradient-to-br from-[#000000] via-[#001f3f] to-[#0a0a0a]`}
+          className={`relative bg-opacity-95 rounded-xl p-6 flex flex-col justify-between transition-all duration-300 overflow-hidden cursor-pointer h-80`}
           style={{
+            background: 'linear-gradient(135deg, #000000 0%, #0a0a1a 15%, #1a1a2e 25%, #16213e 40%, #0f3460 60%, #1a1a2e 75%, #0a0a1a 90%, #000000 100%)',
             transform: clickedCards.has(index) ? 'scale(1)' : 'scale(1)',
           }}
         >
-          {/* Background gradient overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-cyan-400/5 to-purple-600/5 transition-opacity duration-300 ${
-            clickedCards.has(index) ? 'opacity-30' : hoveredCard === index ? 'opacity-20' : 'opacity-0'
-          }`} />
+          {/* Enhanced background gradient overlay with more black */}
+          <div className={`absolute inset-0 transition-opacity duration-300 ${
+            clickedCards.has(index) ? 'opacity-40' : hoveredCard === index ? 'opacity-30' : 'opacity-0'
+          }`}
+          style={{
+            background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 240, 255, 0.08) 20%, rgba(139, 0, 255, 0.08) 50%, rgba(0, 0, 0, 0.8) 100%)'
+          }} />
           
-          {/* 3D highlight effect for clicked/hovered cards */}
+          {/* Additional black gradient overlay for depth */}
+          <div className={`absolute inset-0 transition-opacity duration-300 ${
+            clickedCards.has(index) || hoveredCard === index ? 'opacity-20' : 'opacity-10'
+          }`}
+          style={{
+            background: 'radial-gradient(circle at 30% 20%, rgba(0, 0, 0, 0.9) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(0, 0, 0, 0.8) 0%, transparent 60%)'
+          }} />
+          
+          {/* 3D highlight effect for clicked/hovered cards with black accent */}
           {(clickedCards.has(index) || hoveredCard === index) && (
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/10 pointer-events-none" />
+            <div className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.3) 30%, transparent 50%, rgba(0, 0, 0, 0.4) 80%, rgba(255, 255, 255, 0.02) 100%)'
+            }} />
           )}
           
           {/* Quote Icon */}
@@ -126,9 +141,14 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
           
           {/* Testimonial Text */}
           <div className="relative z-10 flex-1 mb-6">
-            <p className={`text-sm text-white text-light opacity-500 font-light leading-relaxed transition-all duration-300 ${
-              clickedCards.has(index) || hoveredCard === index ? 'text-white/130 drop-shadow-md' : 'text-white/200'
-            }`}>
+            <p className={`text-sm leading-relaxed transition-all duration-300 ${
+              clickedCards.has(index) || hoveredCard === index ? 'text-white drop-shadow-md font-medium' : 'text-white/90 font-light'
+            }`}
+            style={{
+              textShadow: clickedCards.has(index) || hoveredCard === index 
+                ? '0 0 10px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8)' 
+                : '0 1px 2px rgba(0, 0, 0, 0.5)'
+            }}>
               {testimonial.text}
             </p>
           </div>
@@ -151,10 +171,10 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
             style={{
               background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8, #00f0ff)',
               boxShadow: clickedCards.has(index) || hoveredCard === index
-                ? '0 8px 25px rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                : '0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+                ? '0 8px 25px rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0, 0, 0, 0.6)'
+                : '0 4px 15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
             }}>
-              <div className="w-12 h-12 rounded-full overflow-hidden bg-[#0a0f1a]">
+              <div className="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-black to-gray-900">
                 <img 
                   src={testimonial.image} 
                   alt={testimonial.name}
@@ -172,13 +192,23 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
             <div className="flex-1 min-w-0">
               <h3 className={`text-base font-semibold mb-1 transition-all duration-300 truncate ${
                 clickedCards.has(index) || hoveredCard === index ? 'text-white drop-shadow-lg' : 'text-white'
-              }`}>
+              }`}
+              style={{
+                textShadow: clickedCards.has(index) || hoveredCard === index 
+                  ? '0 0 8px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.8)' 
+                  : '0 1px 2px rgba(0, 0, 0, 0.6)'
+              }}>
                 {testimonial.name}
               </h3>
               
               <p className={`text-xs font-medium transition-all duration-300 truncate ${
                 clickedCards.has(index) || hoveredCard === index ? 'text-cyan-300 drop-shadow-md' : 'text-white/60'
-              }`}>
+              }`}
+              style={{
+                textShadow: clickedCards.has(index) || hoveredCard === index 
+                  ? '0 0 6px rgba(0, 240, 255, 0.6), 0 1px 3px rgba(0, 0, 0, 0.8)' 
+                  : '0 1px 2px rgba(0, 0, 0, 0.5)'
+              }}>
                 {testimonial.title}
               </p>
             </div>
@@ -213,20 +243,30 @@ const TestimonialFeatureSection = () => {
         background: 'linear-gradient(135deg, #000000, #0a0a14, #0f0f1f, #0a0a14, #000000)'
       }}
     >
-      {/* Background overlay with more black tint */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent pointer-events-none" />
+      {/* Enhanced background overlay with more black gradient */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.08) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 70%), radial-gradient(circle at 80% 70%, rgba(139, 0, 255, 0.08) 0%, rgba(0, 0, 0, 0.5) 40%, transparent 70%)'
+        }}
+      />
 
       <div className="relative z-10 flex flex-col items-center mx-6">
-        <h2 className="text-white text-3xl md:text-5xl font-bold text-center mb-4">
+        <h2 className="text-white text-3xl md:text-5xl font-bold text-center mb-4"
+        style={{
+          textShadow: '0 0 15px rgba(255, 255, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.8)'
+        }}>
           What Our Users Say
         </h2>
-        <p className="text-white/80 text-center max-w-2xl text-sm md:text-base mb-8">
+        <p className="text-white/90 text-center max-w-2xl text-sm md:text-base mb-8"
+        style={{
+          textShadow: '0 0 8px rgba(255, 255, 255, 0.3), 0 1px 4px rgba(0, 0, 0, 0.6)'
+        }}>
           Real testimonials from our satisfied users who trust us for their crypto news and market insights.
         </p>
         
-        {/* Desktop View with Navigation */}
+        {/* Desktop View */}
         <div className="hidden md:block w-full max-w-7xl">
-          {/* Desktop Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard
@@ -241,14 +281,13 @@ const TestimonialFeatureSection = () => {
             ))}
           </div>
           
-          {/* Desktop Navigation Controls */}
+          {/* Enhanced Navigation Controls */}
           <div className="flex items-center justify-center mt-10 gap-4">
-            {/* Left Arrow */}
             <button
               onClick={prevSlide}
               className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95 group"
               style={{
-                boxShadow: '0 8px 25px rgba(0, 240, 255, 0.3), 0 4px 15px rgba(139, 0, 255, 0.2)'
+                boxShadow: '0 8px 25px rgba(0, 240, 255, 0.3), 0 4px 15px rgba(139, 0, 255, 0.2), 0 2px 8px rgba(0, 0, 0, 0.4)'
               }}
             >
               <svg className="w-6 h-6 text-white transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -256,7 +295,6 @@ const TestimonialFeatureSection = () => {
               </svg>
             </button>
 
-            {/* Desktop Dots Indicator */}
             <div className="flex justify-center space-x-2">
               {testimonials.map((_, index) => (
                 <button
@@ -269,19 +307,18 @@ const TestimonialFeatureSection = () => {
                   }`}
                   style={{
                     boxShadow: index === currentSlide 
-                      ? '0 4px 15px rgba(0, 240, 255, 0.4), 0 2px 8px rgba(139, 0, 255, 0.3)'
-                      : 'none'
+                      ? '0 4px 15px rgba(0, 240, 255, 0.4), 0 2px 8px rgba(139, 0, 255, 0.3), 0 1px 4px rgba(0, 0, 0, 0.5)'
+                      : '0 1px 3px rgba(0, 0, 0, 0.3)'
                   }}
                 />
               ))}
             </div>
 
-            {/* Right Arrow */}
             <button
               onClick={nextSlide}
               className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95 group"
               style={{
-                boxShadow: '0 8px 25px rgba(0, 240, 255, 0.3), 0 4px 15px rgba(139, 0, 255, 0.2)'
+                boxShadow: '0 8px 25px rgba(0, 240, 255, 0.3), 0 4px 15px rgba(139, 0, 255, 0.2), 0 2px 8px rgba(0, 0, 0, 0.4)'
               }}
             >
               <svg className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -294,32 +331,32 @@ const TestimonialFeatureSection = () => {
         {/* Mobile Carousel View */}
         <div className="md:hidden relative w-full">
           <div className="relative max-w-sm mx-auto px-8">
-            {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
+              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-125 active:scale-95"
               style={{
-                boxShadow: '0 8px 25px rgba(0, 240, 255, 0.3), 0 4px 15px rgba(139, 0, 255, 0.2)'
+                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)',
+                boxShadow: '0 0 25px rgba(0, 240, 255, 0.6), 0 0 50px rgba(139, 0, 255, 0.4), 0 4px 15px rgba(0, 0, 0, 0.5)'
               }}
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             
             <button
               onClick={nextSlide}
-              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
+              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-125 active:scale-95"
               style={{
-                boxShadow: '0 8px 25px rgba(0, 240, 255, 0.3), 0 4px 15px rgba(139, 0, 255, 0.2)'
+                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)',
+                boxShadow: '0 0 25px rgba(0, 240, 255, 0.6), 0 0 50px rgba(139, 0, 255, 0.4), 0 4px 15px rgba(0, 0, 0, 0.5)'
               }}
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
               </svg>
             </button>
 
-            {/* Carousel Container */}
             <div className="overflow-hidden rounded-xl">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
@@ -342,26 +379,27 @@ const TestimonialFeatureSection = () => {
             </div>
           </div>
 
-         {/* Dots Indicator */}
-<div className="flex justify-center mt-8 space-x-2">
-  {testimonials.map((_, index) => (
-    <button
-      key={index}
-      onClick={() => goToSlide(index)}
-      className={`transition-all duration-300 ${
-        index === currentSlide
-          ? 'w-3 h-1.5 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full shadow-lg scale-110'
-          : 'w-3 h-1.5 bg-gray-500 rounded-full hover:bg-gray-400 hover:scale-110'
-      }`}
-      style={{
-        boxShadow: index === currentSlide 
-          ? '0 2px 8px rgba(0, 240, 255, 0.4), 0 1px 4px rgba(139, 0, 255, 0.3)'
-          : 'none'
-      }}
-    />
-  ))}
-</div>
-
+          <div className="flex justify-center mt-8 space-x-3">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`transition-all duration-300 ${
+                  index === currentSlide
+                    ? 'w-6 h-2 rounded-full scale-125'
+                    : 'w-4 h-2 rounded-full hover:scale-125'
+                }`}
+                style={{
+                  background: index === currentSlide 
+                    ? 'linear-gradient(90deg, #00f0ff, #8b00ff, #ff00c8)'
+                    : '#666666',
+                  boxShadow: index === currentSlide 
+                    ? '0 0 15px rgba(0, 240, 255, 0.8), 0 0 30px rgba(139, 0, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4)'
+                    : '0 1px 3px rgba(0, 0, 0, 0.3)'
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

@@ -168,11 +168,35 @@ const Hero = () => {
             <span className="text-cyan-400 font-medium"> CryptoDigest</span> to stay one step ahead.
           </p>
 
+        {/* Subtitle with Subtle Animation */}
+<motion.p
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.4 }}
+  className="max-w-2xl text-lg text-center md:text-left text-gray-300 leading-relaxed"
+>
+  We move fast — and we've got your back every step of the way
+</motion.p>
+
+{/* Decorative Elements */}
+<motion.div
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8, delay: 0.6 }}
+  className="flex items-center gap-2 mt-6 justify-center md:justify-start mb-1"
+>
+  <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-[#00f0ff]"></div>
+  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#00f0ff] to-[#8b00ff] animate-pulse"></div>
+  <div className="w-8 h-[1px] bg-gradient-to-r from-[#8b00ff] to-transparent"></div>
+</motion.div>
+
+
           {/* Enhanced Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-2"
           >
             {/* <button
               className="glow-button relative"
@@ -222,23 +246,12 @@ const Hero = () => {
               />
             </button> */}
           </motion.div>
+          
         </motion.div>
       </motion.div>
-
-      {/* Bottom Gradient Fade - Darker */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-20 z-25"
-        style={{
-          background: `
-            linear-gradient(to top, 
-              rgba(0,0,0,0.95) 0%,
-              rgba(0,5,15,0.8) 40%,
-              rgba(0,8,20,0.6) 70%,
-              transparent 100%
-            )
-          `
-        }}
-      />
+      
+      {/* Bottom Gradient Fade with Blue Tint */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/80 via-blue-950/30 to-transparent z-25" />
 
       <style >{`
         @keyframes shine {
@@ -250,6 +263,7 @@ const Hero = () => {
           }
         }
       `}</style>
+      
     </div>
   );
 };

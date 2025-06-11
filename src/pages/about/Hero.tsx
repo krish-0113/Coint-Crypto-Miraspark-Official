@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
@@ -12,6 +12,15 @@ const Hero = () => {
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
+    // Scroll to top when component mounts
+    useEffect(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }, []);
+  
 
   return (
     <div 
@@ -65,7 +74,7 @@ const Hero = () => {
                 WebkitTextFillColor: "transparent"
               }}
             >
-              CryptoDigest
+              CoinDigest
             </span> is redefining how the world engages with crypto news. We are an AI-powered crypto news intelligence platform, built to help traders, investors, and enthusiasts cut through the noise, stay informed, and make smarter decisions — faster.
           </p>
           <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed font-light">
@@ -77,7 +86,7 @@ const Hero = () => {
                 WebkitTextFillColor: "transparent"
               }}
             >
-              CryptoDigest
+              CoinDigest
             </span> — to deliver real-time, relevant, and AI-enhanced insights that give our users an edge in the market.
           </p>
           {/* <button

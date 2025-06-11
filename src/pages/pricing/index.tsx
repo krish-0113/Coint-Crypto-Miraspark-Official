@@ -67,6 +67,26 @@ export default function PricingSection() {
         .rotating-gradient {
           animation: gradient-rotate 3s linear infinite;
         }
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes fadeInScale {
+          0% {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
       `}</style>
       
       <img
@@ -196,6 +216,35 @@ export default function PricingSection() {
           </motion.div>
         ))}
       </div>
+
+      {/* Subtle Animation Section - Added above bottom fade */}
+      <div className="relative z-30 flex flex-col items-center justify-center mt-12 mb-0">
+        {/* Subtitle with Subtle Animation */}
+        <div 
+          className="max-w-2xl text-lg text-center text-gray-300 leading-relaxed opacity-0 transform translate-y-5"
+          style={{
+            animation: 'fadeInUp 0.8s ease-out 0.4s forwards'
+          }}
+        >
+         
+        </div>
+        
+        {/* Decorative Elements */}
+        <div 
+          className="flex items-center gap-2 mt-4 opacity-0 transform scale-80"
+          style={{
+            animation: 'fadeInScale 0.8s ease-out 0.6s forwards'
+          }}
+        >
+          <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-[#00f0ff]"></div>
+          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#00f0ff] to-[#8b00ff] animate-pulse"></div>
+          <div className="w-8 h-[1px] bg-gradient-to-r from-[#8b00ff] to-transparent"></div>
+        </div>
+      </div>
+
+      {/* Bottom Gradient Fade with Blue Tint */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/80 via-blue-950/30 to-transparent z-25" />
+      
     </section>
   );
 }

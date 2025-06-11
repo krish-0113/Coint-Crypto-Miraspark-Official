@@ -237,7 +237,7 @@ export const Footer = () => {
           {/* Top Section */}
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start fade-in-up">
             {/* 1. Logo & Description */}
-            <div className="flex flex-col items-start -mt-6">
+            <div className="flex flex-col items-start -mt-6 col-span-1 lg:col-span-1">
               <div className="animated-logo">
                 <img
                   src={"/img/logo.svg"}
@@ -252,67 +252,70 @@ export const Footer = () => {
               </p>
             </div>
 
-            {/* 2. Company Links */}
-            <div className="space-y-3">
-              <h3 className="gradient-text text-base mb-1">Company</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>
-                  <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to={'/about'} className="hover-glow hover:underline transition-all duration-300">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
-                    Careers
-                  </Link>
-                </li>
-                <li>
-                  <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
-                    Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
-                    More Templates
-                  </Link>
-                </li>
-              </ul>
+            {/* 2. Company Links and Learn More - Side by Side on Mobile */}
+            <div className="col-span-1 md:col-span-1 lg:col-span-2 grid grid-cols-2 gap-6 md:gap-8">
+              {/* Company Links */}
+              <div className="space-y-3">
+                <h3 className="gradient-text text-base mb-1">Company</h3>
+                <ul className="space-y-2 text-sm text-gray-300">
+                  <li>
+                    <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/about'} className="hover-glow hover:underline transition-all duration-300">
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
+                      Careers
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
+                      Blog
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={'/'} className="hover-glow hover:underline transition-all duration-300">
+                      More Templates
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Learn More Links */}
+              <div className="space-y-3">
+                <h3 className="gradient-text text-base mb-1">Learn More</h3>
+                <ul className="space-y-2 text-sm text-gray-300">
+                  <li>
+                    <Link to="/pricing" className="hover-glow hover:underline transition-all duration-300">
+                      Pricing
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/" className="hover-glow hover:underline transition-all duration-300">
+                      License
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/" className="hover-glow hover:underline transition-all duration-300">
+                      Style Guide
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/news" className="hover-glow hover:underline transition-all duration-300">
+                      News
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div className="space-y-3">
-  <h3 className="gradient-text text-base mb-1">Learn More</h3>
-  <ul className="space-y-2 text-sm text-gray-300">
-    <li>
-      <Link to="/pricing" className="hover-glow hover:underline transition-all duration-300">
-        Pricing
-      </Link>
-    </li>
-    <li>
-      <Link to="/" className="hover-glow hover:underline transition-all duration-300">
-        License
-      </Link>
-    </li>
-    <li>
-      <Link to="/" className="hover-glow hover:underline transition-all duration-300">
-        Style Guide
-      </Link>
-    </li>
-    <li>
-      <Link to="/news" className="hover-glow hover:underline transition-all duration-300">
-        News
-      </Link>
-    </li>
-  </ul>
-</div>
-
-
-            {/* 4. Social Icons - Enhanced with dark gradient */}
-            <div className="space-y-3 right-side-dark">
+            {/* 3. Social Icons - Enhanced with dark gradient */}
+            <div className="space-y-3 right-side-dark col-span-1">
               <h3 className="gradient-text text-base mb-1">Follow US</h3>
               <div className="flex space-x-4">
                 <a href="#" aria-label="Instagram" className="social-icon">
@@ -339,7 +342,7 @@ export const Footer = () => {
             <span>© 2025 <span className="gradient-text">CryptoDigest</span>. All rights reserved.</span>
             <span className="hidden md:inline text-gray-600">|</span>
             <Link to="/terms" className="hover-glow hover:underline transition-all duration-300">
-              Terms of Service
+              Terms & Condition
             </Link>
             <span className="hidden md:inline text-gray-600">|</span>
             <Link to="/privacy" className="hover-glow hover:underline transition-all duration-300">
@@ -360,22 +363,6 @@ export const Footer = () => {
         >
           <FaArrowUp className="relative z-10" />
         </button>
-
-        {/* Floating Particles Effect */}
-        {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full opacity-30"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `float ${5 + Math.random() * 5}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 5}s`,
-              }}
-            />
-          ))}
-        </div> */}
       </footer>
     </>
   );

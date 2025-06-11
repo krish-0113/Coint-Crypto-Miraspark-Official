@@ -59,7 +59,7 @@ function AuthSectionImage() {
             <div className="absolute right-0 top-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-400 to-transparent opacity-60"></div>
           </div> */}
         {/* Logo in Top-Left - Clickable */}
-        <div className="absolute top-6 left-4 sm:top-8 sm:left-4 md:top-6 md:left-4 z-40">
+        <div className="absolute top-2 left-2 sm:top-4 sm:left-2 md:top-2 md:left-2 z-40">
           <div className="relative cursor-pointer" onClick={handleLogoClick}>
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse"></div>
             <img

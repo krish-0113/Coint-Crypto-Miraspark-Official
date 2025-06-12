@@ -21,13 +21,13 @@ const Logo = ({ className }: { className?: string }) => {
             src="/img/mainLogo.png"
             className="object-contain w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 
                        brightness-110 contrast-125 
-                       border-[3px] border-white rounded-full p-0.5 
+                       border-[6px] border-white rounded-full p-0.5 
                        shadow-lg bg-white/10 backdrop-blur-sm"
             alt="Company Logo"
           />
           
           {/* Subtle glow ring */}
-          <div className="absolute inset-0 border-2 border-cyan-400/50 rounded-full animate-pulse"></div>
+          <div className="absolute inset-0 border-4 border-cyan-400/50 rounded-full animate-pulse"></div>
         </div>
         
         {/* CoinDigest Text with gradient effects */}

@@ -140,18 +140,20 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
           </div>
           
           {/* Testimonial Text */}
-          <div className="relative z-10 flex-1 mb-6">
-            <p className={`text-sm leading-relaxed transition-all duration-300 ${
-              clickedCards.has(index) || hoveredCard === index ? 'text-white drop-shadow-md font-medium' : 'text-white/90 font-light'
-            }`}
-            style={{
-              textShadow: clickedCards.has(index) || hoveredCard === index 
-                ? '0 0 10px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8)' 
-                : '0 1px 2px rgba(0, 0, 0, 0.5)'
-            }}>
-              {testimonial.text}
-            </p>
-          </div>
+<div className="relative z-10 flex-1 mb-6">
+  <p className={`text-sm leading-relaxed transition-all duration-300 ${
+    clickedCards.has(index) || hoveredCard === index 
+      ? 'text-white font-semibold' 
+      : 'text-white/90 font-normal'
+  }`}
+  style={{
+    textShadow: clickedCards.has(index) || hoveredCard === index
+      ? '0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.7)'
+      : '0 0 8px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.6)'
+  }}>
+    {testimonial.text}
+  </p>
+</div>
 
           {/* Star Rating - Positioned above user info */}
           <div className="relative z-10 flex gap-1 mb-4 justify-center">

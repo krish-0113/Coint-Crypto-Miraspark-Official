@@ -4,12 +4,37 @@ import {
   FaLinkedinIn,
   FaXTwitter,
 } from "react-icons/fa6";
+import { Send } from "lucide-react";
 import { FaArrowUp } from "react-icons/fa";
-// import { Logo } from "../shared/Logo";
+import { useState } from "react";
+import { FaRobot } from "react-icons/fa";
+import { Logo } from "../shared/Logo"; // Make sure your Logo component includes icon + "Crypto Digest" text or adjust below
+
+ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
 import { PATHS } from '@/constants/page-paths';
 
 export const Footer = () => {
+  const [showChat, setShowChat] = useState(false);
+  const [messages, setMessages] = useState([
+    { sender: "bot", text: "How can I assist you?" },
+  ]);
+  const [input, setInput] = useState("");
+
+  const handleSend = () => {
+    if (input.trim()) {
+      setMessages([
+        ...messages,
+        { sender: "user", text: input },
+        {
+          sender: "bot",
+          text: "I'm Luna, your AI assistant. Welcome to Crypto Digest!",
+        },
+      ]);
+      setInput("");
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -382,6 +407,79 @@ export const Footer = () => {
         >
           <FaArrowUp className="relative z-10" />
         </button>
+        <button
+        onClick={() => setShowChat(!showChat)}
+        className="fixed bottom-5 right-20 w-10 h-10 bg-blue-600 text-white rounded-full shadow-lg hover:bg-gray-200 hover:text-black z-50 flex items-center justify-center"
+        aria-label="Chat with bot"
+      >
+        <FaRobot />
+      </button>
+       {/* Chat Box */}
+       {showChat && (
+        <div className="fixed bottom-20 right-5 w-80 bg-white rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 text-base font-semibold">
+            Luna (AI Assistant)
+          </div>
+
+          {/* Messages */}
+          <div className="flex-1 min-h-56 max-h-64 overflow-y-auto px-3 py-2 space-y-2 bg-gray-50 text-sm">
+          {messages.map((msg, idx) => (
+           <div
+          key={idx}
+          className={`flex items-end space-x-2 ${
+            msg.sender === "bot" ? "justify-start" : "justify-end"
+          }`}
+        >
+    {/* Bot message (left) */}
+    {msg.sender === "bot" && (
+      <Avatar className="w-6 h-6">
+        <AvatarImage src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Bot" />
+        <AvatarFallback>AI</AvatarFallback>
+      </Avatar>
+    )}
+
+    <div
+      className={`rounded-xl px-4 py-2 max-w-[75%] ${
+        msg.sender === "bot"
+          ? "bg-blue-100 text-blue-800"
+          : "bg-gray-200 text-gray-800"
+      }`}
+    >
+      {msg.text}
+    </div>
+
+    {/* User message (right) */}
+                {msg.sender !== "bot" && (
+                  <Avatar className="w-6 h-6">
+                    <AvatarImage src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="User" />
+                    <AvatarFallback>U</AvatarFallback>
+                  </Avatar>
+                )}
+              </div>
+            ))}
+
+          </div>
+
+          {/* Input + Send */}
+          <div className="flex border-t border-gray-300 p-2 bg-white">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSend()}
+              placeholder="Type your message..."
+              className="flex-1 text-gray-800 text-sm px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none"
+            />
+            <button
+              onClick={handleSend}
+              className="bg-blue-600 px-4 rounded-r-md hover:bg-blue-700 flex items-center justify-center"
+              aria-label="Send"
+            >
+              <Send className="text-white" />
+            </button>
+          </div>
+        </div>
+      )}
       </footer>
     </>
   );

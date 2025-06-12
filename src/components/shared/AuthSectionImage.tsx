@@ -19,9 +19,9 @@ const Logo = ({ className }: { className?: string }) => {
         <div className="relative">
         <img
   src="/img/mainLogo.png"
-  className="object-contain w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16
+  className="object-contain w-2 h-2 sm:w-8 sm:h-8 md:w-110 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14
              brightness-110 contrast-125
-             border-[3px] border-white rounded-full p-0.5
+             border-[6px] border-white rounded-full p-0.5
              bg-white/0 shadow-none backdrop-blur-none"
 />
 

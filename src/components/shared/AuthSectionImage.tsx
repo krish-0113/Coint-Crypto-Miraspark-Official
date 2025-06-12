@@ -1,7 +1,50 @@
 "use client"
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom"
 import { Card, CardContent } from "../ui/card"
-import { Logo } from '@/components/Logo'; // Import your Logo component
+import { Link } from 'react-router-dom';
+import { PATHS } from '@/constants/page-paths';
+import { cn } from '@/lib/utils/cn';
+
+// Logo Component - Moved inside the same file to avoid import issues
+const Logo = ({ className }: { className?: string }) => {
+  const classes = cn(
+    className,
+    'flex items-center gap-2 p-2'
+  );
+
+  return (
+    <Link to={PATHS.HOME}>
+      <div className={classes}>
+        {/* Logo Image with refined size, darker tighter border and subtle glow */}
+        <div className="relative">
+          <img
+            src="/img/mainLogo.png"
+            className="object-contain w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 
+                       brightness-110 contrast-125 
+                       border-[3px] border-white rounded-full p-0.5 
+                       shadow-lg bg-white/10 backdrop-blur-sm"
+            alt="Company Logo"
+          />
+          
+          {/* Subtle glow ring */}
+          <div className="absolute inset-0 border-2 border-cyan-400/50 rounded-full animate-pulse"></div>
+        </div>
+        
+        {/* CoinDigest Text with gradient effects */}
+        <div className="flex flex-col justify-center leading-none -space-y-1">
+          <div className="flex items-center text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold drop-shadow-xl">
+            <span className="text-white">C</span>
+            <span className="text-white">oin</span>
+          </div>
+          <div className="flex items-center text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold drop-shadow-xl">
+            <span className="text-white">D</span>
+            <span className="text-white">igest</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+};
 
 function AuthSectionImage() {
   const location = useLocation();
@@ -225,49 +268,3 @@ function AuthSectionImage() {
 }
 
 export default AuthSectionImage
-
-// Updated Logo Component with enhanced styling for AuthSection
-import { Link } from 'react-router-dom';
-import { PATHS } from '@/constants/page-paths';
-import { cn } from '@/lib/utils/cn';
-
-export const Logo = ({ className }: { className?: string }) => {
-  const classes = cn(
-    className,
-    'flex items-center gap-2 p-2'
-  );
-
-  return (
-    <Link to={PATHS.HOME}>
-      <div className={classes}>
-        {/* Logo Image with refined size, darker tighter border and subtle glow */}
-<div className="relative">
-  <img
-    src="/img/mainLogo.png"
-    className="object-contain w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 
-               brightness-110 contrast-125 
-               border-[3px] border-white rounded-full p-0.5 
-               shadow-lg bg-white/10 backdrop-blur-sm"
-    alt="Company Logo"
-  />
-  
-  {/* Subtle glow ring */}
-  <div className="absolute inset-0 border-[6px] border-white rounded-full animate-pulse"></div>
-</div>
-
-        
-        {/* CoinDigest Text with gradient effects */}
-        <div className="flex flex-col justify-center leading-none -space-y-1">
-          <div className="flex items-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold drop-shadow-xl">
-            <span className="bg-white bg-clip-text text-transparent">C</span>
-            <span className="text-white">oin</span>
-          </div>
-          <div className="flex items-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold drop-shadow-xl">
-            <span className="bg-white bg-clip-text text-transparent">D</span>
-            <span className="text-white">igest</span>
-          </div>
-        </div>
-      </div>
-    </Link>
-  );
-};

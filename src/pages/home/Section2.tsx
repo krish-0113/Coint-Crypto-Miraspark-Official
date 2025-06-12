@@ -134,37 +134,46 @@ const FeatureCard = ({
           )}
 
           {/* Brighter icon container */}
-          <div
-            className={`relative z-10 w-14 h-14 flex items-center justify-center rounded-full mb-4 md:mb-6 transition-all duration-300 ${
-              clickedCards.has(index)
-                ? "scale-110 shadow-2xl"
-                : hoveredCard === index
-                  ? "scale-110 shadow-xl"
-                  : "scale-100"
-            }`}
-            style={{
-              background:
-                clickedCards.has(index) || hoveredCard === index
-                  ? "linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(139, 0, 255, 0.3), rgba(255, 0, 200, 0.2))"
-                  : "linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(139, 0, 255, 0.15), rgba(255, 0, 200, 0.1))",
-              border:
-                clickedCards.has(index) || hoveredCard === index
-                  ? "1px solid rgba(0, 240, 255, 0.5)"
-                  : "1px solid rgba(0, 240, 255, 0.3)",
-              boxShadow:
-                clickedCards.has(index) || hoveredCard === index
-                  ? "0 12px 30px rgba(0, 240, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
-                  : "0 8px 20px rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
-            }}
-          >
-            <div
-              className={`transition-all duration-300 ${
-                clickedCards.has(index) || hoveredCard === index ? "drop-shadow-lg" : ""
-              }`}
-            >
-              {feature.icon}
-            </div>
-          </div>
+<div
+  className={`relative z-10 w-14 h-14 flex items-center justify-center rounded-full mb-4 md:mb-6 transition-all duration-300 ${
+    clickedCards.has(index)
+      ? "scale-110 shadow-2xl"
+      : hoveredCard === index
+        ? "scale-110 shadow-xl"
+        : "scale-100"
+  }`}
+  style={{
+    background:
+      clickedCards.has(index) || hoveredCard === index
+        ? "linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(139, 0, 255, 0.3), rgba(255, 0, 200, 0.2))"
+        : "linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(139, 0, 255, 0.15), rgba(255, 0, 200, 0.1))",
+    border:
+      clickedCards.has(index) || hoveredCard === index
+        ? "1px solid rgba(255, 255, 255, 0.8)"
+        : "1px solid rgba(255, 255, 255, 0.5)",
+    boxShadow:
+      clickedCards.has(index) || hoveredCard === index
+        ? "0 12px 30px rgba(0, 240, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
+        : "0 8px 20px rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+  }}
+>
+  <div
+    className={`transition-all duration-300 ${
+      clickedCards.has(index) || hoveredCard === index 
+        ? "drop-shadow-lg scale-110" 
+        : "scale-100"
+    }`}
+    style={{
+      filter: clickedCards.has(index) || hoveredCard === index
+        ? "drop-shadow(0 0 12px rgba(255, 255, 255, 0.8)) brightness(1.5) contrast(1.3)"
+        : "drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)) brightness(1.3) contrast(1.2)",
+      color: "#ffffff",
+      fontSize: "24px"
+    }}
+  >
+    {feature.icon}
+  </div>
+</div>
 
           {/* Much brighter title text */}
           <h3

@@ -139,21 +139,22 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
             <div className="text-4xl text-cyan-400 opacity-30 font-serif">"</div>
           </div>
           
-          {/* Testimonial Text */}
+     {/* Testimonial Text */}
 <div className="relative z-10 flex-1 mb-6">
   <p className={`text-sm leading-relaxed transition-all duration-300 ${
     clickedCards.has(index) || hoveredCard === index 
-      ? 'text-white font-semibold' 
-      : 'text-white/90 font-normal'
+      ? 'text-gray-100 drop-shadow-md font-medium' 
+      : 'text-gray-200 drop-shadow-sm font-normal'
   }`}
   style={{
     textShadow: clickedCards.has(index) || hoveredCard === index
-      ? '0 0 15px rgba(255, 255, 255, 0.9), 0 0 25px rgba(255, 255, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.7)'
-      : '0 0 8px rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.6)'
+      ? '0 1px 4px rgba(0, 240, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.4)'
+      : '0 1px 3px rgba(0, 240, 255, 0.15), 0 1px 2px rgba(0, 0, 0, 0.3)'
   }}>
     {testimonial.text}
   </p>
 </div>
+
 
           {/* Star Rating - Positioned above user info */}
           <div className="relative z-10 flex gap-1 mb-4 justify-center">
@@ -204,17 +205,15 @@ const TestimonialCard = ({ testimonial, index, clickedCards, setClickedCards, ho
               </h3>
               
               <p className={`text-xs font-medium transition-all duration-300 truncate ${
-  clickedCards.has(index) || hoveredCard === index 
-    ? 'text-cyan-300 font-semibold' 
-    : 'text-white/80 font-medium'
-}`}
-style={{
-  textShadow: clickedCards.has(index) || hoveredCard === index
-    ? '0 0 12px rgba(0, 240, 255, 0.9), 0 0 20px rgba(0, 240, 255, 0.6), 0 2px 6px rgba(0, 0, 0, 0.8)'
-    : '0 0 6px rgba(255, 255, 255, 0.3), 0 1px 3px rgba(0, 0, 0, 0.6)'
-}}>
-  {testimonial.title}
-</p>
+                clickedCards.has(index) || hoveredCard === index ? 'text-cyan-300 drop-shadow-md' : 'text-white/60'
+              }`}
+              style={{
+                textShadow: clickedCards.has(index) || hoveredCard === index 
+                  ? '0 0 6px rgba(0, 240, 255, 0.6), 0 1px 3px rgba(0, 0, 0, 0.8)' 
+                  : '0 1px 2px rgba(0, 0, 0, 0.5)'
+              }}>
+                {testimonial.title}
+              </p>
             </div>
           </div>
         </div>

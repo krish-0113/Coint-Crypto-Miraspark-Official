@@ -17,14 +17,14 @@ const Logo = ({ className }: { className?: string }) => {
       <div className={classes}>
         {/* Logo Image with refined size, darker tighter border and subtle glow */}
         <div className="relative">
-          <img
-            src="/img/mainLogo.png"
-            className="object-contain w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 
-                       brightness-110 contrast-125 
-                       border-[6px] border-white rounded-full p-0.5 
-                       shadow-lg bg-white/10 backdrop-blur-sm"
-            alt="Company Logo"
-          />
+        <img
+  src="/img/mainLogo.png"
+  className="object-contain w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16
+             brightness-110 contrast-125
+             border-[3px] border-white rounded-full p-0.5
+             bg-white/0 shadow-none backdrop-blur-none"
+/>
+
           
           {/* Subtle glow ring */}
           <div className="absolute inset-0 border-4 border-cyan-400/50 rounded-full animate-pulse"></div>
@@ -71,22 +71,25 @@ function AuthSectionImage() {
   }
 
   return (
-    <Card className="h-screen w-full border-none rounded-none relative overflow-hidden">
-      <CardContent className="flex h-full items-center justify-center p-0">
-        <div className="w-full h-full relative">
-          {/* Background Image */}
+    <Card className="h-auto md:h-screen w-full border-none rounded-none relative overflow-hidden">
+      <CardContent className="flex h-auto md:h-full items-start md:items-center justify-center p-0">
+        <div className="w-full h-auto md:h-full relative min-h-[120px] md:min-h-screen">
+          {/* Background Image - Hidden on mobile */}
           <img
             src={`/img/${imageName}`}
             alt="Auth Background"
-            className="w-full h-full object-cover absolute inset-0 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110"
+            className="w-full h-full object-cover absolute inset-0 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110 hidden md:block"
           />
 
-          {/* Enhanced Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20 z-10" />
+          {/* Enhanced Gradient Overlays - Hidden on mobile */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10 hidden md:block" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20 z-10 hidden md:block" />
 
-          {/* Animated Particles/Dots */}
-          <div className="absolute inset-0 z-20">
+          {/* Mobile Background - Only visible on mobile */}
+          {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 md:hidden min-h-[120px]" /> */}
+
+          {/* Animated Particles/Dots - Hidden on mobile */}
+          <div className="absolute inset-0 z-20 hidden md:block">
             <div className="particle particle-1"></div>
             <div className="particle particle-2"></div>
             <div className="particle particle-3"></div>
@@ -98,16 +101,16 @@ function AuthSectionImage() {
           {/* Logo in Top-Left - Using Logo Component */}
           <div className="absolute top-2 left-2 sm:top-4 sm:left-2 md:top-2 md:left-2 z-40">
             <div className="relative">
-              {/* Animated glow background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse"></div>
+              {/* Animated glow background - Hidden on mobile */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse hidden md:block"></div>
               
               {/* Logo Component with enhanced styling */}
               <Logo className="relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer logo-enhanced" />
             </div>
           </div>
 
-          {/* Content Container */}
-          <div className="absolute inset-0 z-30 flex flex-col justify-end items-center text-white px-4 sm:px-6 md:px-8 pb-12">
+          {/* Content Container - Hidden on mobile */}
+          <div className="absolute inset-0 z-30 flex-col justify-end items-center text-white px-4 sm:px-6 md:px-8 pb-12 hidden md:flex">
 
             {/* Title with Enhanced Styling */}
             <div className="text-center space-y-3 sm:space-y-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">

@@ -255,111 +255,85 @@ const FeatureSection = () => {
         </p>
 
         {/* Desktop Grid View */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-          {features.map((feature, index) => (
-            <FeatureCard
-              key={index}
-              feature={feature}
-              index={index}
-              clickedCards={clickedCards}
-              setClickedCards={setClickedCards}
-              hoveredCard={hoveredCard}
-              setHoveredCard={setHoveredCard}
-            />
-          ))}
-        </div>
-
-        {/* Desktop Navigation Controls */}
-        <div className="hidden md:flex items-center justify-center mt-10 gap-4">
-          {/* Left Arrow */}
-          <button
-            onClick={prevSlide}
-            className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95 group"
-            style={{
-              boxShadow: "0 8px 25px rgba(0, 240, 255, 0.4), 0 4px 15px rgba(139, 0, 255, 0.3)",
-            }}
-          >
-            <svg
-              className="w-6 h-6 text-white transition-transform duration-300 group-hover:-translate-x-0.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          {/* Desktop Dots Indicator */}
-          <div className="flex justify-center space-x-2">
-            {features.map((_, index) => (
-              <button
+        <div className="hidden md:block w-full max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+            {features.map((feature, index) => (
+              <FeatureCard
                 key={index}
-                onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 ${
-                  index === currentSlide
-                    ? "w-7 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full shadow-lg scale-110"
-                    : "w-2 h-2 bg-gray-400 rounded-full hover:bg-gray-300 hover:scale-110"
-                }`}
-                style={{
-                  boxShadow:
-                    index === currentSlide
-                      ? "0 4px 15px rgba(0, 240, 255, 0.5), 0 2px 8px rgba(139, 0, 255, 0.4)"
-                      : "none",
-                }}
+                feature={feature}
+                index={index}
+                clickedCards={clickedCards}
+                setClickedCards={setClickedCards}
+                hoveredCard={hoveredCard}
+                setHoveredCard={setHoveredCard}
               />
             ))}
           </div>
-
-          {/* Right Arrow */}
-          <button
-            onClick={nextSlide}
-            className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95 group"
-            style={{
-              boxShadow: "0 8px 25px rgba(0, 240, 255, 0.4), 0 4px 15px rgba(139, 0, 255, 0.3)",
-            }}
-          >
-            <svg
-              className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-0.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          
+          {/* Simplified Navigation Controls */}
+          <div className="flex items-center justify-center mt-10 gap-4">
+            <button
+              onClick={prevSlide}
+              className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <div className="flex justify-center space-x-2">
+              {features.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`transition-all duration-300 ${
+                    index === currentSlide
+                      ? 'w-7 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full shadow-lg scale-110'
+                      : 'w-2 h-2 bg-gray-500 rounded-full hover:bg-gray-400 hover:scale-110'
+                  }`}
+                  style={{
+                    boxShadow: index === currentSlide 
+                      ? '0 4px 15px rgba(0, 240, 255, 0.4), 0 2px 8px rgba(139, 0, 255, 0.3), 0 1px 4px rgba(0, 0, 0, 0.5)'
+                      : '0 1px 3px rgba(0, 0, 0, 0.3)'
+                  }}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={nextSlide}
+              className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
+            >
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Carousel View */}
         <div className="md:hidden relative w-full">
           <div className="relative max-w-sm mx-auto px-8">
-            {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
-              style={{
-                boxShadow: "0 8px 25px rgba(0, 240, 255, 0.4), 0 4px 15px rgba(139, 0, 255, 0.3)",
-              }}
+              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-
+            
             <button
               onClick={nextSlide}
-              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95"
-              style={{
-                boxShadow: "0 8px 25px rgba(0, 240, 255, 0.4), 0 4px 15px rgba(139, 0, 255, 0.3)",
-              }}
+              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
             >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
 
-            {/* Carousel Container */}
             <div className="overflow-hidden rounded-xl">
-              <div
+              <div 
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
@@ -380,22 +354,23 @@ const FeatureSection = () => {
             </div>
           </div>
 
-          {/* Mobile Dots Indicator */}
-          <div className="flex justify-center mt-8 space-x-2">
+          <div className="flex justify-center mt-8 space-x-3">
             {features.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`transition-all duration-300 ${
                   index === currentSlide
-                    ? "w-3 h-1.5 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full shadow-lg scale-110"
-                    : "w-3 h-1.5 bg-gray-400 rounded-full hover:bg-gray-300 hover:scale-110"
+                    ? 'w-6 h-2 rounded-full scale-125'
+                    : 'w-4 h-2 rounded-full hover:scale-125'
                 }`}
                 style={{
-                  boxShadow:
-                    index === currentSlide
-                      ? "0 2px 8px rgba(0, 240, 255, 0.5), 0 1px 4px rgba(139, 0, 255, 0.4)"
-                      : "none",
+                  background: index === currentSlide 
+                    ? 'linear-gradient(90deg, #00f0ff, #8b00ff, #ff00c8)'
+                    : '#666666',
+                  boxShadow: index === currentSlide 
+                    ? '0 0 15px rgba(0, 240, 255, 0.8), 0 0 30px rgba(139, 0, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4)'
+                    : '0 1px 3px rgba(0, 0, 0, 0.3)'
                 }}
               />
             ))}

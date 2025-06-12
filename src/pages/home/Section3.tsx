@@ -47,37 +47,6 @@ export default function HowItWorksSection() {
       {/* Background overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/5 to-transparent pointer-events-none" />
       
-      {/* Animated Dots Background */}
-      {/* <div className="absolute inset-0 opacity-30 pointer-events-none">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`,
-            }}
-          />
-        ))}
-      </div> */}
-          {/* Floating Particles Effect */}
-          {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full opacity-30"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `float ${5 + Math.random() * 5}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 5}s`,
-              }}
-            />
-          ))}
-        </div> */}
-      
       {/* Background image */}
       <img
         src="/img/blue.png"
@@ -126,17 +95,17 @@ export default function HowItWorksSection() {
           >
             <div
              style={{
-              transition: 'transform 0.2s ease-out', // Keeping the transition for smoothness
-              backgroundColor: 'rgba(10, 15, 26, 0.5)', // Keeping the background color
+              transition: 'transform 0.2s ease-out',
+              backgroundColor: 'rgba(10, 15, 26, 0.5)',
               boxShadow: imageHovered
-                ? '0 0 10px rgba(0, 240, 255, 0.2), 0 0 20px rgba(0, 240, 255, 0.3)' // Lighter shadow when hovered
+                ? '0 0 10px rgba(0, 240, 255, 0.2), 0 0 20px rgba(0, 240, 255, 0.3)'
                 : imageClicked
-                ? '0 0 15px rgba(0, 240, 255, 0.2), 0 0 30px rgba(0, 240, 255, 0.3)' // Slightly reduced shadow when clicked
-                : '0 0 10px rgba(0, 0, 0, 0.3)', // Reduced shadow when neither hovered nor clicked
+                ? '0 0 15px rgba(0, 240, 255, 0.2), 0 0 30px rgba(0, 240, 255, 0.3)'
+                : '0 0 10px rgba(0, 0, 0, 0.3)',
               border: imageHovered || imageClicked
-                ? '1px solid rgba(0, 240, 255, 0.4)' // Less intense border on hover or click
-                : '1px solid rgba(0, 240, 255, 0.2)', // Subtle border when not interacted
-              borderRadius: '12px', // Reduced border radius for a more subtle, sharp look
+                ? '1px solid rgba(0, 240, 255, 0.4)'
+                : '1px solid rgba(0, 240, 255, 0.2)',
+              borderRadius: '12px',
             }}
             
               className="w-full max-w-[500px] rounded-3xl overflow-hidden transition-all duration-500"
@@ -182,21 +151,21 @@ export default function HowItWorksSection() {
                 setClickedSteps(newClickedSteps);
               }}
             >
-              {/* Step card with gradient border */}
+              {/* Step card with enhanced gradient border */}
               <div 
-                className="relative p-0.5 rounded-xl transition-all duration-300 cursor-pointer"
+                className="relative p-[2px] rounded-xl transition-all duration-300 cursor-pointer"
                 style={{
                   background: hoveredStep === idx
                     ? 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8, #00f0ff)'
                     : clickedSteps.has(idx)
-                    ? 'linear-gradient(135deg, rgba(0, 240, 255, 0.7), rgba(139, 0, 255, 0.7), rgba(255, 0, 200, 0.7))'
-                    : 'linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(139, 0, 255, 0.3), rgba(255, 0, 200, 0.3))',
+                    ? 'linear-gradient(135deg, rgba(0, 240, 255, 0.8), rgba(139, 0, 255, 0.8), rgba(255, 0, 200, 0.8))'
+                    : 'linear-gradient(135deg, rgba(0, 240, 255, 0.9), rgba(139, 0, 255, 0.9), rgba(255, 0, 200, 0.9))',
                   transform: hoveredStep === idx ? 'scale(1.05)' : 'scale(1)',
                   boxShadow: hoveredStep === idx
                     ? '0 20px 40px rgba(0, 240, 255, 0.4), 0 10px 25px rgba(139, 0, 255, 0.3), 0 0 50px rgba(0, 240, 255, 0.2)'
                     : clickedSteps.has(idx)
                     ? '0 10px 20px rgba(0, 240, 255, 0.3), 0 5px 15px rgba(139, 0, 255, 0.2)'
-                    : '0 5px 15px rgba(0, 0, 0, 0.3)',
+                    : '0 8px 20px rgba(0, 240, 255, 0.25), 0 4px 12px rgba(139, 0, 255, 0.2), 0 0 25px rgba(0, 240, 255, 0.15)',
                   backdropFilter: 'blur(4px)',
                   WebkitBackdropFilter: 'blur(4px)',
                 }}

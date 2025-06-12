@@ -1,6 +1,7 @@
 "use client"
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom"
 import { Card, CardContent } from "../ui/card"
+import { Logo } from '@/components/Logo'; // Import your Logo component
 
 function AuthSectionImage() {
   const location = useLocation();
@@ -51,25 +52,16 @@ function AuthSectionImage() {
             <div className="particle particle-6"></div>
           </div>
 
-          {/* Glowing Border Effect */}
-          {/* <div className="absolute inset-0 z-20">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-400 to-transparent opacity-60"></div>
-            <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-transparent via-purple-400 to-transparent opacity-60"></div>
-            <div className="absolute right-0 top-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-400 to-transparent opacity-60"></div>
-          </div> */}
-        {/* Logo in Top-Left - Clickable */}
-        <div className="absolute top-2 left-2 sm:top-4 sm:left-2 md:top-2 md:left-2 z-40">
-          <div className="relative cursor-pointer" onClick={handleLogoClick}>
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse"></div>
-            <img
-              src="/img/Logo.png"
-              alt="Logo"
-             className="relative h-30 w-30 sm:h-28 sm:w-28 md:h-32 md:w-32 lg:h-3 6lg:w-36 xl:h-40 xl:w-40 drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer"
-    />
-  </div>
-</div>
-
+          {/* Logo in Top-Left - Using Logo Component */}
+          <div className="absolute top-2 left-2 sm:top-4 sm:left-2 md:top-2 md:left-2 z-40">
+            <div className="relative">
+              {/* Animated glow background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse"></div>
+              
+              {/* Logo Component with enhanced styling */}
+              <Logo className="relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer logo-enhanced" />
+            </div>
+          </div>
 
           {/* Content Container */}
           <div className="absolute inset-0 z-30 flex flex-col justify-end items-center text-white px-4 sm:px-6 md:px-8 pb-12">
@@ -204,6 +196,15 @@ function AuthSectionImage() {
           animation: backgroundShift 20s ease-in-out infinite;
         }
 
+        /* Enhanced Logo Styling */
+        .logo-enhanced {
+          filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.3));
+        }
+        
+        .logo-enhanced:hover {
+          filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.5));
+        }
+
         /* Custom responsive breakpoints for better mobile experience */
         @media (max-width: 320px) {
           .particle {
@@ -224,3 +225,49 @@ function AuthSectionImage() {
 }
 
 export default AuthSectionImage
+
+// Updated Logo Component with enhanced styling for AuthSection
+import { Link } from 'react-router-dom';
+import { PATHS } from '@/constants/page-paths';
+import { cn } from '@/lib/utils/cn';
+
+export const Logo = ({ className }: { className?: string }) => {
+  const classes = cn(
+    className,
+    'flex items-center gap-2 p-2'
+  );
+
+  return (
+    <Link to={PATHS.HOME}>
+      <div className={classes}>
+        {/* Logo Image with refined size, darker tighter border and subtle glow */}
+<div className="relative">
+  <img
+    src="/img/mainLogo.png"
+    className="object-contain w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 
+               brightness-110 contrast-125 
+               border-[3px] border-white rounded-full p-0.5 
+               shadow-lg bg-white/10 backdrop-blur-sm"
+    alt="Company Logo"
+  />
+  
+  {/* Subtle glow ring */}
+  <div className="absolute inset-0 border-[6px] border-white rounded-full animate-pulse"></div>
+</div>
+
+        
+        {/* CoinDigest Text with gradient effects */}
+        <div className="flex flex-col justify-center leading-none -space-y-1">
+          <div className="flex items-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold drop-shadow-xl">
+            <span className="bg-white bg-clip-text text-transparent">C</span>
+            <span className="text-white">oin</span>
+          </div>
+          <div className="flex items-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold drop-shadow-xl">
+            <span className="bg-white bg-clip-text text-transparent">D</span>
+            <span className="text-white">igest</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+};

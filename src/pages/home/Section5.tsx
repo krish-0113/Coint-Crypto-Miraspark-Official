@@ -281,17 +281,14 @@ const TestimonialFeatureSection = () => {
             ))}
           </div>
           
-          {/* Enhanced Navigation Controls */}
+          {/* Simplified Navigation Controls */}
           <div className="flex items-center justify-center mt-10 gap-4">
             <button
               onClick={prevSlide}
-              className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95 group"
-              style={{
-                boxShadow: '0 8px 25px rgba(0, 240, 255, 0.3), 0 4px 15px rgba(139, 0, 255, 0.2), 0 2px 8px rgba(0, 0, 0, 0.4)'
-              }}
+              className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
             >
-              <svg className="w-6 h-6 text-white transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
 
@@ -316,13 +313,10 @@ const TestimonialFeatureSection = () => {
 
             <button
               onClick={nextSlide}
-              className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-110 active:scale-95 group"
-              style={{
-                boxShadow: '0 8px 25px rgba(0, 240, 255, 0.3), 0 4px 15px rgba(139, 0, 255, 0.2), 0 2px 8px rgba(0, 0, 0, 0.4)'
-              }}
+              className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
             >
-              <svg className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
@@ -333,27 +327,19 @@ const TestimonialFeatureSection = () => {
           <div className="relative max-w-sm mx-auto px-8">
             <button
               onClick={prevSlide}
-              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-125 active:scale-95"
-              style={{
-                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)',
-                boxShadow: '0 0 25px rgba(0, 240, 255, 0.6), 0 0 50px rgba(139, 0, 255, 0.4), 0 4px 15px rgba(0, 0, 0, 0.5)'
-              }}
+              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
             >
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             
             <button
               onClick={nextSlide}
-              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-125 active:scale-95"
-              style={{
-                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)',
-                boxShadow: '0 0 25px rgba(0, 240, 255, 0.6), 0 0 50px rgba(139, 0, 255, 0.4), 0 4px 15px rgba(0, 0, 0, 0.5)'
-              }}
+              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
             >
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
 

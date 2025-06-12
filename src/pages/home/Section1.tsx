@@ -4,10 +4,6 @@ import { Autoplay } from "swiper/modules";
 import Particles from "@/components/shared/Particles";
 import { motion } from "framer-motion";
 
-
-
-
-
 import "swiper/css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link,useNavigate } from "react-router-dom";
@@ -38,7 +34,6 @@ const newsItems = [
       "Meta is under fire for data privacy issues in Europe as regulators tighten their grip.",
   },
 ];
-
 
 // Animated Particles Component
 const AnimatedParticles = () => {
@@ -88,15 +83,16 @@ const AnimatedParticles = () => {
 
 const Section1 = () => {
   const navigate = useNavigate();
-
-  const swiperRef = useRef<any>(null);
-  const resumeTimeout = useRef<any>(null);
+  const swiperRef = useRef(null);
+  const resumeTimeout = useRef(null);
 
   const handleResume = () => {
     clearTimeout(resumeTimeout.current);
     resumeTimeout.current = setTimeout(() => {
-      swiperRef.current?.autoplay?.start();
-    }, 1000);
+      if (swiperRef.current?.autoplay) {
+        swiperRef.current.autoplay.start();
+      }
+    }, 1000); // Reduced delay for quicker resume
   };
 
   useEffect(() => {
@@ -104,23 +100,37 @@ const Section1 = () => {
   }, []);
 
   const handlePrev = () => {
-    swiperRef.current?.slidePrev();
-    swiperRef.current?.autoplay?.stop();
-    handleResume();
+    if (swiperRef.current) {
+      // Stop autoplay first
+      if (swiperRef.current.autoplay) {
+        swiperRef.current.autoplay.stop();
+      }
+      // Then slide - CORRECTED DIRECTION
+      swiperRef.current.slideNext(); // This will go LEFT (previous items)
+      // Resume after delay
+      handleResume();
+    }
   };
 
   const handleNext = () => {
-    swiperRef.current?.slideNext();
-    swiperRef.current?.autoplay?.stop();
-    handleResume();
+    if (swiperRef.current) {
+      // Stop autoplay first
+      if (swiperRef.current.autoplay) {
+        swiperRef.current.autoplay.stop();
+      }
+      // Then slide - CORRECTED DIRECTION  
+      swiperRef.current.slidePrev(); // This will go RIGHT (next items)
+      // Resume after delay
+      handleResume();
+    }
   };
 
   return (
     <div className="w-full py-20 flex flex-col items-center justify-center px-4 bg-gradient-to-b from-[#000000] via-[#001f3f] to-[#000000]">
-        {/* Add Particles as a background */}
-    {/* <Particles /> */}
-    {/* Animated Particles Background */}
-    {/* <AnimatedParticles /> */}
+      {/* Add Particles as a background */}
+      {/* <Particles /> */}
+      {/* Animated Particles Background */}
+      {/* <AnimatedParticles /> */}
         
       <h1 className="text-2xl md:text-4xl font-bold text-center text-white">
         Trending News
@@ -129,36 +139,28 @@ const Section1 = () => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do tempor
         incididunt ut labore et dolore magna aliqua.
       </p>
-      {/* Floating Particles Effect */}
-      {/* <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {[...Array(200)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full opacity-30"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `float ${5 + Math.random() * 5}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 5}s`,
-              }}
-            />
-          ))}
-        </div> */}
   
       <div className="w-full mt-10 relative">
         <Swiper
           modules={[Autoplay]}
           loop={true}
-          speed={5000}
+          speed={2000} // Reduced speed for smoother manual navigation
           autoplay={{
-            delay: 0,
+            delay: 1000, // Added proper delay
             disableOnInteraction: false,
-            pauseOnMouseEnter: false,
+            pauseOnMouseEnter: true, // Changed to true for better UX
+            reverseDirection: false,
           }}
           slidesPerView={1}
           spaceBetween={20}
-          freeMode={true}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
+          onSlideChange={() => {
+            // Ensure autoplay continues after slide change
+            if (swiperRef.current?.autoplay) {
+              clearTimeout(resumeTimeout.current);
+              handleResume();
+            }
+          }}
           breakpoints={{
             640: { slidesPerView: 2 },
             768: { slidesPerView: 3 },
@@ -166,62 +168,62 @@ const Section1 = () => {
           }}
         >
           {[...newsItems, ...newsItems].map((item, index) => (
-  <SwiperSlide key={index}>
-    <div
-      onClick={() => {
-        swiperRef.current?.autoplay?.stop();
-        navigate("/login");
-      }}
-      onMouseEnter={() => {
-        swiperRef.current?.autoplay?.stop();
-        clearTimeout(resumeTimeout.current);
-      }}
-      onMouseLeave={handleResume}
-      className="cursor-pointer p-[2px] rounded-xl bg-gradient-to-br from-[#00f0ff] via-[#4c00ff] to-[#ff00c8]"
-    >
-      {/* Inner Card – zoom effect applied here only */}
-      <div className="bg-gradient-to-br from-[#000000] via-[#001f3f] to-[#0a0a0a] rounded-xl h-full flex flex-col shadow-md overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105">
-        <div className="p-[1px] rounded-lg bg-gradient-to-br from-[#00f0ff] via-[#4c00ff] to-[#ff00c8] mx-4 mt-4">
-          <img
-            src={item.img}
-            alt={item.title}
-            className="w-full h-48 object-cover rounded-lg"
-          />
-        </div>
-        <div className="p-4 flex flex-col justify-between flex-1">
-          <p className="text-sm text-white font-light font-inter">
-            {item.description}
-          </p>
-          <span className="mt-4 text-blue-500 hover:underline text-sm font-medium">
-            Read more →
-          </span>
-        </div>
-      </div>
-    </div>
-  </SwiperSlide>
-))}
-
+            <SwiperSlide key={index}>
+              <div
+                onClick={() => {
+                  if (swiperRef.current?.autoplay) {
+                    swiperRef.current.autoplay.stop();
+                  }
+                  navigate("/login");
+                }}
+                onMouseEnter={() => {
+                  if (swiperRef.current?.autoplay) {
+                    swiperRef.current.autoplay.stop();
+                  }
+                  clearTimeout(resumeTimeout.current);
+                }}
+                onMouseLeave={handleResume}
+                className="cursor-pointer p-[2px] rounded-xl bg-gradient-to-br from-[#00f0ff] via-[#4c00ff] to-[#ff00c8]"
+              >
+                {/* Inner Card – zoom effect applied here only */}
+                <div className="bg-gradient-to-br from-[#000000] via-[#001f3f] to-[#0a0a0a] rounded-xl h-full flex flex-col shadow-md overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105">
+                  <div className="p-[1px] rounded-lg bg-gradient-to-br from-[#00f0ff] via-[#4c00ff] to-[#ff00c8] mx-4 mt-4">
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      className="w-full h-48 object-cover rounded-lg"
+                    />
+                  </div>
+                  <div className="p-4 flex flex-col justify-between flex-1">
+                    <p className="text-sm text-white font-light font-inter">
+                      {item.description}
+                    </p>
+                    <span className="mt-4 text-blue-500 hover:underline text-sm font-medium">
+                      Read more →
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
   
-        {/* Scroll Buttons */}
+        {/* Scroll Buttons - Fixed styling and positioning */}
         <button
           onClick={handlePrev}
-          className="absolute text-white left-2 top-1/2 -translate-y-1/2 z-10 bg-primary hover:bg-black/80 p-2 rounded-full hidden md:block"
+          className="absolute text-white left-2 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 p-3 rounded-full hidden md:block transition-all duration-200 backdrop-blur-sm border border-white/20"
         >
-          <ChevronLeft />
+          <ChevronLeft size={20} />
         </button>
         <button
           onClick={handleNext}
-          className="text-white absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-primary hover:bg-black/80 p-2 rounded-full hidden md:block"
+          className="absolute text-white right-2 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 p-3 rounded-full hidden md:block transition-all duration-200 backdrop-blur-sm border border-white/20"
         >
-          <ChevronRight />
+          <ChevronRight size={20} />
         </button>
       </div>
     </div>
   );
-  
-  
-  
 };
 
 export default Section1;

@@ -5,8 +5,9 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 import { FaArrowUp } from "react-icons/fa";
-import { Logo } from "../shared/Logo";
+// import { Logo } from "../shared/Logo";
 import { Link } from "react-router-dom";
+import { PATHS } from '@/constants/page-paths';
 
 export const Footer = () => {
   const scrollToTop = () => {
@@ -237,20 +238,38 @@ export const Footer = () => {
           {/* Top Section */}
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start fade-in-up">
             {/* 1. Logo & Description */}
-            <div className="flex flex-col items-start -mt-6 col-span-1 lg:col-span-1">
-              <div className="animated-logo">
-                <img
-                  src={"/img/logo.svg"}
-                  alt="Company Logo"
-                  className="w-32 h-28 object-contain filter drop-shadow-lg"
-                />
-              </div>
-              <p className="text-sm text-gray-300 leading-relaxed -mt-4 hover-glow">
-                Welcome to <span className="gradient-text">Crypto Digest</span>, your gateway to the world of Web3 trading!
-                Our user-friendly platform empowers you to explore a wide range of
-                popular cryptocurrencies.
-              </p>
-            </div>
+{/* 1. Logo & Description */}
+<div className="flex flex-col items-start -mt-6 col-span-1 lg:col-span-1">
+  <div className="animated-logo">
+    <Link to={PATHS.HOME}>
+      <div className="flex items-center h-full w-full">
+        {/* Logo */}
+        <img
+          src="/img/mainLogo.png"
+          className="object-contain w-12 h-12 brightness-110 contrast-125 border-4 border-white rounded-full p-1 filter drop-shadow-lg"
+          alt="Company Logo"
+        />
+
+        {/* Coin and Digest vertically aligned */}
+        <div className="flex flex-col justify-center ml-2 text-white leading-none -space-y-2">
+          <div className="flex items-start text-2xl font-bold">
+            <span className="text-2xl ">C</span>
+            <span>oin</span>
+          </div>
+          <div className="flex items-start text-2xl font-bold">
+            <span className="text-2xl ">D</span>
+            <span>igest</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  </div>
+  <p className="text-sm text-gray-300 leading-relaxed mt-2 hover-glow">
+    Welcome to <span className="gradient-text">Crypto Digest</span>, your gateway to the world of Web3 trading!
+    Our user-friendly platform empowers you to explore a wide range of
+    popular cryptocurrencies.
+  </p>
+</div>
 
             {/* 2. Company Links and Learn More - Side by Side on Mobile */}
             <div className="col-span-1 md:col-span-1 lg:col-span-2 grid grid-cols-2 gap-6 md:gap-8">

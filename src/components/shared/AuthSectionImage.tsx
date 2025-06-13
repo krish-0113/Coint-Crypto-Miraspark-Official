@@ -24,12 +24,12 @@ const Logo = ({ className }: { className?: string }) => {
 
         {/* Coin and Digest vertically aligned */}
         <div className="flex flex-col justify-center ml-2 text-white leading-none -space-y-2">
-          <div className="flex items-start text-2xl font-bold">
-            <span className="text-2xl ">C</span>
+          <div className="flex items-start text-xl font-bold">
+            <span className="text-xl ">C</span>
             <span>oin</span>
           </div>
-          <div className="flex items-start text-2xl font-bold">
-            <span className="text-2xl ">D</span>
+          <div className="flex items-start text-xl font-bold">
+            <span className="text-xl ">D</span>
             <span>igest</span>
           </div>
         </div>

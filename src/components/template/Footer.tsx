@@ -42,7 +42,7 @@ export const Footer = () => {
   return (
     <>
       {/* Custom CSS for animations */}
-      <style >{`
+      <style>{`
         @keyframes gradient-shift {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
@@ -300,7 +300,7 @@ export const Footer = () => {
         }
       `}</style>
 
-      <cr className="gradient-bg text-white py-14 px-6 sm:px-8 md:px-10 lg:px-20 relative overflow-hidden">
+      <footer className="gradient-bg text-white py-14 px-6 sm:px-8 md:px-10 lg:px-20 relative overflow-hidden">
         <div className="content-wrapper">
           {/* Top Section */}
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start fade-in-up">
@@ -528,7 +528,7 @@ export const Footer = () => {
           </div>
         </div>
       )}
-      </cr>
+      </footer>
     </>
   );
 };

@@ -65,7 +65,7 @@ function AuthSectionImage() {
   return (
     <Card className="h-auto md:h-screen w-full border-none rounded-none relative overflow-hidden">
       <CardContent className="flex h-auto md:h-full items-start md:items-center justify-center p-0">
-        <div className="w-full h-auto md:h-full bg-transparent  relative min-h-[60px] md:min-h-screen">
+        <div className="w-full h-auto md:h-full bg-transparent  relative min-h-[70px] md:min-h-screen">
           {/* Background Image - Hidden on mobile */}
           <img
             src={`/img/${imageName}`}
@@ -91,7 +91,7 @@ function AuthSectionImage() {
           </div>
 
           {/* Logo in Top-Left - Using Logo Component */}
-          <div className="absolute top-2 left-2 sm:top-4 sm:left-2 md:top-2 md:left-2 z-40">
+          <div className="absolute top-4 left-8 sm:top-6 sm:left-8 md:top-4 md:left-8 z-40">
             <div className="relative">
               {/* Animated glow background - Hidden on mobile */}
               {/* <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse hidden md:block"></div> */}

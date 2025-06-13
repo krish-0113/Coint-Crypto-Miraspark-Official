@@ -58,18 +58,24 @@ const AdminDashboard = () => {
                 <CardContent className="relative p-0 z-10">
                   <div className="flex justify-between items-center">
                     <h3 className="font-semibold text-cyan-300">Monthly Revenue</h3>
-                    <Select defaultValue="04">
-                      <SelectTrigger className="w-[100px] text-xs bg-slate-900/80 text-white border-cyan-400/50 hover:border-cyan-300">
-                        <SelectValue placeholder="Select month" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-slate-900 border-cyan-400/50">
-                        {months.map(({ label, value }) => (
-                          <SelectItem key={value} value={value} className="text-white hover:bg-slate-800">
-                            {label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <div className="relative p-[1px] rounded-lg bg-gradient-to-r from-[#8b00ff] via-[#ff00c8] to-[#00f0ff] animate-gradient-x">
+                      <Select defaultValue="2025">
+                        <SelectTrigger className="w-[100px] text-xs bg-slate-900 text-white border-0 hover:bg-slate-800 rounded-lg">
+                          <SelectValue placeholder="Select year" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-slate-900 border-purple-500/50 rounded-lg">
+                          {years.map(({ label, value }) => (
+                            <SelectItem 
+                              key={value} 
+                              value={value} 
+                              className="text-white hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/20 focus:bg-gradient-to-r focus:from-purple-600/30 focus:to-pink-600/30"
+                            >
+                              {label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
 
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
@@ -143,18 +149,24 @@ const AdminDashboard = () => {
                 <CardContent className="relative p-0 z-10">
                   <div className="flex justify-between items-center">
                     <h3 className="font-semibold text-cyan-300">Yearly Revenue</h3>
-                    <Select defaultValue="2025">
-                      <SelectTrigger className="w-[100px] text-xs bg-slate-900/80 text-white border-cyan-400/50 hover:border-cyan-300">
-                        <SelectValue placeholder="Select year" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-slate-900 border-cyan-400/50">
-                        {years.map(({ label, value }) => (
-                          <SelectItem key={value} value={value} className="text-white hover:bg-slate-800">
-                            {label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <div className="relative p-[1px] rounded-lg bg-gradient-to-r from-[#8b00ff] via-[#ff00c8] to-[#00f0ff] animate-gradient-x">
+                      <Select defaultValue="2025">
+                        <SelectTrigger className="w-[100px] text-xs bg-slate-900 text-white border-0 hover:bg-slate-800 rounded-lg">
+                          <SelectValue placeholder="Select year" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-slate-900 border-purple-500/50 rounded-lg">
+                          {years.map(({ label, value }) => (
+                            <SelectItem 
+                              key={value} 
+                              value={value} 
+                              className="text-white hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/20 focus:bg-gradient-to-r focus:from-purple-600/30 focus:to-pink-600/30"
+                            >
+                              {label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
 
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between">

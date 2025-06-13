@@ -257,18 +257,58 @@ export const Footer = () => {
           pointer-events: none;
         }
 
-        /* Gradient chat bot button */
+        /* Gradient chat bot button with outer border */
+        .gradient-chatbot-wrapper {
+          position: relative;
+          padding: 3px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #8b00ff 0%, #ff00c8 50%, #1e3a8a 100%);
+          background-size: 300% 300%;
+          animation: gradient-border 3s ease infinite;
+          
+          /* Add outer gradient border line */
+          border: 2px solid transparent;
+          background-clip: padding-box;
+        }
+        
+        .gradient-chatbot-wrapper::before {
+          content: '';
+          position: absolute;
+          top: -3px;
+          left: -3px;
+          right: -3px;
+          bottom: -3px;
+          background: linear-gradient(45deg, #8b00ff, #ff00c8, #1e3a8a, #00f0ff, #8b00ff);
+          background-size: 400% 400%;
+          border-radius: 50%;
+          z-index: -1;
+          animation: gradient-border-line 4s ease infinite;
+        }
+        
         .gradient-chatbot {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
           background-size: 300% 300%;
           animation: gradient-shift 4s ease infinite;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px 0 rgba(102, 126, 234, 0.4);
+          box-shadow: 0 4px 15px 0 rgba(139, 0, 255, 0.4);
+          border-radius: 50%;
+          border: none;
+          position: relative;
+          z-index: 1;
         }
         
+        /* White icon inside button */
+        .gradient-chatbot svg,
+        .gradient-chatbot i,
+        .gradient-chatbot .icon {
+          color: white !important;
+          fill: white !important;
+        }
+        
+        /* Hover effect */
         .gradient-chatbot:hover {
           transform: scale(1.05);
-          box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.6);
+          box-shadow: 0 6px 20px 0 rgba(139, 0, 255, 0.6);
         }
 
         /* Gradient chat box */
@@ -442,92 +482,115 @@ export const Footer = () => {
         </div>
 
         {/* Fixed Buttons Container - Positioned side by side */}
-        <div className="fixed bottom-5 right-5 flex items-center space-x-3 z-50">
-          {/* Scroll to Top Button */}
-          <button
-            onClick={scrollToTop}
-            className="scroll-to-top w-12 h-12 text-white font-extrabold rounded-full shadow-2xl hover:scale-110 flex items-center justify-center transition-all duration-300"
-            aria-label="Scroll to top"
-          >
-            <FaArrowUp className="relative z-10" />
-          </button>
-          
-          {/* Chatbot Button */}
-          <button
-            onClick={() => setShowChat(!showChat)}
-            className="gradient-chatbot w-12 h-12 text-white rounded-full shadow-lg hover:scale-110 flex items-center justify-center transition-all duration-300"
-            aria-label="Chat with bot"
-          >
-            <FaRobot />
-          </button>
-        </div>
+<div className="fixed bottom-5 right-5 flex items-center space-x-4 z-50">
+  
+  {/* Scroll to Top Button with gradient wrapper */}
+  <div className="gradient-button-wrapper">
+    <button
+      onClick={scrollToTop}
+      className="scroll-to-top w-12 h-12 text-white font-extrabold rounded-full shadow-2xl hover:scale-110 flex items-center justify-center transition-all duration-300"
+      aria-label="Scroll to top"
+    >
+      <FaArrowUp className="relative z-10" />
+    </button>
+  </div>
+  
+  {/* Chatbot Button with gradient wrapper */}
+  <div className="gradient-chatbot-wrapper">
+    <button
+      onClick={() => setShowChat(!showChat)}
+      className="gradient-chatbot w-12 h-12 text-white rounded-full shadow-lg hover:scale-110 flex items-center justify-center transition-all duration-300"
+      aria-label="Chat with bot"
+    >
+      <FaRobot className="relative z-10" />
+    </button>
+  </div>
+  
+</div>
 
        {/* Gradient Chat Box */}
-       {showChat && (
-        <div className="fixed bottom-20 right-5 w-80 bg-white rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden">
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 text-base font-semibold">
+       {/* Gradient Chat Box with outer border */}
+{showChat && (
+  <div className="fixed bottom-20 right-5 z-50">
+    {/* Outer gradient border wrapper */}
+    <div className="relative p-[2px] rounded-xl bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500">
+      <div className="w-80 bg-black rounded-xl shadow-2xl flex flex-col overflow-hidden">
+        
+        {/* Header */}
+        <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white px-4 py-3 text-base font-semibold">
           Luna (AI Assistant)
         </div>
-
-          {/* Messages */}
-          <div className="flex-1 min-h-56 max-h-64 overflow-y-auto px-3 py-2 space-y-2 bg-white text-sm">
+        
+        {/* Messages Container */}
+        <div className="flex-1 min-h-56 max-h-64 overflow-y-auto px-3 py-2 space-y-3 bg-black text-sm">
           {messages.map((msg, idx) => (
-           <div
-          key={idx}
-          className={`flex items-end space-x-2 ${
-            msg.sender === "bot" ? "justify-start" : "justify-end"
-          }`}
-        >
-    {/* Bot message (left) */}
-    {msg.sender === "bot" && (
-      <Avatar className="w-6 h-6">
-        <AvatarImage src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Bot" />
-        <AvatarFallback>AI</AvatarFallback>
-      </Avatar>
-    )}
-
-    <div
-      className={`rounded-xl px-4 py-2 max-w-[75%] ${
-        msg.sender === "bot"
-          ? "bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border border-blue-200"
-          : "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border border-gray-300"
-      }`}
-    >
-      {msg.text}
-    </div>
-
-    {/* User message (right) */}
-                {msg.sender !== "bot" && (
-                  <Avatar className="w-6 h-6">
-                    <AvatarImage src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="User" />
-                    <AvatarFallback>U</AvatarFallback>
-                  </Avatar>
-                )}
-              </div>
-            ))}
-
-          </div>
-
-          {/* Input + Send */}
-          <div className="flex border-t border-gray-300 p-2 bg-white rounded-b-lg">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Type your message..."
-              className="flex-1 text-gray-800 text-sm px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              onClick={handleSend}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 px-4 rounded-r-md hover:from-blue-700 hover:to-purple-700 flex items-center justify-center transition-all duration-300"
-              aria-label="Send"
+            <div
+              key={idx}
+              className={`flex items-end space-x-2 ${
+                msg.sender === "bot" ? "justify-start" : "justify-end"
+              }`}
             >
-              <Send className="text-white" />
-            </button>
+              {/* Bot message (left) */}
+              {msg.sender === "bot" && (
+                <Avatar className="w-6 h-6 ring-2 ring-purple-400/50">
+                  <AvatarImage src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Bot" />
+                  <AvatarFallback className="bg-purple-600 text-white text-xs">AI</AvatarFallback>
+                </Avatar>
+              )}
+              
+              <div
+                className={`rounded-xl px-4 py-2 max-w-[75%] backdrop-blur-sm ${
+                  msg.sender === "bot"
+                    ? "bg-gradient-to-r from-purple-900/80 via-pink-900/80 to-blue-900/80 text-purple-100 border border-purple-500/30 shadow-lg"
+                    : "bg-gradient-to-r from-slate-700/80 via-slate-600/80 to-slate-700/80 text-gray-100 border border-slate-500/30 shadow-lg"
+                }`}
+              >
+                {msg.text}
+              </div>
+              
+              {/* User message (right) */}
+              {msg.sender !== "bot" && (
+                <Avatar className="w-6 h-6 ring-2 ring-blue-400/50">
+                  <AvatarImage src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="User" />
+                  <AvatarFallback className="bg-blue-600 text-white text-xs">U</AvatarFallback>
+                </Avatar>
+              )}
+            </div>
+          ))}
+        </div>
+        
+        {/* Input Section */}
+        <div className="border-t border-purple-500/30 p-3 bg-black">
+          <div className="flex space-x-2">
+            {/* Input Field with gradient border */}
+            <div className="flex-1 relative p-[1px] rounded-lg bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSend()}
+                placeholder="Type your message..."
+                className="w-full bg-slate-900 text-gray-100 text-sm px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400/50 placeholder-gray-400 border-0"
+              />
+            </div>
+            
+            {/* Send Button with gradient border */}
+            <div className="relative p-[1px] rounded-lg bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500">
+              <button
+                onClick={handleSend}
+                className="bg-gradient-to-r from-purple-700 via-pink-700 to-blue-700 hover:from-purple-600 hover:via-pink-600 hover:to-blue-600 px-4 py-2 rounded-lg flex items-center justify-center transition-all duration-300"
+                aria-label="Send"
+              >
+                <Send className="text-white w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
-      )}
+        
+      </div>
+    </div>
+  </div>
+)}
       </footer>
     </>
   );

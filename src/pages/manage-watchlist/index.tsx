@@ -6,43 +6,42 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ArrowUp, ArrowDown } from "lucide-react"
-import { FaBitcoin, FaEthereum, FaDog } from "react-icons/fa"
-import { SiBinance, SiRipple, SiSolana, SiTether } from "react-icons/si"
+import { Bitcoin, Coins, DollarSign, Zap, Star, Circle, Hexagon } from "lucide-react"
 
 const coinsData = [
   {
     name: "Bitcoin",
-    icon: <FaBitcoin />,
+    icon: <Bitcoin />,
     color: "bg-yellow-500",
   },
   {
     name: "Ethereum",
-    icon: <FaEthereum />,
+    icon: <Hexagon />,
     color: "bg-purple-500",
   },
   {
     name: "XRP",
-    icon: <SiRipple />,
+    icon: <Circle />,
     color: "bg-blue-500",
   },
   {
     name: "BNB",
-    icon: <SiBinance />,
+    icon: <Star />,
     color: "bg-yellow-400",
   },
   {
     name: "USDC",
-    icon: <SiTether />,
+    icon: <DollarSign />,
     color: "bg-green-500",
   },
   {
     name: "Solana",
-    icon: <SiSolana />,
+    icon: <Zap />,
     color: "bg-indigo-500",
   },
   {
     name: "Dogecoin",
-    icon: <FaDog />,
+    icon: <Coins />,
     color: "bg-orange-400",
   },
 ]
@@ -96,6 +95,31 @@ export default function ManageCoinsPage() {
           animation: gradient-border 3s ease infinite;
           padding: 1px;
           border-radius: 16px;
+          transition: all 0.3s ease;
+        }
+        
+        .animated-gradient-border-card:hover {
+          box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4), 
+                      0 0 40px rgba(139, 0, 255, 0.3),
+                      0 0 60px rgba(255, 0, 200, 0.2);
+          transform: translateY(-2px);
+        }
+        
+        .icon-gradient-border {
+          position: relative;
+          background: linear-gradient(45deg, #ff00c8, #8b00ff, #00f0ff, #ff00c8);
+          background-size: 400% 400%;
+          animation: gradient-border 3s ease infinite;
+          padding: 3px;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+        }
+        
+        .icon-gradient-border:hover {
+          box-shadow: 0 0 25px rgba(255, 0, 200, 0.6),
+                      0 0 35px rgba(139, 0, 255, 0.4),
+                      0 0 45px rgba(0, 240, 255, 0.3);
+          transform: scale(1.05);
         }
         
         .dark-gradient-bg {
@@ -105,6 +129,36 @@ export default function ManageCoinsPage() {
         .card-dark-gradient {
           background: linear-gradient(135deg, #000000 0%, #0f0f23 50%, #1a1a2e 100%);
           border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+        }
+        
+        .card-dark-gradient:hover {
+          background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #2a2a3e 100%);
+        }
+        
+        .custom-button {
+          width: 100%;
+          padding: 8px 16px;
+          border-radius: 12px;
+          color: white;
+          font-weight: 500;
+          background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #101828 100%);
+          border: 1px solid rgba(0, 240, 255, 0.3);
+          transition: all 0.3s ease;
+        }
+        
+        .custom-button:hover {
+          background: #111;
+          color: #00f0ff;
+          border-color: #00f0ff;
+          box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+        
+        .custom-button.active {
+          background: linear-gradient(135deg, #00f0ff 0%, #8b00ff 100%);
+          color: white;
+          border-color: transparent;
+          box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
       `}</style>
 
@@ -112,12 +166,9 @@ export default function ManageCoinsPage() {
         <div className="dark-gradient-bg w-full h-full min-h-[calc(90vh-30px)] p-4 rounded-3xl text-white overflow-hidden">
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-xl font-bold">Manage Coins</h1>
-            <Button
-              className="border border-cyan-500 bg-transparent hover:bg-cyan-500/10 text-white hover:text-white"
-              variant="outline"
-            >
+            <button className="custom-button max-w-[100px]">
               Back
-            </Button>
+            </button>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-center gap-4 my-6">
@@ -130,27 +181,22 @@ export default function ManageCoinsPage() {
 
             <div className="flex gap-2">
               {["Chart", "Allocation", "Statistics"].map((label) => (
-                <Button
+                <button
                   key={label}
                   onClick={() => setTab(label)}
-                  className={`rounded-xl px-4 py-2 transition-all ${
-                    tab === label
-                      ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
-                      : "bg-black/50 text-gray-300 hover:bg-gray-800/50 border border-gray-700 hover:text-white"
-                  }`}
+                  className={`custom-button ${tab === label ? 'active' : ''}`}
                 >
                   {label}
-                </Button>
+                </button>
               ))}
             </div>
 
-            <Button
+            <button
               onClick={() => setSortAsc(!sortAsc)}
-              className="border border-cyan-500 bg-transparent hover:bg-cyan-500/10 text-white hover:text-white"
-              variant="outline"
+              className="custom-button max-w-[60px] flex items-center justify-center"
             >
               {sortAsc ? <ArrowDown /> : <ArrowUp />}
-            </Button>
+            </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -175,10 +221,12 @@ export default function ManageCoinsPage() {
                       />
                     )}
 
-                    <div
-                      className={`coin-icon text-5xl mb-4 ${coin.color} p-6 rounded-full shadow-lg transition-all duration-300`}
-                    >
-                      {coin.icon}
+                    <div className="icon-gradient-border mb-4">
+                      <div
+                        className={`coin-icon text-5xl ${coin.color} p-6 rounded-full shadow-lg transition-all duration-300`}
+                      >
+                        {coin.icon}
+                      </div>
                     </div>
                     <div className="coin-name text-lg font-semibold text-white transition-all duration-300">
                       {coin.name}
@@ -190,19 +238,18 @@ export default function ManageCoinsPage() {
           </div>
           <div className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4">
             <div className="flex gap-4">
-              <Button
-                className="border border-cyan-500 bg-transparent hover:bg-cyan-500/10"
-                variant="outline"
+              <button
+                className="custom-button max-w-[100px]"
                 onClick={discardChanges}
               >
                 Discard
-              </Button>
-              <Button
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700"
+              </button>
+              <button
+                className="custom-button max-w-[100px]"
                 onClick={() => console.log("Update clicked")}
               >
                 Update
-              </Button>
+              </button>
             </div>
             <div className="text-md text-gray-300">
               {selectedCoins.length} Coin{selectedCoins.length !== 1 ? "s" : ""} selected

@@ -28,7 +28,7 @@ export const Footer = () => {
         { sender: "user", text: input },
         {
           sender: "bot",
-          text: "I'm Luna, your AI assistant. Welcome to Crypto Digest!",
+          text: "I'm Luna, your AI assistant. Welcome to Coin Digest!",
         },
       ]);
       setInput("");
@@ -256,9 +256,51 @@ export const Footer = () => {
           z-index: -1;
           pointer-events: none;
         }
+
+        /* Gradient chat bot button */
+        .gradient-chatbot {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background-size: 300% 300%;
+          animation: gradient-shift 4s ease infinite;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px 0 rgba(102, 126, 234, 0.4);
+        }
+        
+        .gradient-chatbot:hover {
+          transform: scale(1.05);
+          box-shadow: 0 6px 20px 0 rgba(102, 126, 234, 0.6);
+        }
+
+        /* Gradient chat box */
+        .gradient-chat-box {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border: 2px solid transparent;
+          background-clip: padding-box;
+          position: relative;
+        }
+        
+        .gradient-chat-box::before {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+          background-size: 300% 300%;
+          animation: gradient-shift 6s ease infinite;
+          border-radius: 12px;
+          z-index: -1;
+        }
+        
+        .chat-header-gradient {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background-size: 300% 300%;
+          animation: gradient-shift 5s ease infinite;
+        }
       `}</style>
 
-      <footer className="gradient-bg text-white py-14 px-6 sm:px-8 md:px-10 lg:px-20 relative overflow-hidden">
+      <cr className="gradient-bg text-white py-14 px-6 sm:px-8 md:px-10 lg:px-20 relative overflow-hidden">
         <div className="content-wrapper">
           {/* Top Section */}
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start fade-in-up">
@@ -290,7 +332,7 @@ export const Footer = () => {
     </Link>
   </div>
   <p className="text-sm text-gray-300 leading-relaxed mt-2 hover-glow">
-    Welcome to <span className="gradient-text">Crypto Digest</span>, your gateway to the world of Web3 trading!
+    Welcome to <span className="gradient-text">Coin Digest</span>, your gateway to the world of Web3 trading!
     Our user-friendly platform empowers you to explore a wide range of
     popular cryptocurrencies.
   </p>
@@ -383,7 +425,7 @@ export const Footer = () => {
 
           {/* Bottom Text */}
           <div className="text-center text-sm text-gray-400 flex flex-col md:flex-row items-center justify-center gap-4 flex-wrap fade-in-up">
-            <span>© 2025 <span className="gradient-text">CryptoDigest</span>. All rights reserved.</span>
+            <span>© 2025 <span className="gradient-text">CoinDigest</span>. All rights reserved.</span>
             <span className="hidden md:inline text-gray-600">|</span>
             <Link to="/terms" className="hover-glow hover:underline transition-all duration-300">
               Terms & Condition
@@ -399,30 +441,36 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Scroll to Top Button */}
-        <button
-          onClick={scrollToTop}
-          className="scroll-to-top fixed bottom-5 right-5 w-12 h-12 text-white font-extrabold rounded-full shadow-2xl hover:scale-110 z-50 flex items-center justify-center transition-all duration-300"
-          aria-label="Scroll to top"
-        >
-          <FaArrowUp className="relative z-10" />
-        </button>
-        <button
-        onClick={() => setShowChat(!showChat)}
-        className="fixed bottom-5 right-20 w-10 h-10 bg-blue-600 text-white rounded-full shadow-lg hover:bg-gray-200 hover:text-black z-50 flex items-center justify-center"
-        aria-label="Chat with bot"
-      >
-        <FaRobot />
-      </button>
-       {/* Chat Box */}
+        {/* Fixed Buttons Container - Positioned side by side */}
+        <div className="fixed bottom-5 right-5 flex items-center space-x-3 z-50">
+          {/* Scroll to Top Button */}
+          <button
+            onClick={scrollToTop}
+            className="scroll-to-top w-12 h-12 text-white font-extrabold rounded-full shadow-2xl hover:scale-110 flex items-center justify-center transition-all duration-300"
+            aria-label="Scroll to top"
+          >
+            <FaArrowUp className="relative z-10" />
+          </button>
+          
+          {/* Chatbot Button */}
+          <button
+            onClick={() => setShowChat(!showChat)}
+            className="gradient-chatbot w-12 h-12 text-white rounded-full shadow-lg hover:scale-110 flex items-center justify-center transition-all duration-300"
+            aria-label="Chat with bot"
+          >
+            <FaRobot />
+          </button>
+        </div>
+
+       {/* Gradient Chat Box */}
        {showChat && (
         <div className="fixed bottom-20 right-5 w-80 bg-white rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 text-base font-semibold">
-            Luna (AI Assistant)
-          </div>
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 text-base font-semibold">
+          Luna (AI Assistant)
+        </div>
 
           {/* Messages */}
-          <div className="flex-1 min-h-56 max-h-64 overflow-y-auto px-3 py-2 space-y-2 bg-gray-50 text-sm">
+          <div className="flex-1 min-h-56 max-h-64 overflow-y-auto px-3 py-2 space-y-2 bg-white text-sm">
           {messages.map((msg, idx) => (
            <div
           key={idx}
@@ -441,8 +489,8 @@ export const Footer = () => {
     <div
       className={`rounded-xl px-4 py-2 max-w-[75%] ${
         msg.sender === "bot"
-          ? "bg-blue-100 text-blue-800"
-          : "bg-gray-200 text-gray-800"
+          ? "bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border border-blue-200"
+          : "bg-gradient-to-r from-gray-100 to-gray-200 text-gray-800 border border-gray-300"
       }`}
     >
       {msg.text}
@@ -461,18 +509,18 @@ export const Footer = () => {
           </div>
 
           {/* Input + Send */}
-          <div className="flex border-t border-gray-300 p-2 bg-white">
+          <div className="flex border-t border-gray-300 p-2 bg-white rounded-b-lg">
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
               placeholder="Type your message..."
-              className="flex-1 text-gray-800 text-sm px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none"
+              className="flex-1 text-gray-800 text-sm px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
               onClick={handleSend}
-              className="bg-blue-600 px-4 rounded-r-md hover:bg-blue-700 flex items-center justify-center"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 px-4 rounded-r-md hover:from-blue-700 hover:to-purple-700 flex items-center justify-center transition-all duration-300"
               aria-label="Send"
             >
               <Send className="text-white" />
@@ -480,7 +528,7 @@ export const Footer = () => {
           </div>
         </div>
       )}
-      </footer>
+      </cr>
     </>
   );
 };

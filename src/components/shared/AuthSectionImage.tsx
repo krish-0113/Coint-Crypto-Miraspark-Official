@@ -9,36 +9,28 @@ import { cn } from '@/lib/utils/cn';
 const Logo = ({ className }: { className?: string }) => {
   const classes = cn(
     className,
-    'flex items-center gap-2 p-2'
+    'flex items-center object-contain w-12 h-12 brightness-110 contrast-125 border-4 border-white rounded-full  filter drop-shadow-lg'
   );
 
   return (
     <Link to={PATHS.HOME}>
-      <div className={classes}>
-        {/* Logo Image with refined size, darker tighter border and subtle glow */}
-        <div className="relative">
+      <div className="flex items-center h-12 w-12">
+        {/* Logo */}
         <img
-  src="/img/mainLogo.png"
-  className="object-contain w-2 h-2 sm:w-8 sm:h-8 md:w-110 md:h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14
-             brightness-110 contrast-125
-             border-[6px] border-white rounded-full p-0.5
-             bg-white/0 shadow-none backdrop-blur-none"
-/>
+          src="/img/mainLogo.png"
+          className={classes}
+          alt="Company Logo"
+        />
 
-          
-          {/* Subtle glow ring */}
-          <div className="absolute inset-0 border-4 border-cyan-400/50 rounded-full animate-pulse"></div>
-        </div>
-        
-        {/* CoinDigest Text with gradient effects */}
-        <div className="flex flex-col justify-center leading-none -space-y-1">
-          <div className="flex items-center text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold drop-shadow-xl">
-            <span className="text-white">C</span>
-            <span className="text-white">oin</span>
+        {/* Coin and Digest vertically aligned */}
+        <div className="flex flex-col justify-center ml-2 text-white leading-none -space-y-2">
+          <div className="flex items-start text-2xl font-bold">
+            <span className="text-2xl ">C</span>
+            <span>oin</span>
           </div>
-          <div className="flex items-center text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold drop-shadow-xl">
-            <span className="text-white">D</span>
-            <span className="text-white">igest</span>
+          <div className="flex items-start text-2xl font-bold">
+            <span className="text-2xl ">D</span>
+            <span>igest</span>
           </div>
         </div>
       </div>
@@ -73,16 +65,16 @@ function AuthSectionImage() {
   return (
     <Card className="h-auto md:h-screen w-full border-none rounded-none relative overflow-hidden">
       <CardContent className="flex h-auto md:h-full items-start md:items-center justify-center p-0">
-        <div className="w-full h-auto md:h-full relative min-h-[120px] md:min-h-screen">
+        <div className="w-full h-auto md:h-full bg-transparent  relative min-h-[60px] md:min-h-screen">
           {/* Background Image - Hidden on mobile */}
           <img
             src={`/img/${imageName}`}
             alt="Auth Background"
-            className="w-full h-full object-cover absolute inset-0 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110 hidden md:block"
+            className="w-full h-full object-cover  absolute inset-0 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110 hidden md:block"
           />
 
           {/* Enhanced Gradient Overlays - Hidden on mobile */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10 hidden md:block" />
+          <div className="absolute  inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10 hidden md:block" />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20 z-10 hidden md:block" />
 
           {/* Mobile Background - Only visible on mobile */}
@@ -102,7 +94,7 @@ function AuthSectionImage() {
           <div className="absolute top-2 left-2 sm:top-4 sm:left-2 md:top-2 md:left-2 z-40">
             <div className="relative">
               {/* Animated glow background - Hidden on mobile */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse hidden md:block"></div>
+              {/* <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse hidden md:block"></div> */}
               
               {/* Logo Component with enhanced styling */}
               <Logo className="relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer logo-enhanced" />

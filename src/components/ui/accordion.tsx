@@ -1,7 +1,6 @@
 import * as React from "react"
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { Plus, Minus } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const Accordion = AccordionPrimitive.Root
@@ -32,14 +31,10 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       {children}
-      <Button
-        variant="default"
-        size="icon"
-        className="ml-2 h-6 w-6 bg-primary text-white p-1 rounded-full"
-      >
+      <span className="ml-2 h-6 w-6 flex items-center justify-center bg-primary text-white rounded-full p-1">
         <Plus className="h-4 w-4 group-data-[state=open]:hidden" />
         <Minus className="h-4 w-4 hidden group-data-[state=open]:block" />
-      </Button>
+      </span>
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))

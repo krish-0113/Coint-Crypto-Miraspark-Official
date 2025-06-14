@@ -288,8 +288,10 @@ const TestimonialFeatureSection = () => {
           <div className="flex items-center justify-center mt-10 gap-4">
             <button
               onClick={prevSlide}
-              className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
-            >
+              className="w-8 h-8  rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
+              style={{
+                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+              }}>
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -316,8 +318,10 @@ const TestimonialFeatureSection = () => {
 
             <button
               onClick={nextSlide}
-              className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
-            >
+              className="w-8 h-8 bg-gray-800  rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
+              style={{
+                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+              }} >
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -325,71 +329,77 @@ const TestimonialFeatureSection = () => {
           </div>
         </div>
 
-        {/* Mobile Carousel View */}
-        <div className="md:hidden relative w-full">
-          <div className="relative max-w-sm mx-auto px-8">
-            <button
-              onClick={prevSlide}
-              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
-            >
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            <button
-              onClick={nextSlide}
-              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
-            >
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            <div className="overflow-hidden rounded-xl">
-              <div 
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                {testimonials.map((testimonial, index) => (
-                  <div key={index} className="w-full flex-shrink-0">
-                    <TestimonialCard
-                      testimonial={testimonial}
-                      index={index}
-                      clickedCards={clickedCards}
-                      setClickedCards={setClickedCards}
-                      hoveredCard={hoveredCard}
-                      setHoveredCard={setHoveredCard}
-                      isMobile={true}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Mobile Carousel View */}
+<div className="md:hidden relative w-full">
+  <div className="relative max-w-sm mx-auto px-8">
+    <button
+      onClick={prevSlide}
+      className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95"
+      style={{
+        background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+      }}
+    >
+      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+                 
+    <button
+      onClick={nextSlide}
+      className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95"
+      style={{
+        background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+      }}
+    >
+      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+    
+    <div className="overflow-hidden rounded-xl">
+      <div
+         className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
+        {testimonials.map((testimonial, index) => (
+          <div key={index} className="w-full flex-shrink-0">
+            <TestimonialCard
+              testimonial={testimonial}
+              index={index}
+              clickedCards={clickedCards}
+              setClickedCards={setClickedCards}
+              hoveredCard={hoveredCard}
+              setHoveredCard={setHoveredCard}
+              isMobile={true}
+            />
           </div>
-
-          <div className="flex justify-center mt-8 space-x-3">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 ${
-                  index === currentSlide
-                    ? 'w-6 h-2 rounded-full scale-125'
-                    : 'w-4 h-2 rounded-full hover:scale-125'
-                }`}
-                style={{
-                  background: index === currentSlide 
-                    ? 'linear-gradient(90deg, #00f0ff, #8b00ff, #ff00c8)'
-                    : '#666666',
-                  boxShadow: index === currentSlide 
-                    ? '0 0 15px rgba(0, 240, 255, 0.8), 0 0 30px rgba(139, 0, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4)'
-                    : '0 1px 3px rgba(0, 0, 0, 0.3)'
-                }}
-              />
-            ))}
-          </div>
-        </div>
+        ))}
+      </div>
+    </div>
+  </div>
+   
+  <div className="flex justify-center mt-8 space-x-3">
+    {testimonials.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => goToSlide(index)}
+        className={`transition-all duration-300 ${
+          index === currentSlide
+            ? 'w-6 h-2 rounded-full scale-125'
+            : 'w-4 h-2 rounded-full hover:scale-125'
+        }`}
+        style={{
+          background: index === currentSlide
+             ? 'linear-gradient(90deg, #00f0ff, #8b00ff, #ff00c8)'
+            : '#666666',
+          boxShadow: index === currentSlide
+             ? '0 0 15px rgba(0, 240, 255, 0.8), 0 0 30px rgba(139, 0, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4)'
+            : '0 1px 3px rgba(0, 0, 0, 0.3)'
+        }}
+      />
+    ))}
+  </div>
+</div>
       </div>
 
       <style>{`

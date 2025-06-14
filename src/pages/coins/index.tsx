@@ -116,7 +116,7 @@ export default function BitcoinDashboard() {
 
       <div className="animated-gradient-border">
         <div className="dark-gradient-bg flex w-full h-full min-h-[calc(90vh-30px)] overflow-hidden flex-col md:flex-row p-4 rounded-3xl">
-          <div className="animated-gradient-border-card w-full max-w-5xl mx-auto">
+          <div className=" w-full max-w-5xl mx-auto">
             <Card className="card-dark-gradient border-none rounded-2xl h-full">
               <CardContent className="p-6 text-white">
                 <div className="flex justify-between items-center mb-4">

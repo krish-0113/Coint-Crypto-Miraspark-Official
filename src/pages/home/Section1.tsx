@@ -211,14 +211,18 @@ const Section1 = () => {
         {/* Scroll Buttons - Fixed styling and positioning */}
         <button
           onClick={handlePrev}
-          className="absolute text-white left-2 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 p-3 rounded-full hidden md:block transition-all duration-200 backdrop-blur-sm border border-white/20"
-        >
+          className="absolute text-white left-2 top-1/2 -translate-y-1/2 z-20  p-1 rounded-full hidden md:block transition-all duration-200 backdrop-blur-sm border border-white/20"
+          style={{
+            background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+          }} >
           <ChevronLeft size={20} />
         </button>
         <button
           onClick={handleNext}
-          className="absolute text-white right-2 top-1/2 -translate-y-1/2 z-20 bg-black/60 hover:bg-black/80 p-3 rounded-full hidden md:block transition-all duration-200 backdrop-blur-sm border border-white/20"
-        >
+          className="absolute text-white right-2 top-1/2 -translate-y-1/2 z-20  p-1 rounded-full hidden md:block transition-all duration-200 backdrop-blur-sm border border-white/20"
+          style={{
+            background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+          }}>
           <ChevronRight size={20} />
         </button>
       </div>

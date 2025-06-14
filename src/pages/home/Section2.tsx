@@ -283,8 +283,10 @@ const FeatureSection = () => {
           <div className="flex items-center justify-center mt-10 gap-4">
             <button
               onClick={prevSlide}
-              className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
-            >
+              className="w-8 h-8 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
+              style={{
+                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+              }} >
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -311,8 +313,10 @@ const FeatureSection = () => {
 
             <button
               onClick={nextSlide}
-              className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
-            >
+              className="w-8 h-8 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
+              style={{
+                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+              }} >
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -325,8 +329,10 @@ const FeatureSection = () => {
           <div className="relative max-w-sm mx-auto px-8">
             <button
               onClick={prevSlide}
-              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
-            >
+              className="absolute -left-2 sm:-left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8  rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
+              style={{
+                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+              }} >
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
@@ -334,8 +340,10 @@ const FeatureSection = () => {
             
             <button
               onClick={nextSlide}
-              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
-            >
+              className="absolute -right-2 sm:-right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 border border-gray-600"
+              style={{
+                background: 'linear-gradient(135deg, #00f0ff, #8b00ff, #ff00c8)'
+              }}>
               <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>

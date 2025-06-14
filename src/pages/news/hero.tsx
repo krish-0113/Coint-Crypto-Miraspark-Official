@@ -45,7 +45,7 @@ export default function CryptoNewsCard() {
       {/* Outer container with scroll arrows */}
       <div className="max-w-7xl mx-auto relative mt-6">
         {/* Gradient scroll arrows */}
-        <button
+        {/* <button
           onClick={scrollLeft}
           className={`absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-8 z-30 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full p-2 ${
             canScrollLeft ? 'opacity-100' : 'opacity-50 cursor-not-allowed'
@@ -53,9 +53,9 @@ export default function CryptoNewsCard() {
           disabled={!canScrollLeft}
         >
           <ChevronLeft className="w-4 h-4 text-white" />
-        </button>
+        </button> */}
         
-        <button
+        {/* <button
           onClick={scrollRight}
           className={`absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-8 z-30 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full p-2 ${
             canScrollRight ? 'opacity-100' : 'opacity-50 cursor-not-allowed'
@@ -63,7 +63,7 @@ export default function CryptoNewsCard() {
           disabled={!canScrollRight}
         >
           <ChevronRight className="w-4 h-4 text-white" />
-        </button>
+        </button> */}
 
         {/* Scrollable container */}
         <div 
@@ -111,8 +111,8 @@ export default function CryptoNewsCard() {
                   </div>
                 </div>
 
-                {/* Text content */}
-                <div className="text-sm md:text-base leading-relaxed text-gray-300">
+                {/* Text content with scrollbar */}
+                <div className="text-sm md:text-base leading-relaxed text-gray-300 max-h-96 overflow-y-auto pr-2 text-scroll">
                   <p className="mb-4">
                     In a surprising policy shift, the U.S. Justice Department has officially disbanded its National
                     Cryptocurrency Enforcement Team (NCET), which was originally formed to monitor and prosecute crimes
@@ -131,6 +131,25 @@ export default function CryptoNewsCard() {
                     incident could hurt Argentina's attempts to modernize its economy, through blockchain technology and
                     deepen the country's financial instability.
                   </p>
+                  
+                  {/* Additional content to demonstrate scrolling */}
+                  <p className="mb-4">
+                    The cryptocurrency market has been experiencing significant volatility in recent months, with regulatory
+                    uncertainty playing a major role in price fluctuations. Industry experts believe that clearer guidelines
+                    from government agencies could help stabilize the market and encourage institutional adoption.
+                  </p>
+
+                  <p className="mb-4">
+                    Meanwhile, other countries are taking different approaches to cryptocurrency regulation. Some nations
+                    are embracing digital assets as a means of economic modernization, while others are implementing strict
+                    controls or outright bans.
+                  </p>
+
+                  <p>
+                    The future of cryptocurrency regulation remains uncertain, but one thing is clear: the decisions made
+                    by regulatory bodies will have far-reaching implications for the entire digital asset ecosystem and
+                    its participants worldwide.
+                  </p>
                 </div>
               </div>
             </div>
@@ -138,10 +157,29 @@ export default function CryptoNewsCard() {
         </div>
       </div>
 
-      <style >{`
+      <style>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
+        
+        .text-scroll::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .text-scroll::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 3px;
+        }
+        
+        .text-scroll::-webkit-scrollbar-thumb {
+          background: linear-gradient(to bottom, #00f0ff, #8b00ff);
+          border-radius: 3px;
+        }
+        
+        .text-scroll::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(to bottom, #00d4ff, #7700dd);
+        }
+        
         @keyframes gradient-x {
           0%, 100% {
             background-position: 0% 50%;

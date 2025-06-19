@@ -372,7 +372,7 @@ export const Footer = () => {
     </Link>
   </div>
   <p className="text-sm text-gray-300 leading-relaxed mt-2 hover-glow">
-    Welcome to <span className="gradient-text">Coin Digest</span>, your gateway to the world of Web3 trading!
+    Welcome to <span className="gradient-text">CoinDigest</span>, your gateway to the world of Web3 trading!
     Our user-friendly platform empowers you to explore a wide range of
     popular cryptocurrencies.
   </p>

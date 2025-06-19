@@ -7,11 +7,56 @@ import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { EyeIcon, EyeOffIcon, CheckCircleIcon, XCircleIcon, ArrowRightIcon } from "lucide-react"
+import { Eye, EyeOff, CheckCircle, XCircle, ArrowRight } from "lucide-react"
 
 const BillingScreen = () => {
   const [showPassword, setShowPassword] = React.useState(false)
   const [tab, setTab] = React.useState("all")
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const itemsPerPage = 6
+
+  // Extended billing history data
+  const billingHistory = [
+    { type: "success", plan: "Pro Digest Plan", date: "15 May 2025", amount: "$29.99" },
+    { type: "failed", plan: "Alpha Digest Plan", date: "12 Apr 2025", amount: "$99.99" },
+    { type: "success", plan: "Pro Digest Plan", date: "15 Mar 2025", amount: "$29.99" },
+    { type: "success", plan: "Quick Scope Plan", date: "15 Feb 2025", amount: "$9.99" },
+    { type: "success", plan: "Pro Digest Plan", date: "15 Jan 2025", amount: "$29.99" },
+    { type: "failed", plan: "Alpha Digest Plan", date: "12 Dec 2024", amount: "$99.99" },
+    { type: "success", plan: "Pro Digest Plan", date: "15 Nov 2024", amount: "$29.99" },
+    { type: "success", plan: "Pro Digest Plan", date: "15 Oct 2024", amount: "$29.99" },
+    { type: "success", plan: "Quick Scope Plan", date: "15 Sep 2024", amount: "$9.99" },
+    { type: "failed", plan: "Pro Digest Plan", date: "15 Aug 2024", amount: "$29.99" },
+    { type: "success", plan: "Pro Digest Plan", date: "15 Jul 2024", amount: "$29.99" },
+    { type: "success", plan: "Alpha Digest Plan", date: "15 Jun 2024", amount: "$99.99" },
+  ]
+
+  const filteredHistory = billingHistory.filter((item) => tab === "all" || item.type === tab)
+  const totalPages = Math.ceil(filteredHistory.length / itemsPerPage)
+  const currentItems = filteredHistory.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  )
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
+  const handleChangePassword = () => {
+    window.location.href = '/reset-password'
+  }
+
+  const handleUpgradePlan = () => {
+    window.location.href = '/pricing'
+  }
 
   return (
     <div className="min-h-screen text-white p-4 md:p-8 relative overflow-hidden">
@@ -32,16 +77,8 @@ const BillingScreen = () => {
         <div className="space-y-6">
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-300">Email</label>
-            <div className="flex gap-2">
-              <Input value="davidmarsh@gmail.com" readOnly className="bg-black/80 border border-gray-800 text-white" />
-              <div className="edit-button-wrapper">
-                <Button
-                  type="button"
-                  className="w-full sm:w-auto text-white font-semibold  transition-all duration-300 py-3"
-                >
-                  Edit
-                </Button>
-              </div>
+            <div className="text-white bg-transparent p-3 rounded-md border border-gray-800">
+              davidmarsh@gmail.com
             </div>
           </div>
 
@@ -59,13 +96,14 @@ const BillingScreen = () => {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
                 >
-                  {showPassword ? <EyeOffIcon size={18} /> : <EyeIcon size={18} />}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
               <div className="change-password-button-wrapper">
                 <Button
                   type="button"
-                  className="w-full sm:w-auto text-white font-semibold  transition-all duration-300 py-3"
+                  onClick={handleChangePassword}
+                  className="w-full sm:w-auto text-white font-semibold transition-all duration-300 py-3"
                 >
                   Change Password
                 </Button>
@@ -99,7 +137,9 @@ const BillingScreen = () => {
                   </div>
                 </div>
                 <div className="upgrade-button-wrapper">
-                  <Button className="w-full text-white transition-all duration-300">Upgrade Plan</Button>
+                  <Button onClick={handleUpgradePlan} className="w-full text-white transition-all duration-300">
+                    Upgrade Plan
+                  </Button>
                 </div>
               </CardContent>
             </div>
@@ -112,7 +152,7 @@ const BillingScreen = () => {
             <CardContent className="p-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-semibold text-white">Billing History</h2>
-                <Tabs value={tab} onValueChange={setTab}>
+                <Tabs value={tab} onValueChange={(value) => { setTab(value); setCurrentPage(1); }}>
                   <TabsList className="bg-gray-900/50 border border-gray-700">
                     <TabsTrigger value="all" className="text-gray-300 data-[state=active]:text-white">
                       All
@@ -134,40 +174,53 @@ const BillingScreen = () => {
               </div>
 
               <ScrollArea className="h-80 lg:h-96 pr-2">
-                {[
-                  { type: "success" },
-                  { type: "failed" },
-                  { type: "success" },
-                  { type: "success" },
-                  { type: "success" },
-                  { type: "success" },
-                ]
-                  .filter((item) => tab === "all" || item.type === tab)
-                  .map((item, i) => (
-                    <div
-                      key={i}
-                      className="flex justify-between items-center border-b border-gray-800/50 py-3 hover:bg-gray-800/20 transition-colors duration-200"
-                    >
-                      <div className="flex items-center gap-3">
-                        {item.type === "success" ? (
-                          <CheckCircleIcon className="text-green-400 flex-shrink-0" size={18} />
-                        ) : (
-                          <XCircleIcon className="text-red-400 flex-shrink-0" size={18} />
-                        )}
-                        <div>
-                          <div className="text-sm text-white">Pro Digest Plan</div>
-                          <div className="text-xs text-gray-400">1 Jan 2025</div>
-                        </div>
+                {currentItems.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex justify-between items-center border-b border-gray-800/50 py-3 hover:bg-gray-800/20 transition-colors duration-200"
+                  >
+                    <div className="flex items-center gap-3">
+                      {item.type === "success" ? (
+                        <CheckCircle className="text-green-400 flex-shrink-0" size={18} />
+                      ) : (
+                        <XCircle className="text-red-400 flex-shrink-0" size={18} />
+                      )}
+                      <div>
+                        <div className="text-sm text-white">{item.plan}</div>
+                        <div className="text-xs text-gray-400">{item.date}</div>
                       </div>
-                      <div className="text-sm text-white font-medium">$29.99</div>
                     </div>
-                  ))}
+                    <div className="text-sm text-white font-medium">{item.amount}</div>
+                  </div>
+                ))}
               </ScrollArea>
-              <div className="flex justify-end pt-4">
-                <div className="next-button-wrapper">
-                  <Button className="bg-transparent text-primary hover:text-white transition-all duration-300">
-                    Next <ArrowRightIcon size={16} className="ml-1" />
-                  </Button>
+              
+              {/* Pagination Controls */}
+              <div className="flex justify-between items-center pt-4">
+                <div className="text-sm text-gray-400">
+                  Page {currentPage} of {totalPages} ({filteredHistory.length} total)
+                </div>
+                <div className="flex gap-2">
+                  {currentPage > 1 && (
+                    <div className="next-button-wrapper">
+                      <Button 
+                        onClick={handlePrevPage}
+                        className="bg-transparent text-primary hover:text-white transition-all duration-300 px-4 py-2"
+                      >
+                        Previous
+                      </Button>
+                    </div>
+                  )}
+                  {currentPage < totalPages && (
+                    <div className="next-button-wrapper">
+                      <Button 
+                        onClick={handleNextPage}
+                        className="bg-transparent text-primary hover:text-white transition-all duration-300 px-4 py-2"
+                      >
+                        Next <ArrowRight size={16} className="ml-1" />
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </div>
             </CardContent>
@@ -175,7 +228,7 @@ const BillingScreen = () => {
         </div>
       </div>
 
-      <style >{`
+      <style>{`
         /* Animated gradient border keyframes */
         @keyframes gradient-shift {
           0% {
@@ -186,81 +239,37 @@ const BillingScreen = () => {
           }
         }
 
-        /* Edit Button Wrapper */
-        .edit-button-wrapper {
-          position: relative;
-          border-radius: 12px;
-          
-          animation: gradient-shift 8s linear infinite;
-          transition: all 0.3s ease;
-        }
-
-        .edit-button-wrapper:hover {
-          transform: scale(1.02);
-          box-shadow: 0 8px 32px rgba(0, 240, 255, 0.3);
-        }
-        .edit-button-wrapper button {
-          width: 100%; /* w-full */
-          /* sm:w-auto not applied in plain CSS unless media query used */
-        
-          color: white; /* text-white */
-          font-weight: 600; /* font-semibold */
-          background: linear-gradient(to right, #2563eb, #ec4899); /* from-blue-600 to-pink-600 */
-          padding-top: 0.75rem; /* py-3 */
-          padding-bottom: 0.75rem;
-          transition: all 0.3s ease; /* transition-all duration-300 */
-          border: none;
-          border-radius: 10px;
-        }
-        
-        /* Hover state equivalent to hover:from-blue-500 hover:to-pink-500 */
-        .edit-button-wrapper button:hover {
-          background: linear-gradient(to right, #3b82f6, #f472b6);
-        }
-
-        
-
-
-
-
         .change-password-button-wrapper button {
-          width: 100%; /* w-full */
-          /* sm:w-auto not applied in plain CSS unless media query used */
-        
-          color: white; /* text-white */
-          font-weight: 600; /* font-semibold */
-          background: linear-gradient(to right, #2563eb, #ec4899); /* from-blue-600 to-pink-600 */
-          padding-top: 0.75rem; /* py-3 */
+          width: 100%;
+          color: white;
+          font-weight: 600;
+          background: linear-gradient(to right, #2563eb, #ec4899);
+          padding-top: 0.75rem;
           padding-bottom: 0.75rem;
-          transition: all 0.3s ease; /* transition-all duration-300 */
+          transition: all 0.3s ease;
           border: none;
           border-radius: 10px;
         }
         
-        /* Hover state equivalent to hover:from-blue-500 hover:to-pink-500 */
         .change-password-button-wrapper button:hover {
           background: linear-gradient(to right, #3b82f6, #f472b6);
         }
         
         .upgrade-button-wrapper button {
-          width: 100%; /* w-full */
-          /* sm:w-auto not applied in plain CSS unless media query used */
-        
-          color: white; /* text-white */
-          font-weight: 600; /* font-semibold */
-          background: linear-gradient(to right, #2563eb, #ec4899); /* from-blue-600 to-pink-600 */
-          padding-top: 0.75rem; /* py-3 */
+          width: 100%;
+          color: white;
+          font-weight: 600;
+          background: linear-gradient(to right, #2563eb, #ec4899);
+          padding-top: 0.75rem;
           padding-bottom: 0.75rem;
-          transition: all 0.3s ease; /* transition-all duration-300 */
+          transition: all 0.3s ease;
           border: none;
           border-radius: 10px;
         }
         
-        /* Hover state equivalent to hover:from-blue-500 hover:to-pink-500 */
         .upgrade-button-wrapper button:hover {
           background: linear-gradient(to right, #3b82f6, #f472b6);
         }
-        
         
         /* Next Button Wrapper */
         .next-button-wrapper {
@@ -339,6 +348,22 @@ const BillingScreen = () => {
           .plan-card-wrapper,
           .billing-history-wrapper {
             margin: 0 -0.5rem;
+          }
+          
+          .next-button-wrapper button {
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .next-button-wrapper {
+            padding: 1px;
+          }
+          
+          .next-button-wrapper button {
+            font-size: 0.75rem;
+            padding: 0.375rem 0.75rem;
           }
         }
       `}</style>

@@ -8,17 +8,47 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "rec
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CheckCircleIcon, XCircleIcon, ArrowRightIcon, BadgeDollarSign } from "lucide-react"
+import { CheckCircle, XCircle, ArrowRight, BadgeDollarSign } from "lucide-react"
 
-const data = [
-  { name: "Jan", spend: 4000 },
-  { name: "Feb", spend: 6200 },
-  { name: "Mar", spend: 4100 },
-  { name: "Apr", spend: 5000 },
-  { name: "May", spend: 5400 },
-  { name: "Jun", spend: 8000 },
-  { name: "Jul", spend: 7500 },
-]
+const chartData = {
+  "2025": [
+    { name: "Jan", spend: 4000 },
+    { name: "Feb", spend: 6200 },
+    { name: "Mar", spend: 4100 },
+    { name: "Apr", spend: 5000 },
+    { name: "May", spend: 5400 },
+    { name: "Jun", spend: 8000 },
+    { name: "Jul", spend: 7500 },
+  ],
+  "2024": [
+    { name: "Jan", spend: 3500 },
+    { name: "Feb", spend: 5800 },
+    { name: "Mar", spend: 3900 },
+    { name: "Apr", spend: 4200 },
+    { name: "May", spend: 4900 },
+    { name: "Jun", spend: 7200 },
+    { name: "Jul", spend: 6800 },
+    { name: "Aug", spend: 7100 },
+    { name: "Sep", spend: 6500 },
+    { name: "Oct", spend: 5900 },
+    { name: "Nov", spend: 6200 },
+    { name: "Dec", spend: 8500 },
+  ],
+  "2023": [
+    { name: "Jan", spend: 2800 },
+    { name: "Feb", spend: 4200 },
+    { name: "Mar", spend: 3100 },
+    { name: "Apr", spend: 3600 },
+    { name: "May", spend: 4100 },
+    { name: "Jun", spend: 5800 },
+    { name: "Jul", spend: 5200 },
+    { name: "Aug", spend: 5600 },
+    { name: "Sep", spend: 5100 },
+    { name: "Oct", spend: 4800 },
+    { name: "Nov", spend: 5200 },
+    { name: "Dec", spend: 6900 },
+  ]
+}
 
 const years = [
   { label: "2025", value: "2025" },
@@ -26,8 +56,56 @@ const years = [
   { label: "2023", value: "2023" },
 ]
 
+const billingHistoryData = [
+  { type: "success", plan: "Pro Digest Plan", date: "1 Jan 2025", amount: "$29.99" },
+  { type: "failed", plan: "Premium Plan", date: "15 Dec 2024", amount: "$49.99" },
+  { type: "success", plan: "Basic Plan", date: "10 Dec 2024", amount: "$19.99" },
+  { type: "success", plan: "Pro Digest Plan", date: "1 Dec 2024", amount: "$29.99" },
+  { type: "success", plan: "Enterprise Plan", date: "25 Nov 2024", amount: "$99.99" },
+  { type: "failed", plan: "Pro Digest Plan", date: "20 Nov 2024", amount: "$29.99" },
+  { type: "success", plan: "Basic Plan", date: "15 Nov 2024", amount: "$19.99" },
+  { type: "success", plan: "Premium Plan", date: "10 Nov 2024", amount: "$49.99" },
+  { type: "success", plan: "Pro Digest Plan", date: "5 Nov 2024", amount: "$29.99" },
+  { type: "failed", plan: "Enterprise Plan", date: "1 Nov 2024", amount: "$99.99" },
+  { type: "success", plan: "Basic Plan", date: "28 Oct 2024", amount: "$19.99" },
+  { type: "success", plan: "Pro Digest Plan", date: "25 Oct 2024", amount: "$29.99" },
+  { type: "success", plan: "Premium Plan", date: "20 Oct 2024", amount: "$49.99" },
+  { type: "success", plan: "Pro Digest Plan", date: "15 Oct 2024", amount: "$29.99" },
+  { type: "failed", plan: "Basic Plan", date: "10 Oct 2024", amount: "$19.99" },
+]
+
 const AdminDashboard = () => {
   const [tab, setTab] = useState("all")
+  const [selectedYear, setSelectedYear] = useState("2025")
+  const [currentPage, setCurrentPage] = useState(0)
+  const itemsPerPage = 6
+
+  const currentData = chartData[selectedYear]
+  
+  const filteredBillingData = billingHistoryData.filter((item) => tab === "all" || item.type === tab)
+  const totalPages = Math.ceil(filteredBillingData.length / itemsPerPage)
+  const currentBillingData = filteredBillingData.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  )
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1)
+    }
+  }
+
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1)
+    }
+  }
+
+  // Reset to first page when tab changes
+  const handleTabChange = (newTab) => {
+    setTab(newTab)
+    setCurrentPage(0)
+  }
 
   return (
     <>
@@ -213,7 +291,7 @@ const AdminDashboard = () => {
                         <h3 className="font-normal text-white">Total Spend</h3>
                       </div>
 
-                      <Select defaultValue="2025">
+                      <Select value={selectedYear} onValueChange={setSelectedYear}>
                         <SelectTrigger className="w-[100px] text-xs bg-black/50 text-white border-cyan-500 hover:border-cyan-400">
                           <SelectValue placeholder="Select year" />
                         </SelectTrigger>
@@ -229,12 +307,12 @@ const AdminDashboard = () => {
 
                     <div className="flex flex-col items-start justify-center mt-3">
                       <div className="text-2xl font-bold mb-1 text-cyan-400">
-                        ${data.reduce((acc, d) => acc + d.spend, 0).toLocaleString()}
+                        ${currentData.reduce((acc, d) => acc + d.spend, 0).toLocaleString()}
                       </div>
 
                       <div className="h-[250px] w-full my-12">
                         <ResponsiveContainer width="100%" height="100%">
-                          <AreaChart data={data}>
+                          <AreaChart data={currentData}>
                             <defs>
                               <linearGradient id="colorSpend" x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="0%" stopColor="#00FFFF" stopOpacity={0.9} />
@@ -276,7 +354,7 @@ const AdminDashboard = () => {
                 <CardContent className="p-6">
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-lg font-semibold text-white">Billing History</h2>
-                    <Tabs value={tab} onValueChange={setTab}>
+                    <Tabs value={tab} onValueChange={handleTabChange}>
   <TabsList className="bg-gray-900/50 border border-gray-700">
     
     <TabsTrigger
@@ -322,40 +400,51 @@ const AdminDashboard = () => {
                   </div>
 
                   <ScrollArea className="h-80 lg:h-96 pr-2">
-                    {[
-                      { type: "success" },
-                      { type: "failed" },
-                      { type: "success" },
-                      { type: "success" },
-                      { type: "success" },
-                      { type: "success" },
-                    ]
-                      .filter((item) => tab === "all" || item.type === tab)
-                      .map((item, i) => (
-                        <div
-                          key={i}
-                          className="flex justify-between items-center border-b border-gray-800/50 py-3 hover:bg-gray-800/20 transition-colors duration-200 rounded px-2"
-                        >
-                          <div className="flex items-center gap-3">
-                            {item.type === "success" ? (
-                              <CheckCircleIcon className="text-green-400 flex-shrink-0" size={18} />
-                            ) : (
-                              <XCircleIcon className="text-red-400 flex-shrink-0" size={18} />
-                            )}
-                            <div>
-                              <div className="text-sm text-white">Pro Digest Plan</div>
-                              <div className="text-xs text-gray-400">1 Jan 2025</div>
-                            </div>
+                    {currentBillingData.map((item, i) => (
+                      <div
+                        key={i}
+                        className="flex justify-between items-center border-b border-gray-800/50 py-3 hover:bg-gray-800/20 transition-colors duration-200 rounded px-2"
+                      >
+                        <div className="flex items-center gap-3">
+                          {item.type === "success" ? (
+                            <CheckCircle className="text-green-400 flex-shrink-0" size={18} />
+                          ) : (
+                            <XCircle className="text-red-400 flex-shrink-0" size={18} />
+                          )}
+                          <div>
+                            <div className="text-sm text-white">{item.plan}</div>
+                            <div className="text-xs text-gray-400">{item.date}</div>
                           </div>
-                          <div className="text-sm text-cyan-400 font-medium">$29.99</div>
                         </div>
-                      ))}
+                        <div className="text-sm text-cyan-400 font-medium">{item.amount}</div>
+                      </div>
+                    ))}
                   </ScrollArea>
-                  <div className="flex justify-end pt-4">
-                    <div className="next-button-wrapper">
-                      <Button className="bg-transparent text-cyan-400 hover:text-white transition-all duration-300">
-                        Next <ArrowRightIcon size={16} className="ml-1" />
-                      </Button>
+                  <div className="flex justify-between items-center pt-4">
+                    <div className="text-xs text-gray-400">
+                      Page {currentPage + 1} of {totalPages} ({filteredBillingData.length} total items)
+                    </div>
+                    <div className="flex gap-2">
+                      {currentPage > 0 && (
+                        <div className="next-button-wrapper">
+                          <Button 
+                            onClick={handlePrevPage}
+                            className="bg-transparent text-cyan-400 hover:text-white transition-all duration-300"
+                          >
+                            Previous
+                          </Button>
+                        </div>
+                      )}
+                      {currentPage < totalPages - 1 && (
+                        <div className="next-button-wrapper">
+                          <Button 
+                            onClick={handleNextPage}
+                            className="bg-transparent text-cyan-400 hover:text-white transition-all duration-300"
+                          >
+                            Next <ArrowRight size={16} className="ml-1" />
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </CardContent>

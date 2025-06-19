@@ -28,12 +28,12 @@ export default function HowItWorksSection() {
     {
       step: "02",
       title: "Track Your Favourite Coins",
-      desc: "Follow up to 10 or 30 cryptocurrencies and get AI-powered news tailored to you.",
+      desc: "Follow up to 10 or 30 coins and get crypto news matched to them.",
     },
     {
       step: "03",
-      title: "Understand the Market Instantly",
-      desc: "Detect political bias, get instant alerts, and simplify complex crypto news in seconds.",
+      title: "Understand the Market",
+      desc: ": See if news is bullish or bearish and know why instantly.",
     },
   ];
 

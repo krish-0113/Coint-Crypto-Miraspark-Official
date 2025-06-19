@@ -71,7 +71,7 @@ const PrivacyPolicy = () => {
     {
       title: "6. Third-Party Services",
       content: [
-        "CryptoDigest may use trusted third-party services for:",
+        "CoinDigest may use trusted third-party services for:",
         "- Payment processing (e.g., Stripe, PayPal)",
         "- Analytics (e.g., Google Analytics)",
         "- Cloud hosting (e.g., AWS, Firebase)",
@@ -81,7 +81,7 @@ const PrivacyPolicy = () => {
     {
       title: "7. International Data Transfers",
       content: [
-        "If you are located outside Australia, your data may be processed in countries with different data protection laws. By using CryptoDigest, you consent to such data transfers, including to Australia and other secure jurisdictions where our servers or partners are based.",
+        "If you are located outside Australia, your data may be processed in countries with different data protection laws. By using CoinDigest, you consent to such data transfers, including to Australia and other secure jurisdictions where our servers or partners are based.",
       ],
     },
     {
@@ -94,13 +94,13 @@ const PrivacyPolicy = () => {
         "- Object to or restrict processing",
         "- Withdraw consent at any time",
         "- File a complaint with your local data protection authority",
-        "To exercise these rights, contact us at **privacy@cryptodigest.app**",
+        "To exercise these rights, contact us at **privacy@CoinDigest.app**",
       ],
     },
     {
       title: "9. Children's Privacy",
       content: [
-        "CryptoDigest is not intended for use by individuals under the age of 18. We do not knowingly collect personal information from children. If we learn that a child has provided us personal data, we will delete it immediately.",
+        "CoinDigest is not intended for use by individuals under the age of 18. We do not knowingly collect personal information from children. If we learn that a child has provided us personal data, we will delete it immediately.",
       ],
     },
     {
@@ -114,8 +114,8 @@ const PrivacyPolicy = () => {
       title: "11. Contact Us",
       content: [
         "For any questions or concerns about this Privacy Policy or how your data is handled:",
-        "**Email:** privacy@cryptodigest.app",
-        "**CryptoDigest**",
+        "**Email:** privacy@CoinDigest.app",
+        "**CoinDigest**",
         "Shop 27 Carlton St",
         "Melbourne VIC 3000",
         "Australia",
@@ -156,11 +156,11 @@ const PrivacyPolicy = () => {
                 <div className="w-20 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 mx-auto mb-4 rounded-full shadow-lg shadow-purple-500/30"></div>
                 <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
                   At <span className="text-transparent bg-clip-text font-semibold bg-[linear-gradient(135deg,#00f0ff,#8b00ff,#ff00c8,#00f0ff)]">
-  CryptoDigest
+  CoinDigest
 </span>, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, store, and protect your data when you use our platform.
                 </p>
                 <p className="text-gray-400 mt-3 max-w-2xl mx-auto text-sm">
-                  By accessing or using CryptoDigest, you agree to the practices described in this Privacy Policy.
+                  By accessing or using CoinDigest, you agree to the practices described in this Privacy Policy.
                 </p>
               </div>
             </div>

@@ -14,8 +14,8 @@ const features = [
         </div>
       </div>
     ),
-    title: "Political Bias Detection",
-    description: "Understand the slant in crypto news with our AI-driven analysis.",
+    title: "Real Time News Tracking",
+    description: " Follows crypto news from top sites like CoinTelegraph and Twitter. Updates automatically.",
   },
   {
     icon: (
@@ -28,8 +28,8 @@ const features = [
         </div>
       </div>
     ),
-    title: "Personalized Alerts",
-    description: "Get instant notifications on events affecting your chosen cryptocurrencies.",
+    title: "Bullish or Bearish?",
+    description: "AI automatically labels news as bullish, bearish and clearly explains the reasoning behind each label.",
   },
   {
     icon: (
@@ -43,8 +43,8 @@ const features = [
         </div>
       </div>
     ),
-    title: "Simplify Complex News",
-    description: "Choose your reading level—from expert to beginner.",
+    title: "Whale Wallet Alerts",
+    description: "Get alerts when big investors trade coins, helping you act fast and decide smartly.",
   },
   {
     icon: (
@@ -58,8 +58,8 @@ const features = [
         </div>
       </div>
     ),
-    title: "Global Accessibility",
-    description: "Read news in your preferred language with our translation feature.",
+    title: "Translate and Simplify",
+    description: "Translates any news into your language. Can also explain news like you are a student.",
   },
 ]
 
@@ -134,29 +134,29 @@ const FeatureCard = ({
           )}
 
           {/* Brighter icon container */}
-<div
-  className={`relative z-10 w-14 h-14 flex items-center justify-center rounded-full mb-4 md:mb-6 transition-all duration-300 ${
-    clickedCards.has(index)
-      ? "scale-110 shadow-2xl"
-      : hoveredCard === index
-        ? "scale-110 shadow-xl"
-        : "scale-100"
-  }`}
-  style={{
-    background:
-      clickedCards.has(index) || hoveredCard === index
-        ? "linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(139, 0, 255, 0.3), rgba(255, 0, 200, 0.2))"
-        : "linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(139, 0, 255, 0.15), rgba(255, 0, 200, 0.1))",
-    border:
-      clickedCards.has(index) || hoveredCard === index
-        ? "1px solid rgba(255, 255, 255, 0.8)"
-        : "1px solid rgba(255, 255, 255, 0.5)",
-    boxShadow:
-      clickedCards.has(index) || hoveredCard === index
-        ? "0 12px 30px rgba(0, 240, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
-        : "0 8px 20px rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
-  }}
->
+        <div
+          className={`relative z-10 w-14 h-14 flex items-center justify-center rounded-full mb-4 md:mb-6 transition-all duration-300 ${
+            clickedCards.has(index)
+              ? "scale-110 shadow-2xl"
+              : hoveredCard === index
+                ? "scale-110 shadow-xl"
+                : "scale-100"
+          }`}
+          style={{
+            background:
+              clickedCards.has(index) || hoveredCard === index
+                ? "linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(139, 0, 255, 0.3), rgba(255, 0, 200, 0.2))"
+                : "linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(139, 0, 255, 0.15), rgba(255, 0, 200, 0.1))",
+            border:
+              clickedCards.has(index) || hoveredCard === index
+                ? "1px solid rgba(255, 255, 255, 0.8)"
+                : "1px solid rgba(255, 255, 255, 0.5)",
+            boxShadow:
+              clickedCards.has(index) || hoveredCard === index
+                ? "0 12px 30px rgba(0, 240, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)"
+                : "0 8px 20px rgba(0, 240, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+          }}
+        >
   <div
     className={`transition-all duration-300 ${
       clickedCards.has(index) || hoveredCard === index 

@@ -10,35 +10,49 @@ const pricingPlans = [
   {
     title: "Quick Scope",
     badge: "Essential",
-    image: "/img/bitcoin.png",
+    image: "/img/radar-scanner.png",
     subtitle: "Get clarity",
     price: "$0.83",
     note: "Billed as $9.99/year*",
     color: "green-400",
-    description:
-      "Be informed in minutes by quickly comparing headlines from a variety of news outlets. Stay up to date with a balanced perspective.",
+    features: [
+      "Compare headlines from multiple sources",
+      "Stay updated with balanced perspective",
+      "Quick 5-minute daily digest",
+      "Basic news categorization"
+    ]
   },
   {
     title: "Pro Digest",
     badge: "Most popular",
-    image: "/img/news3.png",
+    image: "/img/brain-dashboard.png",
     subtitle: "Rise above the noise",
     price: "$2.49",
     note: "Billed as $29.99/year*",
     color: "yellow-400",
-    description:
-      "For dedicated readers who want to dig deeper. A Premium subscription helps you rise above misleading narratives and sensational reporting while saving you time and energy.",
+    features: [
+      "Deep dive analysis and insights",
+      "Filter out misleading narratives",
+      "Time-saving premium summaries",
+      "Advanced source verification",
+      "Weekly trend reports"
+    ]
   },
   {
     title: "Alpha Digest",
     badge: "Best value",
-    image: "/img/bitcoin.png",
+    image: "/img/globe-crypto.png",
     subtitle: "See full picture",
     price: "$8.33",
     note: "Billed as $99.99/year*",
     color: "blue-400",
-    description:
-      "Challenge simple narratives and take control of your news diet with a custom dashboard that reveals what you're reading, but more importantly, what you're missing.",
+    features: [
+      "Custom personalized dashboard",
+      "Reveal what you're missing",
+      "Advanced narrative analysis",
+      "Full control over news diet",
+      "Premium research tools"
+    ]
   },
 ];
 
@@ -104,7 +118,7 @@ export default function PricingSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mt-12 px-2 sm:px-0 relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mt-12 px-2 sm:px-0 relative z-10 items-center">
         {pricingPlans.map((plan, index) => (
           <motion.div
             key={index}
@@ -117,6 +131,8 @@ export default function PricingSection() {
             className={cn(
               "rounded-2xl cursor-pointer overflow-hidden transition-all duration-500 ease-in-out relative group transform-gpu",
               "before:absolute before:inset-0 before:rounded-2xl before:p-[2px] before:bg-gradient-to-r before:from-cyan-400 before:via-purple-500 before:to-pink-500 before:transition-all before:duration-500",
+              // Make middle card (index 1) bigger
+              index === 1 ? "lg:scale-110 lg:mt-0" : "lg:mt-8",
               selected === index
                 ? "before:opacity-100 shadow-[0_0_25px_8px_rgba(0,240,255,0.3)] hover:scale-105 hover:-translate-y-3 hover:shadow-[0_0_35px_12px_rgba(0,240,255,0.4)]"
                 : "before:opacity-60 hover:before:opacity-100 hover:scale-103 hover:-translate-y-2 hover:shadow-[0_0_20px_6px_rgba(139,0,255,0.3)]"
@@ -144,12 +160,49 @@ export default function PricingSection() {
                 
                 {/* Enhanced Image with Gradient Border */}
                 <div className="mb-4 relative h-32 sm:h-40 w-full overflow-hidden rounded-xl p-[2px] bg-gradient-to-r from-cyan-400/50 via-purple-500/50 to-pink-500/50 group-hover:from-cyan-400 group-hover:via-purple-500 group-hover:to-pink-500 transition-all duration-500">
-                  <div className="relative h-full w-full overflow-hidden rounded-xl">
-                    <img
-                      src={plan.image}
-                      alt={plan.subtitle}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-in-out"
-                    />
+                  <div className="relative h-full w-full overflow-hidden rounded-xl bg-gradient-to-br from-gray-900 to-black">
+                    {/* Custom Visual Icons */}
+                    {index === 0 && (
+                      // Radar Scanner Icon
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative w-24 h-24">
+                          <div className="absolute inset-0 border-2 border-cyan-400 rounded-full animate-ping opacity-30"></div>
+                          <div className="absolute inset-2 border-2 border-cyan-400 rounded-full animate-pulse"></div>
+                          <div className="absolute inset-4 border-2 border-cyan-400 rounded-full"></div>
+                          <div className="absolute top-1/2 left-1/2 w-0.5 h-12 bg-gradient-to-t from-cyan-400 to-transparent transform -translate-x-1/2 -translate-y-1/2 rotate-45 animate-spin origin-bottom"></div>
+                          <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-cyan-400 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+                        </div>
+                      </div>
+                    )}
+                    {index === 1 && (
+                      // Brain Dashboard Icon
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative w-24 h-24">
+                          <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-20 animate-pulse"></div>
+                          <svg className="w-full h-full text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8 17.5c-1.38 0-2.5-1.12-2.5-2.5S6.62 12.5 8 12.5s2.5 1.12 2.5 2.5S9.38 17.5 8 17.5zM8 11.5c-1.38 0-2.5-1.12-2.5-2.5S6.62 6.5 8 6.5s2.5 1.12 2.5 2.5S9.38 11.5 8 11.5zM16 17.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM16 11.5c-1.38 0-2.5-1.12-2.5-2.5S14.62 6.5 16 6.5s2.5 1.12 2.5 2.5S17.38 11.5 16 11.5z"/>
+                          </svg>
+                          <div className="absolute top-2 right-2 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                          <div className="absolute bottom-2 left-2 w-1 h-1 bg-pink-400 rounded-full animate-pulse"></div>
+                        </div>
+                      </div>
+                    )}
+                    {index === 2 && (
+                      // Globe with Crypto Overlay
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="relative w-24 h-24">
+                          <div className="absolute inset-0 border-2 border-blue-400 rounded-full"></div>
+                          <div className="absolute inset-2 border border-blue-400/50 rounded-full"></div>
+                          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-blue-400/50 transform -translate-y-1/2"></div>
+                          <div className="absolute top-1/4 left-0 right-0 h-0.5 bg-blue-400/30 transform -translate-y-1/2 rounded-full"></div>
+                          <div className="absolute top-3/4 left-0 right-0 h-0.5 bg-blue-400/30 transform -translate-y-1/2 rounded-full"></div>
+                          <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-blue-400/50 transform -translate-x-1/2"></div>
+                          <div className="absolute top-2 right-2 text-yellow-400 text-xs">₿</div>
+                          <div className="absolute bottom-2 left-2 text-green-400 text-xs">$</div>
+                          <div className="absolute top-1/2 right-1 w-8 h-0.5 bg-gradient-to-r from-blue-400 to-transparent transform -translate-y-1/2 animate-pulse"></div>
+                        </div>
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-black/70 group-hover:bg-black/50 transition-all duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent group-hover:from-gray-900/60 transition-all duration-500" />
                     <span className="absolute inset-0 flex items-center justify-center font-semibold text-center text-white text-sm sm:text-base z-10 group-hover:text-cyan-300 transition-colors duration-500">
@@ -163,9 +216,17 @@ export default function PricingSection() {
                   <span className="text-sm font-normal group-hover:text-gray-300"> /month*</span>
                 </div>
                 <div className="text-sm text-gray-400 mb-4 group-hover:text-gray-300 transition-colors duration-500">{plan.note}</div>
-                <p className="text-sm text-gray-300 mb-6 flex-grow group-hover:text-gray-200 transition-colors duration-500">
-                  {plan.description}
-                </p>
+                
+                {/* Features as bullet points */}
+                <ul className="text-sm text-gray-300 mb-6 flex-grow group-hover:text-gray-200 transition-colors duration-500 space-y-2">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start">
+                      <span className="text-cyan-400 mr-2 mt-1 text-xs">•</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
                   {/* Enhanced Button with Gradient Border */}
                   <div className="relative p-[2px] rounded-lg bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 group-hover:from-cyan-300 group-hover:via-purple-400 group-hover:to-pink-400 transition-all duration-500 animated-border">
                   <button               

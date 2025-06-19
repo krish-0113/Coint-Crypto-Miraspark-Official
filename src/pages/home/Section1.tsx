@@ -133,11 +133,10 @@ const Section1 = () => {
       {/* <AnimatedParticles /> */}
         
       <h1 className="text-2xl md:text-4xl font-bold text-center text-white">
-        Trending News
+         Crypto News That Moves Markets
       </h1>
       <p className="mt-4 text-sm md:text-base font-normal text-white max-w-3xl w-full text-center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do tempor
-        incididunt ut labore et dolore magna aliqua.
+      Real time news from top sources analysed by AI. Understand how headlines affect your portfolio instantly.
       </p>
   
       <div className="w-full mt-10 relative">
@@ -199,7 +198,7 @@ const Section1 = () => {
                       {item.description}
                     </p>
                     <span className="mt-4 text-blue-500 hover:underline text-sm font-medium">
-                      Read more →
+                    See AI Breakdown →
                     </span>
                   </div>
                 </div>

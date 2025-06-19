@@ -5,36 +5,27 @@ import { Link } from 'react-router-dom';
 import { PATHS } from '@/constants/page-paths';
 import { cn } from '@/lib/utils/cn';
 
-// Logo Component - Moved inside the same file to avoid import issues
+// Logo Component - Updated with your new design
 const Logo = ({ className }: { className?: string }) => {
-  const classes = cn(
-    className,
-    'flex items-center object-contain w-12 h-12 brightness-110 contrast-125 border-4 border-white rounded-full  filter drop-shadow-lg'
-  );
-
   return (
-    <Link to={PATHS.HOME}>
-      <div className="flex items-center h-12 w-12">
-        {/* Logo */}
-        <img
-          src="/img/mainLogo.png"
-          className={classes}
-          alt="Company Logo"
-        />
+    <Link to={PATHS.HOME} className="flex items-center h-12">
+  {/* Logo Image with thicker border */}
+  <img
+    src="/img/mainLogo.png"
+    alt="CoinDigest Logo"
+    className={cn(
+      "w-12 h-12 object-contain rounded-full border-4 border-white shadow-lg brightness-110 contrast-125",
+      className
+    )}
+  />
 
-        {/* Coin and Digest vertically aligned */}
-        <div className="flex flex-col justify-center ml-2 text-white leading-none -space-y-2">
-          <div className="flex items-start text-xl font-bold">
-            <span className="text-xl ">C</span>
-            <span>oin</span>
-          </div>
-          <div className="flex items-start text-xl font-bold">
-            <span className="text-xl ">D</span>
-            <span>igest</span>
-          </div>
-        </div>
-      </div>
-    </Link>
+  {/* CoinDigest brand text - white and elegant */}
+<span className="ml-1 text-white text-4xl font-bold tracking-tight drop-shadow">
+  CoinDigest
+</span>
+
+</Link>
+
   );
 };
 
@@ -65,16 +56,25 @@ function AuthSectionImage() {
   return (
     <Card className="h-auto md:h-screen w-full border-none rounded-none relative overflow-hidden">
       <CardContent className="flex h-auto md:h-full items-start md:items-center justify-center p-0">
-        <div className="w-full h-auto md:h-full bg-transparent  relative min-h-[70px] md:min-h-screen">
-          {/* Background Image - Hidden on mobile */}
-          <img
-            src={`/img/${imageName}`}
-            alt="Auth Background"
-            className="w-full h-full object-cover  absolute inset-0 scale-105 transition-transform duration-[20s] ease-linear hover:scale-110 hidden md:block"
-          />
+        <div className="w-full h-auto md:h-full bg-transparent relative min-h-[70px] md:min-h-screen">
+          {/* Background Image - Hidden on mobile - FIXED POSITIONING AND SCALING */}
+          <div className="absolute inset-0 hidden md:block overflow-hidden">
+            <img
+              src={`/img/${imageName}`}
+              alt="Auth Background"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[20s] ease-linear hover:scale-105"
+              style={{
+                minWidth: '100%',
+                minHeight: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center center',
+                transform: 'translateZ(0)' // Hardware acceleration
+              }}
+            />
+          </div>
 
           {/* Enhanced Gradient Overlays - Hidden on mobile */}
-          <div className="absolute  inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10 hidden md:block" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 z-10 hidden md:block" />
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20 z-10 hidden md:block" />
 
           {/* Mobile Background - Only visible on mobile */}
@@ -223,17 +223,6 @@ function AuthSectionImage() {
           }
         }
         
-        /* Subtle background animation */
-        @keyframes backgroundShift {
-          0% { filter: hue-rotate(0deg); }
-          50% { filter: hue-rotate(10deg); }
-          100% { filter: hue-rotate(0deg); }
-        }
-        
-        .bg-image {
-          animation: backgroundShift 20s ease-in-out infinite;
-        }
-
         /* Enhanced Logo Styling */
         .logo-enhanced {
           filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.3));
@@ -255,6 +244,26 @@ function AuthSectionImage() {
           .particle {
             width: 3px;
             height: 3px;
+          }
+        }
+
+        /* Fix for zoom levels and better image positioning */
+        @media (min-width: 768px) {
+          .auth-bg-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+          }
+          
+          .auth-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
           }
         }
       `}</style>

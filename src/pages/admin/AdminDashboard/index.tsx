@@ -1,31 +1,52 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { PieChart, Pie, Cell } from "recharts"
+import { PieChart, Pie, Cell, Tooltip } from "recharts"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
+import { useState } from "react"
 
-// Mock data since constants aren't available
-const monthlyData = [
-  { name: "Subscriptions", value: 4200.50 },
-  { name: "One-time Sales", value: 3100.25 },
-  { name: "Refunds", value: -418.37 }
-]
+// Mock data - this will be dynamic based on selected month/year
+const getMonthlyData = (year, month) => {
+  // This would typically fetch from an API based on year and month
+  const baseData = [
+    { name: "Subscriptions", value: 4200.50 },
+    { name: "One-time Sales", value: 3100.25 },
+    { name: "Refunds", value: -418.37 }
+  ]
+  
+  // Simulate different data for different months/years
+  const multiplier = (parseInt(year) - 2023) * 1.2 + (parseInt(month) * 0.1)
+  return baseData.map(item => ({
+    ...item,
+    value: item.value * (1 + multiplier)
+  }))
+}
 
-const yearlyData = [
-  { name: "Subscriptions", value: 54200.50 },
-  { name: "One-time Sales", value: 33100.25 },
-  { name: "Consulting", value: 12581.63 }
-]
+const getYearlyData = (year) => {
+  // This would typically fetch from an API based on year
+  const baseData = [
+    { name: "Subscriptions", value: 54200.50 },
+    { name: "One-time Sales", value: 33100.25 },
+    { name: "Consulting", value: 12581.63 }
+  ]
+  
+  // Simulate different data for different years
+  const multiplier = (parseInt(year) - 2023) * 0.8
+  return baseData.map(item => ({
+    ...item,
+    value: item.value * (1 + multiplier)
+  }))
+}
 
 const users = [
-  { name: "John Doe", email: "john.doe@email.com", amount: "$2,450.00" },
-  { name: "Sarah Wilson", email: "sarah.wilson@email.com", amount: "$1,890.50" },
-  { name: "Mike Johnson", email: "mike.johnson@email.com", amount: "$1,675.25" },
-  { name: "Emily Davis", email: "emily.davis@email.com", amount: "$1,520.75" },
-  { name: "David Brown", email: "david.brown@email.com", amount: "$1,445.00" },
-  { name: "Lisa Garcia", email: "lisa.garcia@email.com", amount: "$1,380.25" },
-  { name: "Chris Miller", email: "chris.miller@email.com", amount: "$1,295.50" },
-  { name: "Amanda Taylor", email: "amanda.taylor@email.com", amount: "$1,210.75" },
-  { name: "Robert Anderson", email: "robert.anderson@email.com", amount: "$1,155.00" },
-  { name: "Jessica Martinez", email: "jessica.martinez@email.com", amount: "$1,089.25" }
+  { id: 1, name: "John Doe", email: "john.doe@email.com", amount: "$2,450.00" },
+  { id: 2, name: "Sarah Wilson", email: "sarah.wilson@email.com", amount: "$1,890.50" },
+  { id: 3, name: "Mike Johnson", email: "mike.johnson@email.com", amount: "$1,675.25" },
+  { id: 4, name: "Emily Davis", email: "emily.davis@email.com", amount: "$1,520.75" },
+  { id: 5, name: "David Brown", email: "david.brown@email.com", amount: "$1,445.00" },
+  { id: 6, name: "Lisa Garcia", email: "lisa.garcia@email.com", amount: "$1,380.25" },
+  { id: 7, name: "Chris Miller", email: "chris.miller@email.com", amount: "$1,295.50" },
+  { id: 8, name: "Amanda Taylor", email: "amanda.taylor@email.com", amount: "$1,210.75" },
+  { id: 9, name: "Robert Anderson", email: "robert.anderson@email.com", amount: "$1,155.00" },
+  { id: 10, name: "Jessica Martinez", email: "jessica.martinez@email.com", amount: "$1,089.25" }
 ]
 
 const COLORS = ["#00f0ff", "#8b00ff", "#ff00c8", "#00ff88", "#ffaa00"]
@@ -36,7 +57,13 @@ const months = [
   { label: "Mar", value: "03" },
   { label: "Apr", value: "04" },
   { label: "May", value: "05" },
-  { label: "Jun", value: "06" }
+  { label: "Jun", value: "06" },
+  { label: "Jul", value: "07" },
+  { label: "Aug", value: "08" },
+  { label: "Sep", value: "09" },
+  { label: "Oct", value: "10" },
+  { label: "Nov", value: "11" },
+  { label: "Dec", value: "12" }
 ]
 
 const years = [
@@ -46,6 +73,38 @@ const years = [
 ]
 
 const AdminDashboard = () => {
+  const [selectedMonthYear, setSelectedMonthYear] = useState("2025")
+  const [selectedMonth, setSelectedMonth] = useState("06")
+  const [selectedYear, setSelectedYear] = useState("2025")
+  const [showMonthlyTooltip, setShowMonthlyTooltip] = useState(false)
+  const [showYearlyTooltip, setShowYearlyTooltip] = useState(false)
+  const [monthlyTooltipData, setMonthlyTooltipData] = useState(null)
+  const [yearlyTooltipData, setYearlyTooltipData] = useState(null)
+
+  const handleUserClick = (userId) => {
+    // Navigate to user page - in a real app, you'd use router.push or navigate
+    window.location.href = `/admin-dashboard-users?userId=${userId}`
+  }
+
+  const monthlyData = getMonthlyData(selectedMonthYear, selectedMonth)
+  const yearlyData = getYearlyData(selectedYear)
+
+  const calculateTotal = (data) => {
+    return data.reduce((sum, item) => sum + item.value, 0)
+  }
+
+  const handleMonthlyPieClick = (data, index) => {
+    setMonthlyTooltipData({ data, index })
+    setShowMonthlyTooltip(!showMonthlyTooltip)
+    setShowYearlyTooltip(false)
+  }
+
+  const handleYearlyPieClick = (data, index) => {
+    setYearlyTooltipData({ data, index })
+    setShowYearlyTooltip(!showYearlyTooltip)
+    setShowMonthlyTooltip(false)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-slate-900 to-blue-950 text-white p-4 md:p-8">
       <div className="max-w-6xl mx-auto mt-24">
@@ -58,29 +117,49 @@ const AdminDashboard = () => {
                 <CardContent className="relative p-0 z-10">
                   <div className="flex justify-between items-center">
                     <h3 className="font-semibold text-cyan-300">Monthly Revenue</h3>
-                    <div className="relative p-[1px] rounded-lg bg-gradient-to-r from-[#8b00ff] via-[#ff00c8] to-[#00f0ff] animate-gradient-x">
-                      <Select defaultValue="2025">
-                        <SelectTrigger className="w-[100px] text-xs bg-slate-900 text-white border-0 hover:bg-slate-800 rounded-lg">
-                          <SelectValue placeholder="Select year" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-slate-900 border-purple-500/50 rounded-lg">
-                          {years.map(({ label, value }) => (
-                            <SelectItem 
-                              key={value} 
-                              value={value} 
-                              className="text-white hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/20 focus:bg-gradient-to-r focus:from-purple-600/30 focus:to-pink-600/30"
-                            >
-                              {label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                    <div className="flex gap-2">
+                      <div className="relative p-[1px] rounded-lg bg-gradient-to-r from-[#8b00ff] via-[#ff00c8] to-[#00f0ff] animate-gradient-x">
+                        <Select value={selectedMonth} onValueChange={setSelectedMonth}>
+                          <SelectTrigger className="w-[80px] text-xs bg-slate-900 text-white border-0 hover:bg-slate-800 rounded-lg">
+                            <SelectValue placeholder="Month" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-slate-900 border-purple-500/50 rounded-lg">
+                            {months.map(({ label, value }) => (
+                              <SelectItem 
+                                key={value} 
+                                value={value} 
+                                className="text-white hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/20 focus:bg-gradient-to-r focus:from-purple-600/30 focus:to-pink-600/30"
+                              >
+                                {label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="relative p-[1px] rounded-lg bg-gradient-to-r from-[#8b00ff] via-[#ff00c8] to-[#00f0ff] animate-gradient-x">
+                        <Select value={selectedMonthYear} onValueChange={setSelectedMonthYear}>
+                          <SelectTrigger className="w-[80px] text-xs bg-slate-900 text-white border-0 hover:bg-slate-800 rounded-lg">
+                            <SelectValue placeholder="Year" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-slate-900 border-purple-500/50 rounded-lg">
+                            {years.map(({ label, value }) => (
+                              <SelectItem 
+                                key={value} 
+                                value={value} 
+                                className="text-white hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/20 focus:bg-gradient-to-r focus:from-purple-600/30 focus:to-pink-600/30"
+                              >
+                                {label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
                   </div>
 
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
                     <div className="flex flex-col">
-                      <div className="text-3xl font-bold mb-1 text-white">$9,882.38</div>
+                      <div className="text-3xl font-bold mb-1 text-white">${calculateTotal(monthlyData).toFixed(2)}</div>
                       <div className="text-green-400 text-sm mb-4">+32.1%</div>
                       <div className="flex items-center gap-8">
                         <div className="space-y-1 text-sm">
@@ -96,7 +175,7 @@ const AdminDashboard = () => {
                       </div>
                     </div>
 
-                    <div className="w-full md:w-auto overflow-x-auto md:overflow-x-visible flex justify-center mt-4 md:mt-0">
+                    <div className="w-full md:w-auto overflow-x-auto md:overflow-x-visible flex justify-center mt-4 md:mt-0 relative">
                       <div className="min-w-[240px]">
                         <PieChart
                           width={240}
@@ -116,13 +195,13 @@ const AdminDashboard = () => {
                             endAngle={-150}
                             paddingAngle={2}
                             isAnimationActive={false}
-                            cursor="default"
+                            onClick={handleMonthlyPieClick}
                           >
                             {monthlyData.map((entry, index) => (
                               <Cell 
                                 key={`cell-${index}`} 
                                 fill={`url(#grad${index})`}
-                                style={{ outline: 'none' }}
+                                style={{ outline: 'none', cursor: 'pointer' }}
                               />
                             ))}
                           </Pie>
@@ -135,6 +214,27 @@ const AdminDashboard = () => {
                             ))}
                           </defs>
                         </PieChart>
+                        
+                        {/* Monthly Tooltip Rectangle */}
+                        {showMonthlyTooltip && monthlyTooltipData && (
+                          <div className="absolute top-0 right-0 bg-gradient-to-br from-slate-800 to-slate-900 border border-cyan-400/50 rounded-lg p-3 shadow-lg z-20 min-w-[200px]">
+                            <div className="text-cyan-300 font-semibold mb-2">Revenue Details</div>
+                            <div className="space-y-1 text-sm">
+                              <div className="flex justify-between">
+                                <span style={{ color: COLORS[monthlyTooltipData.index] }}>
+                                  {monthlyTooltipData.data.name}
+                                </span>
+                                <span className="text-white font-medium">
+                                  ${monthlyTooltipData.data.value.toFixed(2)}
+                                </span>
+                              </div>
+                              <div className="flex justify-between text-gray-300 text-xs">
+                                <span>Percentage:</span>
+                                <span>{((monthlyTooltipData.data.value / calculateTotal(monthlyData)) * 100).toFixed(1)}%</span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -150,7 +250,7 @@ const AdminDashboard = () => {
                   <div className="flex justify-between items-center">
                     <h3 className="font-semibold text-cyan-300">Yearly Revenue</h3>
                     <div className="relative p-[1px] rounded-lg bg-gradient-to-r from-[#8b00ff] via-[#ff00c8] to-[#00f0ff] animate-gradient-x">
-                      <Select defaultValue="2025">
+                      <Select value={selectedYear} onValueChange={setSelectedYear}>
                         <SelectTrigger className="w-[100px] text-xs bg-slate-900 text-white border-0 hover:bg-slate-800 rounded-lg">
                           <SelectValue placeholder="Select year" />
                         </SelectTrigger>
@@ -171,7 +271,7 @@ const AdminDashboard = () => {
 
                   <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
                     <div className="flex flex-col">
-                      <div className="text-3xl font-bold mb-1 text-white">$99,882.38</div>
+                      <div className="text-3xl font-bold mb-1 text-white">${calculateTotal(yearlyData).toFixed(2)}</div>
                       <div className="text-green-400 text-sm mb-4">+32.1%</div>
                       <div className="flex items-center gap-8">
                         <div className="space-y-1 text-sm">
@@ -187,7 +287,7 @@ const AdminDashboard = () => {
                       </div>
                     </div>
 
-                    <div className="w-full md:w-auto overflow-x-auto md:overflow-x-visible flex justify-center mt-4 md:mt-0">
+                    <div className="w-full md:w-auto overflow-x-auto md:overflow-x-visible flex justify-center mt-4 md:mt-0 relative">
                       <div className="min-w-[240px]">
                         <PieChart
                           width={240}
@@ -207,13 +307,13 @@ const AdminDashboard = () => {
                             endAngle={-150}
                             paddingAngle={2}
                             isAnimationActive={false}
-                            cursor="default"
+                            onClick={handleYearlyPieClick}
                           >
                             {yearlyData.map((entry, index) => (
                               <Cell 
                                 key={`cell-${index}`} 
                                 fill={`url(#gradYearly${index})`}
-                                style={{ outline: 'none' }}
+                                style={{ outline: 'none', cursor: 'pointer' }}
                               />
                             ))}
                           </Pie>
@@ -226,6 +326,27 @@ const AdminDashboard = () => {
                             ))}
                           </defs>
                         </PieChart>
+                        
+                        {/* Yearly Tooltip Rectangle */}
+                        {showYearlyTooltip && yearlyTooltipData && (
+                          <div className="absolute top-0 right-0 bg-gradient-to-br from-slate-800 to-slate-900 border border-cyan-400/50 rounded-lg p-3 shadow-lg z-20 min-w-[200px]">
+                            <div className="text-cyan-300 font-semibold mb-2">Revenue Details</div>
+                            <div className="space-y-1 text-sm">
+                              <div className="flex justify-between">
+                                <span style={{ color: COLORS[yearlyTooltipData.index] }}>
+                                  {yearlyTooltipData.data.name}
+                                </span>
+                                <span className="text-white font-medium">
+                                  ${yearlyTooltipData.data.value.toFixed(2)}
+                                </span>
+                              </div>
+                              <div className="flex justify-between text-gray-300 text-xs">
+                                <span>Percentage:</span>
+                                <span>{((yearlyTooltipData.data.value / calculateTotal(yearlyData)) * 100).toFixed(1)}%</span>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -257,9 +378,10 @@ const AdminDashboard = () => {
                       {users.map((user, idx) => (
                         <div
                           key={idx}
-                          className="relative p-[1px] rounded-lg bg-gradient-to-r from-[#00f0ff]/20 via-[#8b00ff]/20 via-[#ff00c8]/20 to-[#00f0ff]/20 animate-gradient-x"
+                          className="relative p-[1px] rounded-lg bg-gradient-to-r from-[#00f0ff]/20 via-[#8b00ff]/20 via-[#ff00c8]/20 to-[#00f0ff]/20 animate-gradient-x cursor-pointer hover:from-[#00f0ff]/40 hover:via-[#8b00ff]/40 hover:via-[#ff00c8]/40 hover:to-[#00f0ff]/40 transition-all duration-300"
+                          onClick={() => handleUserClick(user.id)}
                         >
-                          <div className="flex justify-between items-center text-sm py-3 px-4 bg-gradient-to-r from-[#0a0a14] via-[#1a1a2e] to-[#0a0a14] rounded-md">
+                          <div className="flex justify-between items-center text-sm py-3 px-4 bg-gradient-to-r from-[#0a0a14] via-[#1a1a2e] to-[#0a0a14] rounded-md hover:from-[#0f0f1f] hover:via-[#1f1f33] hover:to-[#0f0f1f] transition-all duration-300">
                             <div className="flex items-center gap-3 flex-1 min-w-0">
                               <div className="rounded-full bg-gradient-to-r from-[#1e90ff] to-[#00bfff] h-8 w-8 text-sm flex items-center justify-center font-semibold text-white flex-shrink-0">
                                 {user.name[0]}
@@ -283,7 +405,7 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      <style >{`
+      <style>{`
         @keyframes gradient-x {
           0%, 100% {
             background-position: 0% 50%;

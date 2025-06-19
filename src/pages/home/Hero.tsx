@@ -116,14 +116,14 @@ const Hero = () => {
             </motion.span>
           </motion.h1>
           
-          <motion.h3 
+          {/* <motion.h3 
             className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
           >
             with Ai powered insights
-          </motion.h3>
+          </motion.h3> */}
           
           <motion.p 
             className="text-sm sm:text-base md:text-lg lg:text-xl text-white leading-relaxed max-w-2xl"
@@ -131,8 +131,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.8 }}
           >
-            Get unbiased, personalized news on how global events impact your
-            favorite cryptocurrencies.
+           Get unbiased, personalised news on how global events impact your favourite cryptocurrencies.
           </motion.p>
           
           <motion.div

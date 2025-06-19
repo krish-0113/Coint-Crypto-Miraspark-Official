@@ -38,7 +38,7 @@ const ContactUs = () => {
       title: "General Inquiries & Support",
       content: [
         "For help with your account, subscription, alerts, or any technical issues.",
-        "support@cryptodigest.app",
+        "support@coinDigest.app",
         "We aim to respond within 24–48 hours, Monday to Friday.",
       ],
     },
@@ -47,7 +47,7 @@ const ContactUs = () => {
       title: "Business & Partnership Opportunities",
       content: [
         "Want to collaborate with us, list your project, or explore strategic partnerships?",
-        "partners@cryptodigest.app",
+        "partners@coinDigest.app",
         "Please include relevant details about your brand, project, or proposal.",
       ],
     },
@@ -55,8 +55,8 @@ const ContactUs = () => {
       icon: <MdOutlineNewspaper className="text-yellow-400 text-xl " />,
       title: "Press & Media",
       content: [
-        "For interviews, press kits, or to feature CryptoDigest in your publication.",
-        "media@cryptodigest.app",
+        "For interviews, press kits, or to feature CoinDigest in your publication.",
+        "media@coinDigest.app",
       ],
     },
     {
@@ -64,14 +64,14 @@ const ContactUs = () => {
       title: "Report a Bug or Security Concern",
       content: [
         "Found something off? We take security seriously and appreciate all reports made responsibly.",
-        "security@cryptodigest.app",
+        "security@coinDigest.app",
       ],
     },
     {
       icon: <MdLocationOn className="text-green-400 text-xl " />,
       title: "Mailing Address",
       content: [
-        "CryptoDigest",
+        "coinDigest",
         "Shop 21 Carlton Street",
         "Sydney NSW 2000",
         
@@ -81,8 +81,8 @@ const ContactUs = () => {
       icon: <MdFeedback className="text-purple-400 text-xl " />,
       title: "Suggestions & Feedback",
       content: [
-        "We're building CryptoDigest for you — and your ideas shape the future of this platform. Feel free to drop your suggestions.",
-        "feedback@cryptodigest.app",
+        "We're building CoinDigest for you — and your ideas shape the future of this platform. Feel free to drop your suggestions.",
+        "feedback@CoinDigest.app",
       ],
     },
   ];
@@ -111,7 +111,7 @@ const ContactUs = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-gray-200 mb-8 md:mb-12 text-left max-w-2xl"
         >
-          At CryptoDigest, we're always here to help. Whether you have a
+          At CoinDigest, we're always here to help. Whether you have a
           question, feedback, or business inquiry, our team is ready to assist
           you.
         </motion.p>

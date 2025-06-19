@@ -5,28 +5,28 @@ const testimonials = [
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80",
     name: "Adam Williams",
     title: "Market Researcher",
-    text: "I absolutely love how easy and intuitive this app is! It provides up-to-date.",
+    text: "CoinDigest cuts through the noise. I can instantly see what is moving the market and why.",
     rating: 5
   },
   {
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
     name: "Emma George",
-    title: "Trader",
-    text: "This site keeps me updated with real-time crypto news! It's a must-have for any crypto enthusiast.",
+    title: " Beginner Trader",
+    text: "I am new to crypto but this makes it feel easy. The sentiment tags are helpful.",
     rating: 4
   },
   {
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
     name: "Ross Alex",
-    title: "Student",
-    text: "It offers quick, reliable updates, helping me make informed decisions and stay ahead in the ever-changing cryptocurrency market.",
+    title: "Web3 Investor",
+    text: "Tracking whale wallets in real time is a game changer. I made profit from it already.",
     rating: 5
   },
   {
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
     name: "James Carter",
-    title: "Analyst",
-    text: "An excellent resource for crypto market insights! Simple, sleek, and powerful.",
+    title: "Quant Analyst",
+    text: "Everything I care about is in one dashboard. Sentiment analysis and no fluff.",
     rating: 4
   }
 ];

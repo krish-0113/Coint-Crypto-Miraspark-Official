@@ -52,7 +52,7 @@ const FeatureSection = () => {
                 WebkitTextFillColor: "transparent"
               }}
             >
-              What Makes Us Different
+             What CoinDigest Actually Does
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {[

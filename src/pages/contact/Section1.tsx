@@ -108,7 +108,7 @@ const Hero = () => {
         >
           Thank you for being part of the{" "}
           <span className="bg-gradient-to-r from-[#00d4ff] via-[#0099ff] via-[#00f0ff] via-[#4dd0ff] to-[#8b00ff] bg-clip-text text-transparent animate-pulse">
-            CryptoDigest
+            CoinDigest
           </span>{" "}
           community.
         </motion.h1>

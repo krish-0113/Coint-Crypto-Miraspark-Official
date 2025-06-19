@@ -65,25 +65,25 @@ export default function FAQSection() {
                 value: "item-1",
                 question: "How to purchase a plan?",
                 answer:
-                  "You can purchase a plan by visiting the pricing section, selecting your desired plan, and completing the payment process securely.",
+                  "Visit the pricing page and choose a plan. Then finish payment.",
               },
               {
                 value: "item-2",
                 question: "Do I get a refund if I cancel the membership?",
                 answer:
-                  "Refunds are subject to our refund policy. Please refer to our terms or contact support for more information.",
+                  "Refunds depend on our refund policy. Please check our terms.",
               },
               {
                 value: "item-3",
                 question: "How many cryptocurrencies can I choose?",
                 answer:
-                  "Depending on your plan, you can choose from a wide range of supported cryptocurrencies. Higher tiers allow tracking more coins.",
+                  "Depends on your plan. Tier 2 can track 10 coins. Tier 3 can track 30.",
               },
               {
                 value: "item-4",
-                question: "Will I get email notifications for important alerts?",
+                question: "Will I get email notifications?",
                 answer:
-                  "Yes, important alerts and updates will be sent to your registered email address.",
+                  "Yes, You will receive alerts to your email address.",
               },
             ].map(({ value, question, answer }) => (
               <div

@@ -79,7 +79,7 @@ export default function UserDashboardLayout() {
   }
 
   // Check if current route is /coin or /watchlist to show Manage button
-  const shouldShowManageButton = location.pathname === "/coin" || location.pathname === "/watchlist"
+  const shouldShowManageButton = location.pathname === "/coins" || location.pathname === "/watchlist"
 
   return (
     <div className="relative min-h-screen">

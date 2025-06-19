@@ -14,7 +14,7 @@ const Logo = ({ className }: { className?: string }) => {
     src="/img/mainLogo.png"
     alt="CoinDigest Logo"
     className={cn(
-      "w-12 h-12 object-contain rounded-full border-4 border-white shadow-lg brightness-110 contrast-125",
+      "w-12 h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125",
       className
     )}
   />

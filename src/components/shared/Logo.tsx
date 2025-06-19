@@ -11,27 +11,22 @@ export const Logo = ({ className }: { className?: string }) => {
   );
 
   return (
-    <Link to={PATHS.HOME}>
-      <div className="flex items-center h-full w-full">
-        {/* Logo */}
-        <img
-          src="/img/mainLogo.png"
-          className={classes}
-          alt="Company Logo"
-        />
-
-        {/* Coin and Digest vertically aligned */}
-        <div className="flex flex-col justify-center ml-2 text-white leading-none -space-y-2">
-          <div className="flex items-start text-xl font-bold">
-            <span className="text-xl ">C</span>
-            <span>oin</span>
-          </div>
-          <div className="flex items-start text-xl font-bold">
-            <span className="text-xl ">D</span>
-            <span>igest</span>
-          </div>
-        </div>
-      </div>
-    </Link>
+    <Link to={PATHS.HOME} className="flex items-center h-12">
+    {/* Logo Image with thicker border */}
+    <img
+      src="/img/mainLogo.png"
+      alt="CoinDigest Logo"
+      className={cn(
+        "w-12 h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125",
+        className
+      )}
+    />
+  
+    {/* CoinDigest brand text - white and elegant */}
+  <span className="ml-1 text-white text-4xl font-bold tracking-tight drop-shadow">
+    CoinDigest
+  </span>
+  
+  </Link>
   );
 };

@@ -271,10 +271,12 @@ const MainDashboard = ({ onShowWatchlist }) => {
                         className="w-full h-28 object-cover transition-transform duration-300 group-hover:scale-105"
                         loading="lazy"
                         onError={(e) => {
-                          const target = e.target
+                          const target = e.target as HTMLImageElement;
+                          target.onerror = null; // prevent infinite loop in case fallback also fails
                           target.src =
-                            "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNDAwIDMwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiMzNzQxNTEiLz48dGV4dCB4PSIyMDAiIHk9IjE1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiIgZm9udC1zaXplPSIxNiI+TmV3cyBJbWFnZTwvdGV4dD48L3N2Zz4="
+                            "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNDAwIDMwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiMzNzQxNTEiLz48dGV4dCB4PSIyMDAiIHk9IjE1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiIgZm9udC1zaXplPSIxNiI+TmV3cyBJbWFnZTwvdGV4dD48L3N2Zz4=";
                         }}
+                        
                       />
                     </div>
                   </div>

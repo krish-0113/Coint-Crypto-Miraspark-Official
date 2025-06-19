@@ -348,28 +348,20 @@ export const Footer = () => {
 {/* 1. Logo & Description */}
 <div className="flex flex-col items-start -mt-6 col-span-1 lg:col-span-1">
   <div className="animated-logo">
-    <Link to={PATHS.HOME}>
-      <div className="flex items-center h-full w-full">
-        {/* Logo */}
-        <img
-          src="/img/mainLogo.png"
-          className="object-contain w-12 h-12 brightness-110 contrast-125 border-4 border-white rounded-full p-1 filter drop-shadow-lg"
-          alt="Company Logo"
-        />
+  <Link to={PATHS.HOME} className="flex items-center h-12">
+  {/* Logo Image */}
+  <img
+    src="/img/mainLogo.png"
+    alt="CoinDigest Logo"
+    className="w-12 h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125 p-1"
+  />
 
-        {/* Coin and Digest vertically aligned */}
-        <div className="flex flex-col justify-center ml-2 text-white leading-none -space-y-2">
-          <div className="flex items-start text-xl font-bold">
-            <span className="text-xl ">C</span>
-            <span>oin</span>
-          </div>
-          <div className="flex items-start text-xl font-bold">
-            <span className="text-xl ">D</span>
-            <span>igest</span>
-          </div>
-        </div>
-      </div>
-    </Link>
+  {/* CoinDigest text */}
+  <span className="ml-2 text-white text-3xl sm:text-4xl font-bold tracking-tight drop-shadow">
+    Coin<span className="text-white">Digest</span>
+  </span>
+</Link>
+
   </div>
   <p className="text-sm text-gray-300 leading-relaxed mt-2 hover-glow">
     Welcome to <span className="gradient-text">CoinDigest</span>, your gateway to the world of Web3 trading!

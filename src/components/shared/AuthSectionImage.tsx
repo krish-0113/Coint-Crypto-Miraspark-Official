@@ -5,12 +5,36 @@ import { Link } from 'react-router-dom';
 import { PATHS } from '@/constants/page-paths';
 import { cn } from '@/lib/utils/cn';
 
+// Logo Component - Updated with your new design
+const Logo = ({ className }: { className?: string }) => {
+  return (
+    <Link to={PATHS.HOME} className="flex items-center h-12">
+  {/* Logo Image with thicker border */}
+  <img
+    src="/img/mainLogo.png"
+    alt="CoinDigest Logo"
+    className={cn(
+      "w-12 h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125",
+      className
+    )}
+  />
+
+  {/* CoinDigest brand text - white and elegant */}
+<span className="ml-1 text-white text-4xl font-bold tracking-tight drop-shadow">
+  CoinDigest
+</span>
+
+</Link>
+
+  );
+};
+
 function AuthSectionImage() {
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname;
 
-  let imageName = "default.jpg";
+  let imageName = "default.jpg"; // Optional default image
 
   if (path === "/signup") {
     imageName = "signup.jpg";
@@ -25,11 +49,15 @@ function AuthSectionImage() {
   const [searchParams] = useSearchParams()
   const twin = searchParams.get("twin")
 
+  const handleLogoClick = () => {
+    navigate('/');
+  }
+
   return (
     <Card className="h-auto md:h-screen w-full border-none rounded-none relative overflow-hidden">
       <CardContent className="flex h-auto md:h-full items-start md:items-center justify-center p-0">
-        <div className="w-full h-auto md:h-full bg-transparent relative min-h-[60px] sm:min-h-[80px] md:min-h-screen">
-          {/* Background Image - Hidden on mobile */}
+        <div className="w-full h-auto md:h-full bg-transparent relative min-h-[70px] md:min-h-screen">
+          {/* Background Image - Hidden on mobile - FIXED POSITIONING AND SCALING */}
           <div className="absolute inset-0 hidden md:block overflow-hidden">
             <img
               src={`/img/${imageName}`}
@@ -40,7 +68,7 @@ function AuthSectionImage() {
                 minHeight: '100%',
                 objectFit: 'cover',
                 objectPosition: 'center center',
-                transform: 'translateZ(0)'
+                transform: 'translateZ(0)' // Hardware acceleration
               }}
             />
           </div>
@@ -50,7 +78,7 @@ function AuthSectionImage() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20 z-10 hidden md:block" />
 
           {/* Mobile Background - Only visible on mobile */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 md:hidden min-h-[60px] sm:min-h-[80px]" />
+          {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 md:hidden min-h-[120px]" /> */}
 
           {/* Animated Particles/Dots - Hidden on mobile */}
           <div className="absolute inset-0 z-20 hidden md:block">
@@ -62,62 +90,20 @@ function AuthSectionImage() {
             <div className="particle particle-6"></div>
           </div>
 
-          {/* MOBILE ONLY NAVBAR - Compact & Responsive */}
-          <div className="md:hidden absolute top-0 left-0 right-0 z-50 flex items-center justify-between bg-black/40 backdrop-blur-sm border-b border-gray-800/30">
-            {/* Mobile Menu Button */}
-            <button className="p-2 text-white hover:text-cyan-400 transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-
-            {/* Mobile Logo - Ultra Compact */}
-            <Link to={PATHS.HOME} className="flex items-center flex-1 justify-center max-w-[50%]">
-              <img
-                src="/img/mainLogo.png"
-                alt="Logo"
-                className="w-4 h-4 object-contain rounded-full border border-white/50 shadow-sm brightness-110"
-              />
-              <span className="ml-1 text-white text-xs font-bold tracking-tight truncate">
-                CoinDigest
-              </span>
-            </Link>
-
-            {/* Mobile Login Button - Minimal */}
-            <Link 
-              to="/login" 
-              className="inline-flex items-center justify-center px-2 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-medium rounded border border-blue-500/30 shadow-sm hover:shadow-md transition-all duration-200 mr-2"
-            >
-              Login
-            </Link>
-          </div>
-
-          {/* DESKTOP NAVBAR - Original Design */}
-          <div className="hidden md:block absolute top-4 left-8 z-40">
-            <Link to={PATHS.HOME} className="flex items-center h-12">
-              <img
-                src="/img/mainLogo.png"
-                alt="CoinDigest Logo"
-                className="w-12 h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125 relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer"
-              />
-              <span className="ml-2 text-white text-4xl font-bold tracking-tight drop-shadow">
-                CoinDigest
-              </span>
-            </Link>
-          </div>
-
-          {/* Desktop Login Button */}
-          <div className="hidden md:block absolute top-4 right-8 z-40">
-            <Link 
-              to="/login" 
-              className="inline-flex items-center justify-center px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-base font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl border border-blue-500/30"
-            >
-              Login
-            </Link>
+          {/* Logo in Top-Left - Using Logo Component */}
+          <div className="absolute top-4 left-8 sm:top-6 sm:left-8 md:top-4 md:left-8 z-40">
+            <div className="relative">
+              {/* Animated glow background - Hidden on mobile */}
+              {/* <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse hidden md:block"></div> */}
+              
+              {/* Logo Component with enhanced styling */}
+              <Logo className="relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer logo-enhanced" />
+            </div>
           </div>
 
           {/* Content Container - Hidden on mobile */}
           <div className="absolute inset-0 z-30 flex-col justify-end items-center text-white px-4 sm:px-6 md:px-8 pb-12 hidden md:flex">
+
             {/* Title with Enhanced Styling */}
             <div className="text-center space-y-3 sm:space-y-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-pink-400 drop-shadow-lg leading-tight">
@@ -144,7 +130,7 @@ function AuthSectionImage() {
               </div>
             </div>
 
-            {/* Floating Elements */}
+            {/* Floating Elements - Responsive positioning */}
             <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-cyan-400 rounded-full animate-ping opacity-75"></div>
             <div className="absolute top-1/3 right-1/4 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-purple-400 rounded-full animate-pulse opacity-75"></div>
             <div className="absolute bottom-1/3 left-1/3 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-pink-400 rounded-full animate-bounce opacity-75"></div>
@@ -236,46 +222,48 @@ function AuthSectionImage() {
             }
           }
         }
+        
+        /* Enhanced Logo Styling */
+        .logo-enhanced {
+          filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.3));
+        }
+        
+        .logo-enhanced:hover {
+          filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.5));
+        }
 
-        /* Mobile Navbar Optimizations */
-        @media (max-width: 480px) {
-          .mobile-navbar {
-            height: 48px;
-            min-height: 48px;
-          }
-          
-          .mobile-logo-text {
-            font-size: 11px !important;
-            max-width: 80px;
-          }
-          
-          .mobile-login-btn {
-            padding: 4px 6px !important;
-            font-size: 10px !important;
-            min-width: 40px !important;
+        /* Custom responsive breakpoints for better mobile experience */
+        @media (max-width: 320px) {
+          .particle {
+            width: 2px;
+            height: 2px;
           }
         }
         
-        @media (max-width: 360px) {
-          .mobile-navbar {
-            height: 44px;
-            min-height: 44px;
+        @media (min-width: 320px) and (max-width: 480px) {
+          .particle {
+            width: 3px;
+            height: 3px;
+          }
+        }
+
+        /* Fix for zoom levels and better image positioning */
+        @media (min-width: 768px) {
+          .auth-bg-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
           }
           
-          .mobile-logo-img {
-            width: 14px !important;
-            height: 14px !important;
-          }
-          
-          .mobile-logo-text {
-            font-size: 10px !important;
-            max-width: 70px;
-          }
-          
-          .mobile-login-btn {
-            padding: 3px 5px !important;
-            font-size: 9px !important;
-            min-width: 35px !important;
+          .auth-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
           }
         }
       `}</style>

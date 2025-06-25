@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils/cn';
 
 export const Logo = ({ className }: { className?: string }) => {
   return (
-    <Link to={PATHS.HOME} className="flex items-center h-12 -ml-4 mr-auto">
+    <Link to={PATHS.HOME} className="flex items-center h-12 ml-2 mr-auto">
       {/* Logo Image with thicker border */}
       <img
         src="/img/mainLogo.png"

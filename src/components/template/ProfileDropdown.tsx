@@ -54,7 +54,8 @@ export function ProfileDropdown() {
             filter: brightness(1.0) saturate(1.2);
             max-width: 90vw;
             width: auto;
-            min-width: 120px;
+            min-width: 100px;
+            margin-right: 8px;
           }
           
           .glow-container:hover {
@@ -94,19 +95,23 @@ export function ProfileDropdown() {
           
           /* Mobile styles */
           @media (max-width: 640px) {
+            .glow-container {
+              min-width: 80px;
+              margin-right: 4px;
+            }
             .glow-button {
-              font-size: 0.875rem;
-              padding: 0.5rem 1.25rem;
-              min-height: 44px;
+              font-size: 0.8rem;
+              padding: 0.4rem 0.8rem;
+              min-height: 36px;
             }
           }
           
           /* Tablet styles */
           @media (min-width: 641px) and (max-width: 768px) {
             .glow-button {
-              font-size: 0.9375rem;
-              padding: 0.59rem 1.75rem;
-              min-height: 48px;
+              font-size: 0.9rem;
+              padding: 0.5rem 1.2rem;
+              min-height: 42px;
             }
           }
           
@@ -114,8 +119,8 @@ export function ProfileDropdown() {
           @media (min-width: 769px) {
             .glow-button {
               font-size: 1rem;
-              padding: 0.59rem 2rem;
-              min-height: 52px;
+              padding: 0.6rem 1.5rem;
+              min-height: 48px;
             }
           }
         `}

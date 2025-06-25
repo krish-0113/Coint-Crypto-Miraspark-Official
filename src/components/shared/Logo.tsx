@@ -10,7 +10,7 @@ export const Logo = ({ className }: { className?: string }) => {
         src="/img/mainLogo.png"
         alt="CoinDigest Logo"
         className={cn(
-          "w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125 transition-all duration-300 hover:border-cyan-400 hover:shadow-cyan-400/50",
+          "w-12 h-12 sm:w-12 sm:h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125 transition-all duration-300 hover:border-cyan-400 hover:shadow-cyan-400/50",
           className
         )}
       />

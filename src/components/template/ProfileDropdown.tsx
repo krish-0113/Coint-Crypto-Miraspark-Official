@@ -55,7 +55,8 @@ export function ProfileDropdown() {
             max-width: 90vw;
             width: auto;
             min-width: 100px;
-            margin-right: 8px;
+            margin-left: auto;
+            margin-right: 16px;
           }
           
           .glow-container:hover {
@@ -97,7 +98,8 @@ export function ProfileDropdown() {
           @media (max-width: 640px) {
             .glow-container {
               min-width: 80px;
-              margin-right: 4px;
+              margin-right: 8px;
+              margin-left: auto;
             }
             .glow-button {
               font-size: 0.8rem;

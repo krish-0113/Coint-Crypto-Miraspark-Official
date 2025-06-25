@@ -5,12 +5,12 @@ import { cn } from '@/lib/utils/cn';
 export const Logo = ({ className }: { className?: string }) => {
   return (
     <Link to={PATHS.HOME} className="flex items-center h-12 ml-2 mr-auto">
-      {/* Logo Image with thicker border */}
+      {/* Logo Image with white border only */}
       <img
         src="/img/mainLogo.png"
         alt="CoinDigest Logo"
         className={cn(
-          "w-12 h-12 sm:w-12 sm:h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125 transition-all duration-300 hover:border-cyan-400 hover:shadow-cyan-400/50",
+          "w-12 h-12 sm:w-12 sm:h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125 transition-all duration-300",
           className
         )}
       />

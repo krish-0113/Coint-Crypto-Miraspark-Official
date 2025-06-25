@@ -89,29 +89,17 @@ function AuthSectionImage() {
           </div>
 
           {/* Mobile Navbar Container - Full width on mobile */}
-          <div className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-2 sm:px-4 md:px-8 py-1.5 sm:py-2 md:py-4 bg-black/30 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none mobile-navbar-container">
+          <div className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-2 sm:px-4 md:px-8 py-1.5 sm:py-2 md:py-4 bg-black/30 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
             {/* Logo - Left side - Constrained width */}
-            <div className="flex-shrink-0 max-w-[65%] sm:max-w-none mobile-logo-container">
-              <Link to={PATHS.HOME} className="flex items-center h-8 sm:h-10 md:h-12">
-                {/* Logo Image - Much smaller on mobile */}
-                <img
-                  src="/img/mainLogo.png"
-                  alt="CoinDigest Logo"
-                  className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain rounded-full border border-white shadow-lg brightness-110 contrast-125 mobile-logo-img"
-                />
-
-                {/* CoinDigest brand text - Much smaller on mobile */}
-                <span className="ml-1 text-white text-xs sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight drop-shadow mobile-logo-text">
-                  CoinDigest
-                </span>
-              </Link>
+            <div className="flex-shrink-0 max-w-[60%] sm:max-w-none">
+              <Logo className="relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer logo-enhanced" />
             </div>
 
             {/* Login Button - Right side, compact for mobile */}
             <div className="flex-shrink-0 ml-1 sm:ml-2">
               <Link 
                 to="/login" 
-                className="inline-flex items-center justify-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-6 md:py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xs sm:text-sm md:text-base font-medium rounded-md sm:rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl border border-blue-500/30 min-w-[50px] sm:min-w-[60px] mobile-login-btn"
+                className="inline-flex items-center justify-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-6 md:py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xs sm:text-sm md:text-base font-medium rounded-md sm:rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl border border-blue-500/30 min-w-[50px] sm:min-w-[60px]"
               >
                 Login
               </Link>

@@ -141,46 +141,35 @@ const initialWatchlist = [
 
 const MainDashboard = ({ onShowWatchlist }) => {
   const [showAlerts, setShowAlerts] = useState(false)
-  const [activeNotification, setActiveNotification] = useState(null)
+  const [liveAlerts, setLiveAlerts] = useState([])
   const [alertIndex, setAlertIndex] = useState(0)
 
-  // Dynamic notification system
+  // Add new alerts to container every 8 seconds
   useEffect(() => {
-    const notificationInterval = setInterval(() => {
-      const currentAlert = cryptoAlerts[alertIndex]
-      setActiveNotification(currentAlert)
-
-      // Hide notification after 4 seconds
-      setTimeout(() => {
-        setActiveNotification(null)
-      }, 4000)
-
-      // Move to next alert
+    const alertInterval = setInterval(() => {
+      const newAlert = {
+        id: Date.now(),
+        message: cryptoAlerts[alertIndex],
+        timestamp: new Date().toLocaleTimeString()
+      }
+      
+      setLiveAlerts(prev => [newAlert, ...prev].slice(0, 10)) // Keep max 10 alerts
       setAlertIndex((prev) => (prev + 1) % cryptoAlerts.length)
-    }, 6000) // Show new notification every 6 seconds
+    }, 8000) // Add new alert every 8 seconds
 
-    return () => clearInterval(notificationInterval)
+    return () => clearInterval(alertInterval)
   }, [alertIndex])
+
+  const removeAlert = (alertId) => {
+    setLiveAlerts(prev => prev.filter(alert => alert.id !== alertId))
+  }
+
+  const clearAllAlerts = () => {
+    setLiveAlerts([])
+  }
 
   return (
     <div className="flex h-full min-h-[calc(100vh-60px)] rounded-3xl overflow-hidden flex-col md:flex-row p-4 gap-6">
-      {/* Dynamic Notification Overlay */}
-      {activeNotification && (
-        <div className="fixed top-4 right-4 z-50 animate-slide-in-right">
-          <div className="relative p-[2px] rounded-xl animate-gradient-x bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 max-w-sm">
-            <div className="bg-gradient-to-b from-black via-slate-900 to-slate-800 p-4 rounded-xl">
-              <div className="flex items-start gap-3">
-                <Bell className="w-5 h-5 text-cyan-400 mt-0.5 animate-pulse" />
-                <div>
-                  <h4 className="text-sm font-semibold text-white mb-1">Alert</h4>
-                  <p className="text-xs text-gray-300">{activeNotification}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Main Content Area with Animated Gradient Border */}
       <div className="flex-grow relative group">
         {/* Animated gradient border */}
@@ -216,35 +205,77 @@ const MainDashboard = ({ onShowWatchlist }) => {
                 onClick={() => setShowAlerts(!showAlerts)}
               >
                 <Bell className="w-4 h-4" />
-                {showAlerts ? "Hide Alerts" : "Show Alerts"}
+                {showAlerts ? "Hide Alerts" : "Show Alerts"} 
+                {liveAlerts.length > 0 && (
+                  <span className="bg-red-500 text-white text-xs rounded-full px-2 py-1 ml-1">
+                    {liveAlerts.length}
+                  </span>
+                )}
               </button>
             </div>
           </div>
 
-          {/* Alerts for Mobile */}
+          {/* Live Alerts for Mobile */}
           {showAlerts && (
             <div className="p-4 rounded-2xl md:hidden mb-4 bg-gradient-to-b from-black via-slate-900 to-slate-800">
-              <div className="flex items-center gap-2 mb-4">
-                <Bell className="w-5 h-5 text-cyan-400" />
-                <h2 className="text-lg font-semibold">Alerts</h2>
-              </div>
-              <ul className="space-y-3">
-                {cryptoAlerts.slice(0, 5).map((alert, idx) => (
-                  <li
-                    key={idx}
-                    className="relative group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <Bell className="w-5 h-5 text-cyan-400" />
+                  <h2 className="text-lg font-semibold">Live Alerts</h2>
+                  {liveAlerts.length > 0 && (
+                    <span className="bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                      {liveAlerts.length}
+                    </span>
+                  )}
+                </div>
+                {liveAlerts.length > 0 && (
+                  <button
+                    onClick={clearAllAlerts}
+                    className="text-xs text-red-400 hover:text-red-300 transition-colors"
                   >
-                    {/* Mobile alert content with purple/pink border */}
-                    <div className="relative p-[1px] rounded-xl bg-gradient-to-r from-purple-500 to-pink-500">
-                      <div className="relative px-4 py-3 rounded-xl bg-gradient-to-br from-blue-900 via-slate-900 to-black group-hover:shadow-lg group-hover:shadow-purple-500/20 transition-all duration-300 w-full">
-                        <p className="text-sm text-gray-300 font-light leading-relaxed group-hover:text-white transition-colors duration-300">
-                          {alert}
-                        </p>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                    Clear All
+                  </button>
+                )}
+              </div>
+              
+              {liveAlerts.length === 0 ? (
+                <div className="text-center py-8">
+                  <p className="text-gray-400">No new alerts</p>
+                  <p className="text-gray-500 text-sm mt-1">New alerts will appear here automatically</p>
+                </div>
+              ) : (
+                <div className="max-h-64 overflow-y-auto custom-scrollbar">
+                  <ul className="space-y-3">
+                    {liveAlerts.map((alert) => (
+                      <li
+                        key={alert.id}
+                        className="relative group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+                      >
+                        {/* Mobile alert content with purple/pink border */}
+                        <div className="relative p-[1px] rounded-xl bg-gradient-to-r from-purple-500 to-pink-500">
+                          <div className="relative px-4 py-3 rounded-xl bg-gradient-to-br from-blue-900 via-slate-900 to-black group-hover:shadow-lg group-hover:shadow-purple-500/20 transition-all duration-300 w-full">
+                            <div className="flex justify-between items-start">
+                              <div className="flex-1 pr-2">
+                                <p className="text-sm text-gray-300 font-light leading-relaxed group-hover:text-white transition-colors duration-300">
+                                  {alert.message}
+                                </p>
+                                <p className="text-xs text-gray-500 mt-1">{alert.timestamp}</p>
+                              </div>
+                              <button
+                                onClick={() => removeAlert(alert.id)}
+                                className="w-5 h-5 bg-red-500/20 hover:bg-red-500/40 rounded-full flex items-center justify-center transition-all duration-200 flex-shrink-0"
+                                title="Remove alert"
+                              >
+                                <X className="w-3 h-3 text-red-400" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
 
@@ -297,7 +328,7 @@ const MainDashboard = ({ onShowWatchlist }) => {
         </div>
       </div>
 
-      {/* Desktop Alerts Sidebar with Animated Gradient Border */}
+      {/* Desktop Live Alerts Sidebar with Animated Gradient Border */}
       <aside className="min-w-64 max-w-64 px-4 py-4 text-white hidden lg:block relative">
         {/* Sidebar content */}
         <div className="relative m-[-13px] rounded-2xl p-4 h-full shadow-2xl z-10">
@@ -307,32 +338,67 @@ const MainDashboard = ({ onShowWatchlist }) => {
           </div>
 
           <div className="relative z-10 p-4">
-            <div className="flex items-center gap-2 mb-6">
-              <Bell className="w-6 h-6 text-cyan-400 animate-pulse" />
-              <h2 className="text-xl font-semibold text-white">Alerts</h2>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <Bell className="w-6 h-6 text-cyan-400 animate-pulse" />
+                <h2 className="text-xl font-semibold text-white">Live Alerts</h2>
+                {liveAlerts.length > 0 && (
+                  <span className="bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                    {liveAlerts.length}
+                  </span>
+                )}
+              </div>
+              {liveAlerts.length > 0 && (
+                <button
+                  onClick={clearAllAlerts}
+                  className="text-xs text-red-400 hover:text-red-300 transition-colors"
+                >
+                  Clear
+                </button>
+              )}
             </div>
-            <div
-              className="max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden pr-2 custom-scrollbar"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              <ul className="space-y-3">
-                {cryptoAlerts.map((alert, idx) => (
-                  <li
-                    key={idx}
-                    className="relative group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
-                  >
-                    {/* Alert content with blue gradient background */}
-                    <div className="relative p-[1px] rounded-xl bg-gradient-to-r from-purple-500 to-pink-500">
-                      <div className="relative px-4 py-3 rounded-xl bg-gradient-to-br from-blue-900 via-slate-900 to-black group-hover:shadow-lg group-hover:shadow-purple-500/20 transition-all duration-300 w-full">
-                        <p className="text-sm text-gray-300 font-light leading-relaxed group-hover:text-white transition-colors duration-300">
-                          {alert}
-                        </p>
+            
+            {liveAlerts.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-400">No new alerts</p>
+                <p className="text-gray-500 text-sm mt-2">New alerts will appear here automatically</p>
+              </div>
+            ) : (
+              <div
+                className="max-h-[calc(100vh-200px)] overflow-y-auto overflow-x-hidden pr-2 custom-scrollbar"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+              >
+                <ul className="space-y-3">
+                  {liveAlerts.map((alert) => (
+                    <li
+                      key={alert.id}
+                      className="relative group cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+                    >
+                      {/* Alert content with blue gradient background */}
+                      <div className="relative p-[1px] rounded-xl bg-gradient-to-r from-purple-500 to-pink-500">
+                        <div className="relative px-4 py-3 rounded-xl bg-gradient-to-br from-blue-900 via-slate-900 to-black group-hover:shadow-lg group-hover:shadow-purple-500/20 transition-all duration-300 w-full">
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1 pr-2">
+                              <p className="text-sm text-gray-300 font-light leading-relaxed group-hover:text-white transition-colors duration-300">
+                                {alert.message}
+                              </p>
+                              <p className="text-xs text-gray-500 mt-1">{alert.timestamp}</p>
+                            </div>
+                            <button
+                              onClick={() => removeAlert(alert.id)}
+                              className="w-5 h-5 bg-red-500/20 hover:bg-red-500/40 rounded-full flex items-center justify-center transition-all duration-200 flex-shrink-0"
+                              title="Remove alert"
+                            >
+                              <X className="w-3 h-3 text-red-400" />
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </aside>

@@ -5,34 +5,12 @@ import { Link } from 'react-router-dom';
 import { PATHS } from '@/constants/page-paths';
 import { cn } from '@/lib/utils/cn';
 
-// Logo Component - Mobile Responsive
-const Logo = ({ className }: { className?: string }) => {
-  return (
-    <Link to={PATHS.HOME} className="flex items-center h-8 sm:h-10 md:h-12">
-      {/* Logo Image - Much smaller on mobile */}
-      <img
-        src="/img/mainLogo.png"
-        alt="CoinDigest Logo"
-        className={cn(
-          "w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain rounded-full border border-white shadow-lg brightness-110 contrast-125",
-          className
-        )}
-      />
-
-      {/* CoinDigest brand text - Much smaller on mobile */}
-      <span className="ml-1 text-white text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight drop-shadow">
-        CoinDigest
-      </span>
-    </Link>
-  );
-};
-
 function AuthSectionImage() {
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname;
 
-  let imageName = "default.jpg"; // Optional default image
+  let imageName = "default.jpg";
 
   if (path === "/signup") {
     imageName = "signup.jpg";
@@ -47,14 +25,10 @@ function AuthSectionImage() {
   const [searchParams] = useSearchParams()
   const twin = searchParams.get("twin")
 
-  const handleLogoClick = () => {
-    navigate('/');
-  }
-
   return (
     <Card className="h-auto md:h-screen w-full border-none rounded-none relative overflow-hidden">
       <CardContent className="flex h-auto md:h-full items-start md:items-center justify-center p-0">
-        <div className="w-full h-auto md:h-full bg-transparent relative min-h-[80px] sm:min-h-[100px] md:min-h-screen">
+        <div className="w-full h-auto md:h-full bg-transparent relative min-h-[60px] sm:min-h-[80px] md:min-h-screen">
           {/* Background Image - Hidden on mobile */}
           <div className="absolute inset-0 hidden md:block overflow-hidden">
             <img
@@ -66,7 +40,7 @@ function AuthSectionImage() {
                 minHeight: '100%',
                 objectFit: 'cover',
                 objectPosition: 'center center',
-                transform: 'translateZ(0)' // Hardware acceleration
+                transform: 'translateZ(0)'
               }}
             />
           </div>
@@ -76,7 +50,7 @@ function AuthSectionImage() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20 z-10 hidden md:block" />
 
           {/* Mobile Background - Only visible on mobile */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 md:hidden min-h-[80px] sm:min-h-[100px]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 md:hidden min-h-[60px] sm:min-h-[80px]" />
 
           {/* Animated Particles/Dots - Hidden on mobile */}
           <div className="absolute inset-0 z-20 hidden md:block">
@@ -88,22 +62,58 @@ function AuthSectionImage() {
             <div className="particle particle-6"></div>
           </div>
 
-          {/* Mobile Navbar Container - Full width on mobile */}
-          <div className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-2 sm:px-4 md:px-8 py-1.5 sm:py-2 md:py-4 bg-black/30 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
-            {/* Logo - Left side - Constrained width */}
-            <div className="flex-shrink-0 max-w-[60%] sm:max-w-none">
-              <Logo className="relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer logo-enhanced" />
-            </div>
+          {/* MOBILE ONLY NAVBAR - Compact & Responsive */}
+          <div className="md:hidden absolute top-0 left-0 right-0 z-50 flex items-center justify-between bg-black/40 backdrop-blur-sm border-b border-gray-800/30">
+            {/* Mobile Menu Button */}
+            <button className="p-2 text-white hover:text-cyan-400 transition-colors">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
 
-            {/* Login Button - Right side, compact for mobile */}
-            <div className="flex-shrink-0 ml-1 sm:ml-2">
-              <Link 
-                to="/login" 
-                className="inline-flex items-center justify-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-6 md:py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xs sm:text-sm md:text-base font-medium rounded-md sm:rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl border border-blue-500/30 min-w-[50px] sm:min-w-[60px]"
-              >
-                Login
-              </Link>
-            </div>
+            {/* Mobile Logo - Ultra Compact */}
+            <Link to={PATHS.HOME} className="flex items-center flex-1 justify-center max-w-[50%]">
+              <img
+                src="/img/mainLogo.png"
+                alt="Logo"
+                className="w-4 h-4 object-contain rounded-full border border-white/50 shadow-sm brightness-110"
+              />
+              <span className="ml-1 text-white text-xs font-bold tracking-tight truncate">
+                CoinDigest
+              </span>
+            </Link>
+
+            {/* Mobile Login Button - Minimal */}
+            <Link 
+              to="/login" 
+              className="inline-flex items-center justify-center px-2 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-medium rounded border border-blue-500/30 shadow-sm hover:shadow-md transition-all duration-200 mr-2"
+            >
+              Login
+            </Link>
+          </div>
+
+          {/* DESKTOP NAVBAR - Original Design */}
+          <div className="hidden md:block absolute top-4 left-8 z-40">
+            <Link to={PATHS.HOME} className="flex items-center h-12">
+              <img
+                src="/img/mainLogo.png"
+                alt="CoinDigest Logo"
+                className="w-12 h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125 relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer"
+              />
+              <span className="ml-2 text-white text-4xl font-bold tracking-tight drop-shadow">
+                CoinDigest
+              </span>
+            </Link>
+          </div>
+
+          {/* Desktop Login Button */}
+          <div className="hidden md:block absolute top-4 right-8 z-40">
+            <Link 
+              to="/login" 
+              className="inline-flex items-center justify-center px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-base font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl border border-blue-500/30"
+            >
+              Login
+            </Link>
           </div>
 
           {/* Content Container - Hidden on mobile */}
@@ -134,7 +144,7 @@ function AuthSectionImage() {
               </div>
             </div>
 
-            {/* Floating Elements - Responsive positioning */}
+            {/* Floating Elements */}
             <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-cyan-400 rounded-full animate-ping opacity-75"></div>
             <div className="absolute top-1/3 right-1/4 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-purple-400 rounded-full animate-pulse opacity-75"></div>
             <div className="absolute bottom-1/3 left-1/3 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-pink-400 rounded-full animate-bounce opacity-75"></div>
@@ -226,101 +236,46 @@ function AuthSectionImage() {
             }
           }
         }
-        
-        /* Enhanced Logo Styling */
-        .logo-enhanced {
-          filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.3));
-        }
-        
-        .logo-enhanced:hover {
-          filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.5));
-        }
 
-        /* Mobile specific optimizations */
-        @media (max-width: 320px) {
-          .particle {
-            width: 2px;
-            height: 2px;
+        /* Mobile Navbar Optimizations */
+        @media (max-width: 480px) {
+          .mobile-navbar {
+            height: 48px;
+            min-height: 48px;
           }
           
-          /* Extra small mobile adjustments */
           .mobile-logo-text {
-            font-size: 12px !important;
+            font-size: 11px !important;
+            max-width: 80px;
           }
           
           .mobile-login-btn {
-            padding: 4px 8px !important;
+            padding: 4px 6px !important;
             font-size: 10px !important;
+            min-width: 40px !important;
           }
         }
         
-        @media (max-width: 480px) {
-          /* Small mobile adjustments */
-          .mobile-navbar-container {
-            padding: 6px 8px !important;
-            min-height: 40px;
-          }
-          
-          .mobile-logo-container {
-            max-width: 65% !important;
+        @media (max-width: 360px) {
+          .mobile-navbar {
+            height: 44px;
+            min-height: 44px;
           }
           
           .mobile-logo-img {
-            width: 20px !important;
-            height: 20px !important;
+            width: 14px !important;
+            height: 14px !important;
           }
           
           .mobile-logo-text {
-            font-size: 14px !important;
-            margin-left: 4px !important;
+            font-size: 10px !important;
+            max-width: 70px;
           }
           
           .mobile-login-btn {
-            padding: 4px 10px !important;
-            font-size: 11px !important;
-            min-width: 45px !important;
-          }
-        }
-        
-        @media (min-width: 320px) and (max-width: 480px) {
-          .particle {
-            width: 3px;
-            height: 3px;
-          }
-        }
-
-        /* Ensure proper mobile navbar spacing */
-        @media (max-width: 640px) {
-          .mobile-navbar {
-            height: 60px;
-            min-height: 60px;
-          }
-        }
-        
-        @media (min-width: 641px) and (max-width: 768px) {
-          .mobile-navbar {
-            height: 70px;
-            min-height: 70px;
-          }
-        }
-
-        /* Fix for zoom levels and better image positioning */
-        @media (min-width: 768px) {
-          .auth-bg-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-          }
-          
-          .auth-bg-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
+            padding: 3px 5px !important;
+            font-size: 9px !important;
+            min-width: 35px !important;
           }
         }
       `}</style>

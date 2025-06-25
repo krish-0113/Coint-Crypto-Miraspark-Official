@@ -8,19 +8,19 @@ import { cn } from '@/lib/utils/cn';
 // Logo Component - Mobile Responsive
 const Logo = ({ className }: { className?: string }) => {
   return (
-    <Link to={PATHS.HOME} className="flex items-center h-10 sm:h-12">
-      {/* Logo Image - Smaller on mobile */}
+    <Link to={PATHS.HOME} className="flex items-center h-8 sm:h-10 md:h-12">
+      {/* Logo Image - Much smaller on mobile */}
       <img
         src="/img/mainLogo.png"
         alt="CoinDigest Logo"
         className={cn(
-          "w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125",
+          "w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain rounded-full border border-white shadow-lg brightness-110 contrast-125",
           className
         )}
       />
 
-      {/* CoinDigest brand text - Responsive sizing */}
-      <span className="ml-1 sm:ml-2 text-white text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight drop-shadow">
+      {/* CoinDigest brand text - Much smaller on mobile */}
+      <span className="ml-1 text-white text-sm sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight drop-shadow">
         CoinDigest
       </span>
     </Link>
@@ -89,17 +89,29 @@ function AuthSectionImage() {
           </div>
 
           {/* Mobile Navbar Container - Full width on mobile */}
-          <div className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-3 sm:px-4 md:px-8 py-2 sm:py-3 md:py-4 bg-black/20 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
-            {/* Logo - Left side */}
-            <div className="flex-shrink-0">
-              <Logo className="relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer logo-enhanced" />
+          <div className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-2 sm:px-4 md:px-8 py-1.5 sm:py-2 md:py-4 bg-black/30 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none mobile-navbar-container">
+            {/* Logo - Left side - Constrained width */}
+            <div className="flex-shrink-0 max-w-[65%] sm:max-w-none mobile-logo-container">
+              <Link to={PATHS.HOME} className="flex items-center h-8 sm:h-10 md:h-12">
+                {/* Logo Image - Much smaller on mobile */}
+                <img
+                  src="/img/mainLogo.png"
+                  alt="CoinDigest Logo"
+                  className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain rounded-full border border-white shadow-lg brightness-110 contrast-125 mobile-logo-img"
+                />
+
+                {/* CoinDigest brand text - Much smaller on mobile */}
+                <span className="ml-1 text-white text-xs sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold tracking-tight drop-shadow mobile-logo-text">
+                  CoinDigest
+                </span>
+              </Link>
             </div>
 
-            {/* Login Button - Right side, properly sized for mobile */}
-            <div className="flex-shrink-0 ml-2">
+            {/* Login Button - Right side, compact for mobile */}
+            <div className="flex-shrink-0 ml-1 sm:ml-2">
               <Link 
                 to="/login" 
-                className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xs sm:text-sm md:text-base font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl border border-blue-500/30"
+                className="inline-flex items-center justify-center px-2 py-1 sm:px-3 sm:py-1.5 md:px-6 md:py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xs sm:text-sm md:text-base font-medium rounded-md sm:rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl border border-blue-500/30 min-w-[50px] sm:min-w-[60px] mobile-login-btn"
               >
                 Login
               </Link>
@@ -241,6 +253,44 @@ function AuthSectionImage() {
           .particle {
             width: 2px;
             height: 2px;
+          }
+          
+          /* Extra small mobile adjustments */
+          .mobile-logo-text {
+            font-size: 12px !important;
+          }
+          
+          .mobile-login-btn {
+            padding: 4px 8px !important;
+            font-size: 10px !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          /* Small mobile adjustments */
+          .mobile-navbar-container {
+            padding: 6px 8px !important;
+            min-height: 40px;
+          }
+          
+          .mobile-logo-container {
+            max-width: 65% !important;
+          }
+          
+          .mobile-logo-img {
+            width: 20px !important;
+            height: 20px !important;
+          }
+          
+          .mobile-logo-text {
+            font-size: 14px !important;
+            margin-left: 4px !important;
+          }
+          
+          .mobile-login-btn {
+            padding: 4px 10px !important;
+            font-size: 11px !important;
+            min-width: 45px !important;
           }
         }
         

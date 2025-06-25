@@ -16,7 +16,7 @@ const coinsData = [
     textColor: "text-yellow-500",
     price: "$78,750.60",
     change: "-1.2%",
-    isPositive: false,
+    isPositive: false,    
   },
   {
     name: "Ethereum",

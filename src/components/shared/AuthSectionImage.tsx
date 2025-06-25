@@ -5,27 +5,25 @@ import { Link } from 'react-router-dom';
 import { PATHS } from '@/constants/page-paths';
 import { cn } from '@/lib/utils/cn';
 
-// Logo Component - Updated with your new design
+// Logo Component - Mobile Responsive
 const Logo = ({ className }: { className?: string }) => {
   return (
-    <Link to={PATHS.HOME} className="flex items-center h-12">
-  {/* Logo Image with thicker border */}
-  <img
-    src="/img/mainLogo.png"
-    alt="CoinDigest Logo"
-    className={cn(
-      "w-12 h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125",
-      className
-    )}
-  />
+    <Link to={PATHS.HOME} className="flex items-center h-10 sm:h-12">
+      {/* Logo Image - Smaller on mobile */}
+      <img
+        src="/img/mainLogo.png"
+        alt="CoinDigest Logo"
+        className={cn(
+          "w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain rounded-full border-2 border-white shadow-lg brightness-110 contrast-125",
+          className
+        )}
+      />
 
-  {/* CoinDigest brand text - white and elegant */}
-<span className="ml-1 text-white text-4xl font-bold tracking-tight drop-shadow">
-  CoinDigest
-</span>
-
-</Link>
-
+      {/* CoinDigest brand text - Responsive sizing */}
+      <span className="ml-1 sm:ml-2 text-white text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight drop-shadow">
+        CoinDigest
+      </span>
+    </Link>
   );
 };
 
@@ -56,8 +54,8 @@ function AuthSectionImage() {
   return (
     <Card className="h-auto md:h-screen w-full border-none rounded-none relative overflow-hidden">
       <CardContent className="flex h-auto md:h-full items-start md:items-center justify-center p-0">
-        <div className="w-full h-auto md:h-full bg-transparent relative min-h-[70px] md:min-h-screen">
-          {/* Background Image - Hidden on mobile - FIXED POSITIONING AND SCALING */}
+        <div className="w-full h-auto md:h-full bg-transparent relative min-h-[80px] sm:min-h-[100px] md:min-h-screen">
+          {/* Background Image - Hidden on mobile */}
           <div className="absolute inset-0 hidden md:block overflow-hidden">
             <img
               src={`/img/${imageName}`}
@@ -78,7 +76,7 @@ function AuthSectionImage() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-purple-900/20 z-10 hidden md:block" />
 
           {/* Mobile Background - Only visible on mobile */}
-          {/* <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 md:hidden min-h-[120px]" /> */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800 md:hidden min-h-[80px] sm:min-h-[100px]" />
 
           {/* Animated Particles/Dots - Hidden on mobile */}
           <div className="absolute inset-0 z-20 hidden md:block">
@@ -90,20 +88,26 @@ function AuthSectionImage() {
             <div className="particle particle-6"></div>
           </div>
 
-          {/* Logo in Top-Left - Using Logo Component */}
-          <div className="absolute top-4 left-8 sm:top-6 sm:left-8 md:top-4 md:left-8 z-40">
-            <div className="relative">
-              {/* Animated glow background - Hidden on mobile */}
-              {/* <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 scale-150 animate-pulse hidden md:block"></div> */}
-              
-              {/* Logo Component with enhanced styling */}
+          {/* Mobile Navbar Container - Full width on mobile */}
+          <div className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-3 sm:px-4 md:px-8 py-2 sm:py-3 md:py-4 bg-black/20 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none">
+            {/* Logo - Left side */}
+            <div className="flex-shrink-0">
               <Logo className="relative drop-shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer logo-enhanced" />
+            </div>
+
+            {/* Login Button - Right side, properly sized for mobile */}
+            <div className="flex-shrink-0 ml-2">
+              <Link 
+                to="/login" 
+                className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-xs sm:text-sm md:text-base font-medium rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl border border-blue-500/30"
+              >
+                Login
+              </Link>
             </div>
           </div>
 
           {/* Content Container - Hidden on mobile */}
           <div className="absolute inset-0 z-30 flex-col justify-end items-center text-white px-4 sm:px-6 md:px-8 pb-12 hidden md:flex">
-
             {/* Title with Enhanced Styling */}
             <div className="text-center space-y-3 sm:space-y-4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-white to-pink-400 drop-shadow-lg leading-tight">
@@ -232,7 +236,7 @@ function AuthSectionImage() {
           filter: drop-shadow(0 0 30px rgba(34, 211, 238, 0.5));
         }
 
-        /* Custom responsive breakpoints for better mobile experience */
+        /* Mobile specific optimizations */
         @media (max-width: 320px) {
           .particle {
             width: 2px;
@@ -244,6 +248,21 @@ function AuthSectionImage() {
           .particle {
             width: 3px;
             height: 3px;
+          }
+        }
+
+        /* Ensure proper mobile navbar spacing */
+        @media (max-width: 640px) {
+          .mobile-navbar {
+            height: 60px;
+            min-height: 60px;
+          }
+        }
+        
+        @media (min-width: 641px) and (max-width: 768px) {
+          .mobile-navbar {
+            height: 70px;
+            min-height: 70px;
           }
         }
 
